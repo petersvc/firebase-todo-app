@@ -1,0 +1,595 @@
+<FlatList
+          data={lists}
+          keyExtractor={keyExtractor}
+          renderItem={renderList}
+        />
+      </Text>
+
+
+<View style={styles.container}>
+        <TouchableOpacity style={styles.add} onPress={() => addTodo()}>
+          <Text>ADD Todo</Text>
+        </TouchableOpacity>
+        <Modal visible={visible} animationType="slide">
+          <TouchableOpacity
+            style={{backgroundColor: 'blue'}}
+            onPress={() => setVisible(false)}>
+            <Text>fechar modal</Text>
+          </TouchableOpacity>
+          <Text>fechar modal</Text>
+        </Modal>
+        <TouchableOpacity
+          style={{backgroundColor: 'blue'}}
+          onPress={() => setVisible(true)}>
+          <Text>abrir modal</Text>
+        </TouchableOpacity>
+      </View>
+
+
+import React, {useState, useEffect} from 'react';
+
+import 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
+import Todos from './scenes/Todos';
+
+const Drawer = createDrawerNavigator();
+
+export default function App() {
+  const [lists, setLists] = useState([]);
+  // const [list, setList] = useState();
+  const [loading, setLoading] = useState(true);
+  const ref = firestore().collection('lists');
+
+  async function addList() {
+    await ref.add({
+      name: 'Tomorrow',
+      todos: [
+        {
+          title: 'study db 2',
+          complete: false,
+        },
+        {
+          title: 'lunch',
+          complete: false,
+        },
+      ],
+    });
+  }
+
+  /* function addTask(title, complete, date) {
+    const listIndex = 0; // todoDate.substring(0, todoDate.date.indexOf('2020') + 4);
+    if (today === date.substring(0, date.indexOf('2020') + 4)) {
+      listIndex = 0;
+    } else {
+      listIndex = 1;
+    }
+    lists[0].todos.push({t: title, c: complete, d: date});
+  } */
+  // lists[0].todos.push({t: 'title', c: 'complete', d: 'date'});
+  // addTask('title', 'complete', 'date');
+  // lists[0].todos.push({title: 'oi'});
+    return ref.onSnapshot((querySnapshot) => {
+      const tempList = [];
+      querySnapshot.forEach((doc) => {
+        const {name, todos} = doc.data();
+        tempList.push({
+          id: doc.id,
+          name,
+          todos,
+        });
+      });
+
+      setLists(tempList);
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Todos" drawerType="back">
+        <Drawer.Screen name="Todos">
+          {(props) => (
+            <Todos
+              navigations={props.navigation}
+              lists={lists}
+              addList={addList}
+            />
+          )}
+        </Drawer.Screen>
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
+
+async function addList() {
+    await ref.add({
+      name: 'Today',
+    });
+  }
+
+  useEffect(() => {
+    return ref.onSnapshot((querySnapshot) => {
+      const tempList = [];
+      querySnapshot.forEach((doc) => {
+        const {name} = doc.data();
+        ref
+          .doc(doc.id)
+          .collection('todos')
+          .onSnapshot((querySnapshot2) => {
+            const tempTodos = [];
+            querySnapshot2.forEach((doc2) => {
+              const {complete, title} = doc2.data();
+              tempTodos.push({
+                id: doc2.id,
+                complete,
+                title,
+              });
+            });
+            tempList.push({
+              id: doc.id,
+              name,
+              todos: tempTodos,
+            });
+            setLists(tempList);
+          });
+      });
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+
+      <Text>todos: {list.todos.map((todo) => `${todo.title}, `)}</Text>
+
+  useEffect(() => {
+    return listCollection.onSnapshot((querySnapshot) => {
+      const tempList = [];
+      querySnapshot.forEach((doc) => {
+        const {name} = doc.data();
+
+        listCollection
+          .doc(doc.id)
+          .collection('todos')
+          .onSnapshot((querySnapshot2) => {
+            const tempTodos = [];
+            querySnapshot2.forEach((doc2) => {
+              const {complete, title} = doc2.data();
+              tempTodos.push({
+                id: doc2.id,
+                complete,
+                title,
+              });
+            });
+            tempList.push({
+              id: doc.id,
+              name,
+              todos: tempTodos,
+            });
+            setLists(tempList);
+            // setN([...n, name]);
+          });
+      });
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  tempTodos.push({
+          id: doc.id + title,
+          title,
+          complete,
+          date,
+        });
+{
+      name: 'Today',
+      todos: [],
+    },
+    {
+      name: 'Tomorrow',
+      todos: [],
+    },
+{lists.map((todo) => todo.title)} {lists[0].todos[0].title}
+        {lists.length}
+
+<Text>
+        {todos.map((todo) => todo.title)} {todos.length}
+      </Text>
+
+useEffect(() => {
+    todosCollection.onSnapshot((snap) => {
+      setTodos(
+        snap.docs.map((doc) => {
+          const date = doc.data().date.toDate().toString();
+          const slicer = date.substring(
+            0,
+            date.indexOf(String(d.getFullYear())) + 4,
+          );
+          if (slicer === today) {
+            return lists[0].todos.push(doc.data());
+          }
+          return lists[1].todos.push(doc.data());
+        }),
+      );
+    });
+  }, []);
+
+
+  /* const date = doc.data().date.toDate().toString();
+          const slicer = date.substring(
+            0,
+            date.indexOf(String(d.getFullYear())) + 4,
+          );
+          if (slicer === today) {
+            lists[0].todos.push(doc.data());
+          } else {
+            lists[1].todos.push(doc.data());
+          } */
+          // addTodo(doc);
+
+
+
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const weekDay = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const d = new Date();
+
+  const today = `${weekDay[d.getDay() - 1]} ${
+    months[d.getMonth()]
+  } ${d.getDate()} ${d.getFullYear()}`;
+  const date = 'Tue Sep 15 2020';
+  const slicer = date.substring(0, date.indexOf(String(d.getFullYear())) + 4);
+  return (
+    <View>
+      <Text> {today === slicer ? 'sim' : 'nao'}</Text>
+    </View>
+  );
+
+  const renderTodo = useCallback(({item}) => {
+  return <TodoTask task={item} />;
+}, []);
+
+const keyExtractor = useCallback((item) => item.title);
+
+const renderList = useCallback(({item}) => {
+  const remaining = item.todos.map((todo) => todo.complete).length;
+  return (
+    <View style={styles.list}>
+      <Text style={[styles.titleSpoted, styles.listName]}>
+        {item.title} ({remaining})
+      </Text>
+      <FlatList
+        data={item.todos}
+        keyExtractor={keyExtractor}
+        renderItem={renderTodo}
+      />
+    </View>
+  );
+}, []);
+
+
+  /*
+  todos.map((todo) => {
+    const date = todo.date.toDate().toString();
+    const slicer = date.substring(0, date.indexOf(String(d.getFullYear())) + 4);
+    if (slicer === today) {
+      const update = lists[0].todos.findIndex(
+        (item) => item.title === todo.title,
+      );
+      if (update === -1) {
+        lists[0].todos.push(todo);
+      }
+    } else {
+      const update = lists[1].todos.findIndex(
+        (item) => item.title === todo.title,
+      );
+      if (update === -1) {
+        lists[1].todos.push(todo);
+      }
+    }
+    return true;
+  }); */
+
+
+todos.map((todo) => {
+    const date = todo.date.toDate().toString();
+    // const todo = doc.data();
+    const todayTodos = lists[0].todos;
+    const tomorrowTodos = lists[1].todos;
+    const slicer = date.substring(0, date.indexOf(String(d.getFullYear())) + 4);
+    if (slicer === today) {
+      const update = todayTodos.findIndex((item) => item.title === todo.title);
+      if (update === -1) {
+        todayTodos.push(todo);
+      }
+    } else {
+      const update = tomorrowTodos.findIndex(
+        (item) => item.title === todo.title,
+      );
+      if (update === -1) {
+        tomorrowTodos.push(todo);
+      }
+    }
+    return true;
+  });
+
+
+async function addTask() {
+    await todosCollection.add();
+  }
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+const weekDay = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const d = new Date();
+
+const today = `${weekDay[d.getDay() - 1]} ${
+  months[d.getMonth()]
+} ${d.getDate()} ${d.getFullYear()}`;
+
+
+const renderList = useCallback(({item}) => {
+    const remaining = item.todos.map((todo) => todo.complete).length;
+    return (
+      <View style={styles.list}>
+        <Text style={[styles.titleSpoted, styles.listName]}>
+          {item.title} ({remaining})
+        </Text>
+        <FlatList
+          data={item.todos}
+          keyExtractor={keyExtractor}
+          renderItem={renderTodo}
+          extraData={item.todos}
+        />
+      </View>
+    );
+  }, []);
+
+
+const tab = !focused ? (
+                <Icon name={iconName} size={iconSize} color={iconColor} />
+              ) : (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <Icon name={iconName} size={iconSize} color={iconColor} />
+                </View>
+              );
+
+
+function TodoTask({task}) {
+  return (
+    <View style={styles.task}>
+      <View style={styles.times}>
+        <Text style={[styles.begin, styles.smallText]}>{task.begin}</Text>
+        <Text style={[styles.begin, styles.smallText]}>{task.end}</Text>
+      </View>
+      <Icon
+        name={task.complete ? 'checkmark' : 'ellipse-outline'}
+        size={styles.icon.size + 3}
+        color={styles.icon.color}
+      />
+      <View style={styles.taskDetails}>
+        <Text style={styles.title}>{task.title}</Text>
+        <View style={styles.time}>
+          <Text style={[styles.begin, styles.smallText]}>{task.begin}</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+{
+      title: 'today',
+      todos: [],
+    },
+
+
+const [loading, setLoading] = useState(true);
+  const todosCollection = firestore().collection('todos');
+  const [todos, setTodos] = useState([]);
+  const [lists, setLists] = useState([]);
+
+  useEffect(() => {
+    return todosCollection.onSnapshot((snap) => {
+      const copy = [];
+      snap.forEach((doc) => {
+        copy.push({...doc.data(), id: doc.id});
+        // setTodos(doc.data());
+      });
+      setTodos(copy);
+      if (loading) {
+        setLoading(false);
+      }
+    });
+    // setLists([...lists, lists[0].todos.push(todos)]);
+  }, []);
+
+
+
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const weekDay = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const d = new Date();
+
+  const today = `${weekDay[d.getDay() - 1]}, ${
+    months[d.getMonth()]
+  } ${d.getDate()}`;
+
+
+const lists = usrLists.map((list) => {
+    const temp = {id: list, todos: []};
+    if (temp.id === 'today') {
+      temp.todos = todos.filter((todo) => todo.date === today);
+    } else if (temp.id === 'tommorow') {
+      temp.todos = todos.map((todo) => {
+        const [month, day, year] = todo.date.split(' ');
+        const [month2, day2, year2] = today.split(' ');
+        let tempTodo = {};
+        if (month === month2 && year === year2 && day === String(day2 + 1)) {
+          tempTodo = todo;
+        }
+        return tempTodo;
+      });
+    }
+    return temp;
+  });
+
+      const [month, day, year] = today.split(' ');
+      temp.todos = todos.filter(
+        (todo) => todo.date.substring(4, 6) === today.substring(4, 6),
+      );
+
+      <Text>{data < data2 ? 'yes' : 'no'}</Text>
+      <Text>{data.substring(4)}</Text>
+
+
+const renderTodo = useCallback(({item}) => {
+    return <TodoTask task={item} todosCollection={todosCollection} />;
+  }, []);
+
+
+  // let propColor = '';
+  // listId === 'today'
+  //   ? (propColor = styles.colors.green2)
+  //   : (propColor = styles.colors.white);
+
+
+  const [month, day, year] = today.split(' ');
+  const data = 'Sep 24 2019';
+  const data2 = 'Sep 24 2020';
+  const [m, d, y] = data.split(' ');
+
+
+import React from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import styles from './style';
+
+function TodoTask({task, todosCollection}) {
+  async function deleteTodo() {
+    await todosCollection.doc(task.id).delete();
+  }
+  async function toggleComplete() {
+    await todosCollection.doc(task.id).update({complete: !task.complete});
+  }
+
+  return (
+    <View style={styles.task}>
+      <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
+        <Icon
+          name={task.complete ? 'md-checkmark' : 'ellipse-outline'}
+          size={styles.icon.size + 5}
+          color={task.complete ? styles.icon.colorMain : styles.icon.color}
+        />
+      </TouchableOpacity>
+      <View style={styles.content}>
+        <View style={styles.firstLine}>
+          <TouchableOpacity onPress={deleteTodo}>
+            <Text style={task.complete ? styles.done : styles.title}>
+              {task.title}
+            </Text>
+          </TouchableOpacity>
+          {task.repeat ? (
+            <Icon
+              style={{marginLeft: 8}}
+              name="ios-sync-outline"
+              size={styles.icon.size - 6}
+              color={styles.icon.color}
+            />
+          ) : null}
+        </View>
+
+        <View style={styles.times}>
+          <Icon
+            style={{marginRight: 5}}
+            name="ios-time-outline"
+            size={styles.icon.size - 6}
+            color={styles.icon.color}
+          />
+          <Text
+            style={
+              task.complete
+                ? [styles.smallText, styles.done]
+                : [styles.smallText, styles.begin]
+            }>
+            {task.begin}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.rightSide} />
+    </View>
+  );
+}
+// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+// <Text style={[styles.smallText, styles.end]}>{task.end}</Text>
+export default TodoTask;
+
+/*
+, {color: propColor}
+, {color: propColor}
+{task.end !== '' ? `- ${task.end}` : null}
+          <Icon
+            style={{marginRight: 3}}
+            name="ios-time-outline"
+            size={styles.icon.size - 5}
+            color={styles.icon.color}
+          />
+          {task.repeat ? (
+            <Icon
+              name="ios-sync-outline"
+              size={styles.icon.size - 4}
+              color={styles.icon.color}
+            />
+          ) : null}
+*/
