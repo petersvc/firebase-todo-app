@@ -14,7 +14,7 @@ function TodoTask({task, todosCollection}) {
     await todosCollection.doc(task.id).update({complete: !task.complete});
   }
 
-  let tagColor = styles.colors.white;
+  let tagColor = styles.colors.main;
 
   if (task.tag === 'work') tagColor = styles.colors.orange;
   else if (task.tag === 'learn') tagColor = styles.colors.blue;
@@ -29,20 +29,21 @@ function TodoTask({task, todosCollection}) {
           size={styles.icon.size + 10}
           color={task.complete ? tagColor : styles.icon.color}
         />
-
-        <Icon
-          style={{marginLeft: 17, marginTop: -13}}
-          name="ios-ellipse"
-          size={task.complete ? styles.icon.size - 12 : styles.icon.size - 9}
-          color={tagColor}
-        />
       </TouchableOpacity>
 
       <View style={styles.content}>
-        <TouchableOpacity onPress={deleteTodo}>
+        <TouchableOpacity
+          style={{flexDirection: 'row', alignItems: 'center'}}
+          onPress={deleteTodo}>
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
+          <Icon
+            style={{marginLeft: 5}}
+            name="ios-ellipse"
+            size={styles.icon.size - 12}
+            color={tagColor}
+          />
         </TouchableOpacity>
 
         <View style={styles.times}>
@@ -72,6 +73,13 @@ function TodoTask({task, todosCollection}) {
 export default TodoTask;
 
 /*
+
+<Icon
+          style={{marginLeft: 17, marginTop: -13}}
+          name="ios-ellipse"
+          size={task.complete ? styles.icon.size - 12 : styles.icon.size - 9}
+          color={tagColor}
+        />
 , {color: propColor}
 , {color: propColor}
 {task.end !== '' ? `- ${task.end}` : null}

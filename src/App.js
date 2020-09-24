@@ -12,6 +12,7 @@ import Todo from './scenes/Todo/Todo';
 import Calendar from './scenes/Calendar/Calendar';
 import Profile from './scenes/Profile/Profile';
 import Settings from './scenes/Settings/Settings';
+import DrawerContent from './components/DrawerContent/DrawerContent';
 
 const Drawer = createDrawerNavigator();
 
@@ -78,7 +79,12 @@ function App() {
   return (
     <>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Todo">
+        <Drawer.Navigator
+          // drawerType="back"
+          initialRouteName="Todo"
+          drawerContent={(props) => (
+            <DrawerContent navigation={props.navigation} lists={lists} />
+          )}>
           <Drawer.Screen name="Todo">
             {(props) => (
               <Todo

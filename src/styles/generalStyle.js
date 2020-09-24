@@ -24,8 +24,8 @@ const general = {
     fontSize: fonts.sm,
   },
   smallText2: {
-    color: colors.white,
-    fontSize: fonts.sm + 2,
+    color: colors.icon,
+    fontSize: fonts.sm + 1,
   },
   icon: {
     size: 18,

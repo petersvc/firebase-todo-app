@@ -46,7 +46,7 @@ function Todo({todosCollection, lists, navigation}) {
 
   return (
     <View style={styles.todo}>
-      <StatusBar backgroundColor="rgba(20, 25, 29, 1)" />
+      <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
       <TodoHeader headerTitle={headerTitle} navigation={navigation} />
       <FlatList
         style={styles.flatTodo}
