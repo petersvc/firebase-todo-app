@@ -4,13 +4,16 @@ import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {DrawerItem} from '@react-navigation/drawer';
+import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
 
 import styles from './style';
 
 function DrawerContent({navigation, lists}) {
   const keyExtractor = useCallback((item) => item.id);
-
+  const tasksCompleted = lists.map(
+    (list) => list.todos.filter((todo) => todo.complete).length,
+  );
+  const reducer = tasksCompleted.reduce((prev, next) => prev + next);
   const renderList = useCallback(({item}) => {
     const remaining = item.todos.filter((todo) => !todo.complete).length;
     return (
@@ -24,6 +27,10 @@ function DrawerContent({navigation, lists}) {
       </View>
     );
   }, []);
+  //   <Text style={[styles.titleSpoted, {marginBottom: 10}]}>Navigation</Text>
+  //  <Text style={[styles.titleSpoted, {marginBottom: 20}]}>
+  //  Smart Lists
+  //  </Text>
 
   return (
     <View style={styles.drawer}>
@@ -41,62 +48,90 @@ function DrawerContent({navigation, lists}) {
       </View>
 
       <View style={styles.lists}>
-        <Text style={styles.titleSpoted}>Smart Lists</Text>
         <FlatList
           nestedScrollEnabled
           data={lists}
           keyExtractor={keyExtractor}
           renderItem={renderList}
         />
+        <View style={styles.list}>
+          <View style={styles.listHeader}>
+            <Text style={styles.title}>Completed</Text>
+            <Text style={[{marginTop: -8, marginLeft: 4}, styles.smallText]}>
+              {reducer}
+            </Text>
+          </View>
+        </View>
       </View>
 
-      <View style={styles.navigation}>
-        <Text style={styles.titleSpoted}>Navigation</Text>
+      <DrawerContentScrollView style={styles.navigation}>
         <DrawerItem
+          style={{
+            marginLeft: -10,
+            marginBottom: -5,
+          }}
           icon={() => (
             <Icon
-              name="ios-basket-outline"
-              size={styles.icon.size + 3}
+              name="list"
+              size={styles.icon.size + 2}
               color={styles.icon.color}
             />
           )}
-          label={() => <Text style={{color: 'white'}}>To-Do List</Text>}
+          labelStyle={[{marginLeft: -16}, styles.title]}
+          label="To-Do List"
           onPress={() => navigation.navigate('Todo')}
         />
         <DrawerItem
+          style={{
+            marginLeft: -10,
+            marginBottom: -5,
+          }}
           icon={() => (
             <Icon
               name="ios-basket-outline"
-              size={styles.icon.size + 3}
+              size={styles.icon.size + 2}
               color={styles.icon.color}
             />
           )}
-          label={() => <Text style={{color: 'white'}}>Skills</Text>}
+          labelStyle={[{marginLeft: -16}, styles.title]}
+          label="Skills"
           onPress={() => navigation.navigate('Todo')}
         />
         <DrawerItem
+          style={{
+            marginLeft: -10,
+            marginBottom: -5,
+          }}
+          activeBackgroundColor="blue"
+          activeTintColor="rgb(20,20,20)"
           icon={() => (
             <Icon
               name="ios-calendar-outline"
-              size={styles.icon.size + 3}
+              size={styles.icon.size + 2}
               color={styles.icon.color}
             />
           )}
-          label={() => <Text style={{color: 'white'}}>Calendar</Text>}
+          labelStyle={[{marginLeft: -16}, styles.title]}
+          label="Calendar"
           onPress={() => navigation.navigate('Todo')}
         />
         <DrawerItem
+          style={{
+            marginLeft: -10,
+            marginBottom: -5,
+          }}
           icon={() => (
             <Icon
               name="ios-settings-outline"
-              size={styles.icon.size + 3}
+              size={styles.icon.size + 2}
               color={styles.icon.color}
             />
           )}
-          label={() => <Text style={{color: 'white'}}>Settings</Text>}
+          labelStyle={[{marginLeft: -16}, styles.title]}
+          label="Settings"
           onPress={() => navigation.navigate('Todo')}
         />
-      </View>
+      </DrawerContentScrollView>
     </View>
   );
 }

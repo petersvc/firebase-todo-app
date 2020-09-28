@@ -81,6 +81,10 @@ function App() {
       <NavigationContainer>
         <Drawer.Navigator
           // drawerType="back"
+          drawerStyle={{
+            // backgroundColor: '#c6cbef',
+            width: '70%',
+          }}
           initialRouteName="Todo"
           drawerContent={(props) => (
             <DrawerContent navigation={props.navigation} lists={lists} />

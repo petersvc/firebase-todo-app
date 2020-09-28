@@ -27,13 +27,13 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: diagram.padding,
+    marginBottom: diagram.padding + 5,
   },
   navigation: {
     borderTopWidth: 1,
     borderColor: colors.bgDark,
-    marginTop: diagram.padding * 2,
-    paddingTop: diagram.padding * 2,
+    marginTop: 8,
+    paddingTop: diagram.padding + 5,
   },
   colors: {
     orange: colors.orange,

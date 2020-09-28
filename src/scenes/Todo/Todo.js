@@ -30,9 +30,7 @@ function Todo({todosCollection, lists, navigation}) {
       <View style={styles.list}>
         <View style={styles.listHeader}>
           <Text style={styles.titleSpoted}>{item.id}</Text>
-          <Text style={[{marginTop: -8, marginLeft: 4}, styles.smallText]}>
-            {remaining}
-          </Text>
+          <Text style={[styles.smallText, styles.remaining]}>{remaining}</Text>
         </View>
         <FlatList
           data={item.todos}

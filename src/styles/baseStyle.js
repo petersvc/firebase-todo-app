@@ -29,7 +29,7 @@ export const diagram = {
   top: 18,
   bottom: 12,
   margin: 20,
-  padding: 14,
+  padding: 16,
 };
 
 export const fonts = {
