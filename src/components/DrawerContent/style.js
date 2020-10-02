@@ -31,9 +31,9 @@ const styles = {
   },
   navigation: {
     borderTopWidth: 1,
-    borderColor: colors.bgDark,
+    borderColor: colors.bgLight2,
     marginTop: 8,
-    paddingTop: diagram.padding + 5,
+    paddingTop: 8,
   },
   colors: {
     orange: colors.orange,

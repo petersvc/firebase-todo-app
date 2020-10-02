@@ -13,7 +13,7 @@ const styles = {
     // borderTopWidth: 0.5,
     // borderTopColor: colors.bgLight2,
     borderBottomWidth: 0.5,
-    borderBottomColor: colors.bgDark,
+    borderBottomColor: colors.bgLight2,
     // backgroundColor: colors.bgLight2,
     // borderRadius: 15,
     // marginBottom: diagram.margin,

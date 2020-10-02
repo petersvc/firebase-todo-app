@@ -24,7 +24,7 @@ const styles = {
     // borderRadius: 7,
     elevation: 2,
     borderBottomWidth: 0.3,
-    borderBottomColor: colors.bgDark,
+    borderBottomColor: colors.bgLight2,
     // display: 'none',
   },
   avatar: {
@@ -49,6 +49,7 @@ const styles = {
     marginTop: -8,
     marginLeft: 4,
     color: colors.main,
+    opacity: 0,
   },
   rightSide: {
     flex: 1 / 3.5,
@@ -72,7 +73,7 @@ const styles = {
     paddingLeft: diagram.margin,
     paddingRight: diagram.margin + 1,
     borderBottomWidth: 0.5,
-    borderBottomColor: colors.bgDark,
+    borderBottomColor: colors.bgLight2,
   },
   addModal: {
     marginTop: 'auto',
@@ -134,9 +135,9 @@ const styles = {
   },
   taskItem: {
     flexDirection: 'row',
-    paddingLeft: diagram.margin - 8,
-    paddingRight: diagram.margin - 8,
-    padding: 5,
+    paddingLeft: diagram.margin - 12,
+    paddingRight: diagram.margin - 12,
+    padding: 4,
     marginRight: 10,
     justifyContent: 'space-around',
     alignItems: 'center',

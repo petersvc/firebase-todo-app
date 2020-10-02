@@ -7,8 +7,8 @@ export const dimensions = {
 
 export const colors = {
   bg: 'rgba(29, 34, 38, 1)', // 'rgba(20, 25, 29, 1)',
-  bgLight: 'rgba(23, 28, 32, 1)',
-  bgLight2: 'rgba(35, 40, 44, 1)',
+  bgLight: 'rgba(35, 40, 44, 1)',
+  bgLight2: 'rgba(50, 55, 59, 1)',
   bgDark: 'rgba(15, 20, 24, 1)',
   icon: 'rgba(200, 200, 200, 1)',
   opaco: 'rgba(150, 150, 150, 1)',

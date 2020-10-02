@@ -20,20 +20,22 @@ const d = new Date();
 
 const months = [
   'Jan',
-  'Feb',
+  'Fev',
   'Mar',
-  'Apr',
-  'May',
+  'Abr',
+  'Mai',
   'Jun',
   'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
+  'Ago',
+  'Set',
+  'Out',
   'Nov',
-  'Dec',
+  'Dez',
 ];
 
-const today = `${months[d.getMonth()]} ${d.getDate()} ${d.getFullYear()}`;
+const today = `${months[d.getMonth()]} ${
+  d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
+} ${d.getFullYear()}`;
 
 function App() {
   const todosCollection = firestore().collection('todos');
@@ -57,6 +59,7 @@ function App() {
   const lists = usrLists.map((list) => {
     const temp = {id: list, todos: []};
     const [month, day, year] = today.split(' ');
+    // day < 10 ? (day = 0 + day) : day;
     if (temp.id === 'today') {
       temp.todos = todos.filter((todo) => todo.date === today);
     } else if (temp.id === 'overdue') {

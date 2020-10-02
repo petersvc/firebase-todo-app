@@ -32,6 +32,20 @@ function TodoTask({todosCollection}) {
   let yearIndex = fdate.indexOf(String(d.getFullYear()));
   let date = fdate.substring(4, yearIndex + 4);
   let begin = fdate.substring(yearIndex + 5, yearIndex + 10);
+  let [month, day, year] = date.split(' ');
+
+  const months = {
+    Feb: 'Fev',
+    Apr: 'Abr',
+    May: 'Mai',
+    Aug: 'Ago',
+    Sep: 'Set',
+    Oct: 'Out',
+    Dec: 'Dez',
+  };
+
+  month = months[month];
+  date = `${month} ${day} ${year}`;
 
   const onChange = (event, selectedrawDate) => {
     const currentrawDate = selectedrawDate || rawDate;
@@ -106,6 +120,7 @@ function TodoTask({todosCollection}) {
               mode={mode}
               is24Hour
               display="default"
+              // locale="pt-BR"
               minimumDate={new Date()}
               onChange={onChange}
             />
@@ -113,8 +128,8 @@ function TodoTask({todosCollection}) {
           <View style={styles.newTaskDetails}>
             <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
               <Icon
-                name="ios-calendar"
-                size={styles.icon.size - 2}
+                name="ios-calendar-outline"
+                size={styles.icon.size - 3}
                 color={styles.icon.color}
               />
               <Text style={[styles.smallText2, {marginLeft: 6}]}>{date}</Text>
@@ -122,15 +137,15 @@ function TodoTask({todosCollection}) {
             <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
               <Icon
                 name="time-outline"
-                size={styles.icon.size - 1}
+                size={styles.icon.size - 2}
                 color={styles.icon.color}
               />
-              <Text style={[styles.smallText2, {marginLeft: 6}]}>{begin}</Text>
+              <Text style={[styles.smallText2, {marginLeft: 4}]}>{begin}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={toggleModal} style={styles.taskItem}>
               <Icon
                 name="pricetags-outline"
-                size={styles.icon.size - 1}
+                size={styles.icon.size - 2}
                 color={styles.icon.color}
               />
               <Text style={[styles.smallText2, {marginLeft: 6}]}>Learn</Text>
@@ -138,7 +153,7 @@ function TodoTask({todosCollection}) {
             <TouchableOpacity style={styles.taskSend} onPress={addTodo}>
               <Icon
                 name="send"
-                size={styles.icon.size + 2}
+                size={styles.icon.size + 5}
                 color={styles.icon.colorMain}
               />
             </TouchableOpacity>

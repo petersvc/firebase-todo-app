@@ -48,7 +48,7 @@ function TodoTask({task, todosCollection}) {
 
         <View style={styles.times}>
           <Icon
-            style={{marginRight: 5}}
+            style={{marginRight: 3}}
             name="ios-time-outline"
             size={styles.icon.size - 6}
             color={styles.icon.color}
