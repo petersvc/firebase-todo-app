@@ -16,10 +16,25 @@ function DrawerContent({navigation, lists}) {
   const reducer = tasksCompleted.reduce((prev, next) => prev + next);
   const renderList = useCallback(({item}) => {
     const remaining = item.todos.filter((todo) => !todo.complete).length;
+    let listIcon = 'list';
+    if (item.id === 'overdue') {
+      listIcon = 'alert-circle-outline';
+    } else if (item.id === 'today') {
+      listIcon = 'sunny-outline';
+    } else if (item.id === 'tomorrow') {
+      listIcon = 'ios-exit-outline';
+    }
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
-          <Text style={styles.title}>{item.id}</Text>
+          <Icon
+            name={listIcon}
+            size={styles.icon.size + 2}
+            color={styles.icon.color}
+          />
+          <Text style={[styles.title, {marginLeft: 16, marginRight: 'auto'}]}>
+            {item.id}
+          </Text>
           <Text style={[{marginTop: -8, marginLeft: 4}, styles.smallText]}>
             {remaining}
           </Text>
@@ -56,7 +71,14 @@ function DrawerContent({navigation, lists}) {
         />
         <View style={styles.list}>
           <View style={styles.listHeader}>
-            <Text style={styles.title}>Completed</Text>
+            <Icon
+              name="checkmark-circle-outline"
+              size={styles.icon.size + 2}
+              color={styles.icon.color}
+            />
+            <Text style={[styles.title, {marginLeft: 16, marginRight: 'auto'}]}>
+              Completed
+            </Text>
             <Text style={[{marginTop: -8, marginLeft: 4}, styles.smallText]}>
               {reducer}
             </Text>

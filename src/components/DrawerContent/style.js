@@ -19,6 +19,8 @@ const styles = {
     height: 60,
     borderRadius: 100,
     marginRight: diagram.padding,
+    borderWidth: 3,
+    borderColor: colors.main,
   },
   lists: {
     marginTop: diagram.padding * 2,
@@ -26,7 +28,7 @@ const styles = {
   listHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     marginBottom: diagram.padding + 5,
   },
   navigation: {
