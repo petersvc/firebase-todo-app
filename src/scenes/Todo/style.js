@@ -135,9 +135,9 @@ const styles = {
   },
   taskItem: {
     flexDirection: 'row',
-    paddingLeft: diagram.margin - 12,
-    paddingRight: diagram.margin - 12,
-    padding: 4,
+    paddingLeft: diagram.margin - 10,
+    paddingRight: diagram.margin - 10,
+    padding: 5,
     marginRight: 10,
     justifyContent: 'space-around',
     alignItems: 'center',

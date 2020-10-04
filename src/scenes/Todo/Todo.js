@@ -3,7 +3,7 @@ import {View, FlatList, StatusBar, Text} from 'react-native';
 
 import TodoHeader from './TodoHeader';
 import TodoTask from '../../components/TodoTask/TodoTask';
-import AddModal from './AddModal';
+import AddTodo from './AddTodo';
 import styles from './style';
 
 function Todo({todosCollection, lists, navigation}) {
@@ -52,7 +52,7 @@ function Todo({todosCollection, lists, navigation}) {
         keyExtractor={keyExtractor}
         renderItem={renderList}
       />
-      <AddModal todosCollection={todosCollection} />
+      <AddTodo todosCollection={todosCollection} />
     </View>
   );
 }

@@ -7,7 +7,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import styles from './style';
 
-function TodoTask({todosCollection}) {
+function AddTodo({todosCollection}) {
   const [modal, setModal] = useState(false);
   function toggleModal() {
     setModal(!modal);
@@ -96,7 +96,9 @@ function TodoTask({todosCollection}) {
         onBackdropPress={toggleModal}
         useNativeDriver
         hideModalContentWhileAnimating
-        animationInTiming={400}>
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown"
+        animationInTiming={300}>
         <View style={styles.addModal}>
           <View style={styles.inputTask}>
             <Icon
@@ -120,7 +122,6 @@ function TodoTask({todosCollection}) {
               mode={mode}
               is24Hour
               display="default"
-              // locale="pt-BR"
               minimumDate={new Date()}
               onChange={onChange}
             />
@@ -164,4 +165,4 @@ function TodoTask({todosCollection}) {
   );
 }
 // <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
-export default TodoTask;
+export default AddTodo;

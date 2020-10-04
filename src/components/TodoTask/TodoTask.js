@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modal';
 
 import styles from './style';
+import TodoModal from '../TodoModal/TodoModal';
 
 function TodoTask({task, todosCollection}) {
-  async function deleteTodo() {
-    await todosCollection.doc(task.id).delete();
+  const [todoModal, setTodoModal] = useState(false);
+  function toggleTodoModal() {
+    setTodoModal(!todoModal);
   }
 
   async function toggleComplete() {
@@ -31,10 +34,10 @@ function TodoTask({task, todosCollection}) {
         />
       </TouchableOpacity>
 
-      <View style={styles.content}>
+      <TouchableOpacity style={styles.content}>
         <TouchableOpacity
           style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={deleteTodo}>
+          onPress={toggleTodoModal}>
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
@@ -63,7 +66,22 @@ function TodoTask({task, todosCollection}) {
             {task.begin}
           </Text>
         </View>
-      </View>
+        <Modal
+          style={{margin: 0}}
+          isVisible={todoModal}
+          onBackdropPress={toggleTodoModal}
+          useNativeDriver
+          hideModalContentWhileAnimating
+          animationIn="fadeInUp"
+          animationOut="fadeOutDown"
+          animationInTiming={300}>
+          <TodoModal
+            task={task}
+            tagColor={tagColor}
+            todosCollection={todosCollection}
+          />
+        </Modal>
+      </TouchableOpacity>
       <View style={styles.rightSide} />
     </View>
   );
