@@ -13,16 +13,6 @@ function AddTodo({todosCollection}) {
     setModal(!modal);
   }
 
-  const [todo, setTodo] = useState({
-    title: '',
-    tag: 'free',
-    begin: '',
-    end: '',
-    date: '',
-    repeat: false,
-    complete: false,
-  });
-
   const [rawDate, setRawDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -47,6 +37,16 @@ function AddTodo({todosCollection}) {
   month = months[month];
   date = `${month} ${day} ${year}`;
 
+  const [todo, setTodo] = useState({
+    title: '',
+    tag: 'free',
+    begin,
+    end: '',
+    date,
+    repeat: false,
+    complete: false,
+  });
+
   const onChange = (event, selectedrawDate) => {
     const currentrawDate = selectedrawDate || rawDate;
     setShow(Platform.OS === 'ios');
@@ -56,6 +56,9 @@ function AddTodo({todosCollection}) {
     yearIndex = fdate.indexOf(String(d.getFullYear()));
     date = fdate.substring(4, yearIndex + 4);
     begin = fdate.substring(yearIndex + 5, yearIndex + 10);
+    [month, day, year] = date.split(' ');
+    month = months[month];
+    date = `${month} ${day} ${year}`;
     if (mode === 'date') {
       setTodo({...todo, date});
     } else {
@@ -78,7 +81,7 @@ function AddTodo({todosCollection}) {
 
   async function addTodo() {
     await todosCollection.add(todo);
-    setTodo('');
+    // setTodo('');
   }
 
   return (

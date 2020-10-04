@@ -96,8 +96,8 @@ function TodoModal({todosCollection, task, tagColor}) {
         </TouchableOpacity>
         <TextInput
           style={styles.taskTitle}
-          placeholder={task.title}
-          placeholderTextColor={styles.colors.main}
+          value={task.title}
+          // placeholderTextColor={styles.colors.main}
           onChangeText={(title) => setTodo({...todo, title})}
         />
       </View>

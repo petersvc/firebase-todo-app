@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import React, {useCallback} from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -42,10 +42,6 @@ function DrawerContent({navigation, lists}) {
       </View>
     );
   }, []);
-  //   <Text style={[styles.titleSpoted, {marginBottom: 10}]}>Navigation</Text>
-  //  <Text style={[styles.titleSpoted, {marginBottom: 20}]}>
-  //  Smart Lists
-  //  </Text>
 
   return (
     <View style={styles.drawer}>
@@ -124,24 +120,6 @@ function DrawerContent({navigation, lists}) {
             marginLeft: -10,
             marginBottom: -5,
           }}
-          activeBackgroundColor="blue"
-          activeTintColor="rgb(20,20,20)"
-          icon={() => (
-            <Icon
-              name="ios-calendar-outline"
-              size={styles.icon.size + 2}
-              color={styles.icon.color}
-            />
-          )}
-          labelStyle={[{marginLeft: -16}, styles.title]}
-          label="Calendar"
-          onPress={() => navigation.navigate('Todo')}
-        />
-        <DrawerItem
-          style={{
-            marginLeft: -10,
-            marginBottom: -5,
-          }}
           icon={() => (
             <Icon
               name="ios-settings-outline"
@@ -159,24 +137,3 @@ function DrawerContent({navigation, lists}) {
 }
 
 export default DrawerContent;
-
-/*
-<FlatList
-          // data={lists}
-          // keyExtractor={keyExtractor}
-          // renderItem={renderList}
-          />
-<View>
-          <DrawerItem
-            icon={() => (
-              <Icon
-                name="ios-basket-outline"
-                size={styles.icon.size + 3}
-                color={styles.icon.color}
-              />
-            )}
-            label="To-Do List"
-            onPress={() => navigation.navigate('Todo')}
-          />
-        </View>
-*/

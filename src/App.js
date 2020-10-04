@@ -9,8 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Todo from './scenes/Todo/Todo';
-import Calendar from './scenes/Calendar/Calendar';
-import Profile from './scenes/Profile/Profile';
+import Skills from './scenes/Skills/Skills';
 import Settings from './scenes/Settings/Settings';
 import DrawerContent from './components/DrawerContent/DrawerContent';
 
@@ -102,15 +101,9 @@ function App() {
               />
             )}
           </Drawer.Screen>
-          <Drawer.Screen name="Calendar">
+          <Drawer.Screen name="Skills">
             {(props) => (
-              <Calendar todos={todos} todosCollection={todosCollection} />
-            )}
-          </Drawer.Screen>
-
-          <Drawer.Screen name="Profile">
-            {(props) => (
-              <Profile todos={todos} todosCollection={todosCollection} />
+              <Skills todos={todos} todosCollection={todosCollection} />
             )}
           </Drawer.Screen>
           <Drawer.Screen name="Settings">

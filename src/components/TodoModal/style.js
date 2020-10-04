@@ -53,8 +53,8 @@ const styles = {
   },
   taskTitle: {
     marginLeft: 12,
-    color: colors.main,
-    fontSize: fonts.lg + 3,
+    color: colors.white,
+    fontSize: fonts.lg + 2,
     textTransform: 'capitalize',
     fontWeight: 'bold',
   },
