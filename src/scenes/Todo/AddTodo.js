@@ -6,11 +6,17 @@ import Modal from 'react-native-modal';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import styles from './style';
+import TagModal from '../../components/tagModal/TagModal';
 
 function AddTodo({todosCollection}) {
   const [modal, setModal] = useState(false);
   function toggleModal() {
     setModal(!modal);
+  }
+
+  const [tagModal, setTagModal] = useState(false);
+  function toggleTagModal() {
+    setTagModal(!tagModal);
   }
 
   const [rawDate, setRawDate] = useState(new Date());
@@ -146,15 +152,37 @@ function AddTodo({todosCollection}) {
               />
               <Text style={[styles.smallText2, {marginLeft: 4}]}>{begin}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={toggleModal} style={styles.taskItem}>
+            <TouchableOpacity onPress={toggleTagModal} style={styles.taskItem}>
               <Icon
                 name="pricetags-outline"
                 size={styles.icon.size - 2}
                 color={styles.icon.color}
               />
-              <Text style={[styles.smallText2, {marginLeft: 6}]}>Learn</Text>
+              <Text style={[styles.smallText2, {marginLeft: 6}]}>
+                {todo.tag}
+              </Text>
+              <Modal
+                style={{margin: 0}}
+                isVisible={tagModal}
+                onBackdropPress={toggleTagModal}
+                useNativeDriver
+                hideModalContentWhileAnimating
+                animationIn="fadeInUp"
+                animationOut="fadeOutDown"
+                animationInTiming={300}>
+                <TagModal
+                  todo={todo}
+                  setTodo={setTodo}
+                  toggleTagModal={toggleTagModal}
+                />
+              </Modal>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.taskSend} onPress={addTodo}>
+            <TouchableOpacity
+              style={styles.taskSend}
+              onPress={() => {
+                addTodo();
+                toggleModal();
+              }}>
               <Icon
                 name="send"
                 size={styles.icon.size + 5}
