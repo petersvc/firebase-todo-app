@@ -79,6 +79,7 @@ function TodoTask({task, todosCollection}) {
             task={task}
             tagColor={tagColor}
             todosCollection={todosCollection}
+            toggleTodoModal={toggleTodoModal}
           />
         </Modal>
       </TouchableOpacity>
