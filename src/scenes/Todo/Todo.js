@@ -8,22 +8,20 @@ import TodoTask from '../../components/TodoTask/TodoTask';
 import AddTodo from './AddTodo';
 import styles from './style';
 
-function Todo({todosCollection, lists, navigation, setTodos, user}) {
+function Todo({lists, navigation, setTodos, user}) {
   const headerTitle = 'To-do list';
   const keyExtractor = useCallback((item) => item.id);
 
   const usersCollection = firestore().collection('users');
+  const todosCollection = usersCollection.doc(user).collection('todos');
   useEffect(() => {
-    usersCollection
-      .doc(user)
-      .collection('todos')
-      .onSnapshot((snap) => {
-        const copy = [];
-        snap.forEach((doc) => {
-          copy.push({...doc.data(), id: doc.id});
-        });
-        setTodos(copy);
+    todosCollection.onSnapshot((snap) => {
+      const copy = [];
+      snap.forEach((doc) => {
+        copy.push({...doc.data(), id: doc.id});
       });
+      setTodos(copy);
+    });
   }, []);
 
   const renderList = useCallback(({item}) => {
