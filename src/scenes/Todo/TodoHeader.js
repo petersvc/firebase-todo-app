@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './style';
 
-function TodoHeader({headerTitle, navigation}) {
+function TodoHeader({headerTitle, navigation, signOut}) {
   return (
     <View style={styles.header}>
       <TouchableOpacity

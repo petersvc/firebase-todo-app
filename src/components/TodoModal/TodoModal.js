@@ -6,7 +6,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Modal from 'react-native-modal';
 
 import styles from './style';
-import TagModal from '../tagModal/TagModal';
+import TagModal from '../TagModal/TagModal';
 
 function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
   const [tagModal, setTagModal] = useState(false);
@@ -18,9 +18,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
     title: task.title,
     tag: task.tag,
     begin: task.begin,
-    end: task.end,
     date: task.date,
-    repeat: task.repeat,
     complete: task.complete,
   });
 

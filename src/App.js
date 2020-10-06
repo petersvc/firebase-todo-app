@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
 
-import {Text} from 'react-native';
+import {Text, View, Button, TouchableOpacity} from 'react-native';
 
 import 'react-native-gesture-handler';
-import firestore from '@react-native-firebase/firestore';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
+import Loading from './scenes/Loading/Loading';
+import Login from './scenes/Login/Login';
 import Todo from './scenes/Todo/Todo';
 import Skills from './scenes/Skills/Skills';
 import Settings from './scenes/Settings/Settings';
@@ -37,23 +38,10 @@ const today = `${months[d.getMonth()]} ${
 } ${d.getFullYear()}`;
 
 function App() {
-  const todosCollection = firestore().collection('todos');
   const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
   const usrLists = ['overdue', 'today', 'tomorrow'];
-
-  useEffect(() => {
-    return todosCollection.onSnapshot((snap) => {
-      const copy = [];
-      snap.forEach((doc) => {
-        copy.push({...doc.data(), id: doc.id});
-      });
-      setTodos(copy);
-      if (loading) {
-        setLoading(false);
-      }
-    });
-  }, []);
+  const [user, setUser] = useState();
+  const [googleUser, setGoogleUser] = useState({});
 
   const lists = usrLists.map((list) => {
     const temp = {id: list, todos: []};
@@ -78,6 +66,13 @@ function App() {
     }
     return temp;
   });
+
+  // async function createUser() {
+  //   const usr = usersCollection.doc(user.email);
+  //   await usr.set({}, {merge: true});
+  //   await usr.collection('todos').doc('test').set({}, {merge: true});
+  // }
+
   return (
     <>
       <NavigationContainer>
@@ -87,29 +82,39 @@ function App() {
             // backgroundColor: '#c6cbef',
             width: '70%',
           }}
-          initialRouteName="Todo"
+          initialRouteName="Loading"
           drawerContent={(props) => (
-            <DrawerContent navigation={props.navigation} lists={lists} />
+            <DrawerContent
+              navigation={props.navigation}
+              lists={lists}
+              user={user}
+              googleUser={googleUser}
+              setUser={setUser}
+            />
           )}>
+          <Drawer.Screen name="Loading">
+            {(props) => (
+              <Loading setUser={setUser} navigation={props.navigation} />
+            )}
+          </Drawer.Screen>
+          <Drawer.Screen name="Login">
+            {(props) => <Login setGoogleUser={setGoogleUser} />}
+          </Drawer.Screen>
           <Drawer.Screen name="Todo">
             {(props) => (
               <Todo
-                // todos={todos}
+                setTodos={setTodos}
+                user={user}
                 lists={lists}
-                todosCollection={todosCollection}
                 navigation={props.navigation}
               />
             )}
           </Drawer.Screen>
           <Drawer.Screen name="Skills">
-            {(props) => (
-              <Skills todos={todos} todosCollection={todosCollection} />
-            )}
+            {(props) => <Skills todos={todos} />}
           </Drawer.Screen>
           <Drawer.Screen name="Settings">
-            {(props) => (
-              <Settings todos={todos} todosCollection={todosCollection} />
-            )}
+            {(props) => <Settings todos={todos} />}
           </Drawer.Screen>
         </Drawer.Navigator>
       </NavigationContainer>

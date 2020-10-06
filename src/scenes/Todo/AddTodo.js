@@ -6,7 +6,7 @@ import Modal from 'react-native-modal';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import styles from './style';
-import TagModal from '../../components/tagModal/TagModal';
+import TagModal from '../../components/TagModal/TagModal';
 
 function AddTodo({todosCollection}) {
   const [modal, setModal] = useState(false);
@@ -47,9 +47,7 @@ function AddTodo({todosCollection}) {
     title: '',
     tag: 'free',
     begin,
-    end: '',
     date,
-    repeat: false,
     complete: false,
   });
 
@@ -87,7 +85,6 @@ function AddTodo({todosCollection}) {
 
   async function addTodo() {
     await todosCollection.add(todo);
-    // setTodo('');
   }
 
   return (

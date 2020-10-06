@@ -1,15 +1,30 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {View, FlatList, StatusBar, Text} from 'react-native';
+
+import firestore from '@react-native-firebase/firestore';
 
 import TodoHeader from './TodoHeader';
 import TodoTask from '../../components/TodoTask/TodoTask';
 import AddTodo from './AddTodo';
 import styles from './style';
 
-function Todo({todosCollection, lists, navigation}) {
+function Todo({todosCollection, lists, navigation, setTodos, user}) {
   const headerTitle = 'To-do list';
-
   const keyExtractor = useCallback((item) => item.id);
+
+  const usersCollection = firestore().collection('users');
+  useEffect(() => {
+    usersCollection
+      .doc(user)
+      .collection('todos')
+      .onSnapshot((snap) => {
+        const copy = [];
+        snap.forEach((doc) => {
+          copy.push({...doc.data(), id: doc.id});
+        });
+        setTodos(copy);
+      });
+  }, []);
 
   const renderList = useCallback(({item}) => {
     const remaining = item.todos.filter((todo) => !todo.complete).length;
@@ -45,7 +60,12 @@ function Todo({todosCollection, lists, navigation}) {
   return (
     <View style={styles.todo}>
       <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
-      <TodoHeader headerTitle={headerTitle} navigation={navigation} />
+      <TodoHeader
+        headerTitle={headerTitle}
+        navigation={navigation}
+        // signOut={signOut}
+      />
+
       <FlatList
         style={styles.flatTodo}
         data={lists}
@@ -58,24 +78,3 @@ function Todo({todosCollection, lists, navigation}) {
 }
 
 export default Todo;
-
-/* <Text>{lists[0].todos[0].title}</Text>
-
-
-          <Icon
-            name="md-chevron-down"
-            size={styles.icon.size - 3}
-            color={styles.icon.color}
-          />
-
-          <Text style={[styles.titleSpoted, {marginLeft: 8}]}>
-            ({remaining})
-          </Text>
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.toggleDrawer()}>
-        <Icon name="menu" size={25} color={styles.icon.color} />
-      </TouchableOpacity>
-
-
-*/
