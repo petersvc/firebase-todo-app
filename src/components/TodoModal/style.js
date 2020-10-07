@@ -80,7 +80,8 @@ const styles = {
   colors: {
     orange: colors.orange,
     white: colors.white,
-    green2: colors.green2,
+    dim: colors.dim,
+    green: colors.green3,
     blue: colors.blue,
     red: colors.red,
     main: colors.main,

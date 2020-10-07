@@ -88,8 +88,9 @@ function App() {
               navigation={props.navigation}
               lists={lists}
               user={user}
-              googleUser={googleUser}
               setUser={setUser}
+              googleUser={googleUser}
+              setGoogleUser={setGoogleUser}
             />
           )}>
           <Drawer.Screen name="Loading">

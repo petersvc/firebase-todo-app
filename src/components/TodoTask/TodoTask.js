@@ -22,7 +22,7 @@ function TodoTask({task, todosCollection}) {
   if (task.tag === 'work') tagColor = styles.colors.orange;
   else if (task.tag === 'learn') tagColor = styles.colors.blue;
   else if (task.tag === 'health') tagColor = styles.colors.red;
-  else if (task.tag === 'free') tagColor = styles.colors.green2;
+  else if (task.tag === 'free') tagColor = styles.colors.green;
 
   return (
     <View style={styles.task}>
@@ -30,14 +30,12 @@ function TodoTask({task, todosCollection}) {
         <Icon
           name={task.complete ? 'md-checkmark' : 'ellipse-outline'}
           size={styles.icon.size + 10}
-          color={task.complete ? tagColor : styles.icon.color}
+          color={task.complete ? tagColor : styles.colors.dim}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.content}>
-        <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={toggleTodoModal}>
+      <TouchableOpacity style={styles.content} onPress={toggleTodoModal}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
@@ -47,7 +45,7 @@ function TodoTask({task, todosCollection}) {
             size={styles.icon.size - 12}
             color={tagColor}
           />
-        </TouchableOpacity>
+        </View>
 
         <View style={styles.times}>
           <Icon

@@ -168,7 +168,10 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             size={styles.icon.size - 18}
             color={styles.icon.color}
           />
-          <Text style={[styles.title, {marginLeft: 6}]}>delete</Text>
+          <Text
+            style={[styles.title, {marginLeft: 6, color: styles.colors.white}]}>
+            Delete
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.taskItem2}
@@ -182,8 +185,11 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             color={styles.icon.color}
           />
           <Text
-            style={[styles.title, {marginLeft: 6, color: styles.colors.main}]}>
-            save changes
+            style={[
+              styles.title,
+              {marginLeft: 6, color: styles.colors.green, fontWeight: 'bold'},
+            ]}>
+            Save changes
           </Text>
         </TouchableOpacity>
       </View>

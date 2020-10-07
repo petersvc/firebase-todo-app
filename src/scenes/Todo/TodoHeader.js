@@ -9,12 +9,12 @@ function TodoHeader({headerTitle, navigation, signOut}) {
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={[{marginLeft: -6}, styles.menuIcon]}
+        style={[{marginLeft: -4}, styles.menuIcon]}
         onPress={navigation.toggleDrawer}>
         <Icon
-          name="reorder-two-outline"
-          size={styles.icon.size + 15}
-          color={styles.icon.color}
+          name="menu"
+          size={styles.icon.size + 8}
+          color={styles.colors.white}
         />
       </TouchableOpacity>
 
@@ -26,21 +26,21 @@ function TodoHeader({headerTitle, navigation, signOut}) {
           <Icon
             name="ios-basket-outline"
             size={styles.icon.size + 3}
-            color={styles.icon.color}
+            color={styles.colors.white}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.pomodoro}>
           <Icon
             name="ios-stopwatch-outline"
             size={styles.icon.size + 3}
-            color={styles.icon.color}
+            color={styles.colors.white}
           />
         </TouchableOpacity>
         <TouchableOpacity style={[{marginLeft: -5, marginRight: -7}]}>
           <Icon
             name="ios-ellipsis-vertical"
             size={styles.icon.size}
-            color={styles.icon.color}
+            color={styles.colors.white}
           />
         </TouchableOpacity>
       </View>

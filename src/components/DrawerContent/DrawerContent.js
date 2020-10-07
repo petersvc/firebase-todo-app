@@ -9,12 +9,20 @@ import {GoogleSignin} from '@react-native-community/google-signin';
 
 import styles from './style';
 
-function DrawerContent({navigation, lists, user, setUser, googleUser}) {
+function DrawerContent({
+  navigation,
+  lists,
+  user,
+  setUser,
+  googleUser,
+  setGoogleUser,
+}) {
   async function signOut() {
     await GoogleSignin.revokeAccess();
     await GoogleSignin.signOut();
     auth().signOut();
     setUser();
+    setGoogleUser({});
   }
   const keyExtractor = useCallback((item) => item.id);
   const tasksCompleted = lists.map(
@@ -23,22 +31,22 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
   const reducer = tasksCompleted.reduce((prev, next) => prev + next);
   const renderList = useCallback(({item}) => {
     const remaining = item.todos.filter((todo) => !todo.complete).length;
+    let colorIcon;
     let listIcon = 'list';
     if (item.id === 'overdue') {
       listIcon = 'alert-circle-outline';
+      colorIcon = styles.colors.red;
     } else if (item.id === 'today') {
       listIcon = 'sunny-outline';
+      colorIcon = styles.colors.yellow;
     } else if (item.id === 'tomorrow') {
       listIcon = 'ios-exit-outline';
+      colorIcon = styles.colors.blue;
     }
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
-          <Icon
-            name={listIcon}
-            size={styles.icon.size + 2}
-            color={styles.icon.color}
-          />
+          <Icon name={listIcon} size={styles.icon.size + 2} color={colorIcon} />
           <Text
             style={[
               styles.title,
@@ -63,10 +71,7 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
       <View style={styles.user}>
         <Image style={styles.avatar} source={{uri: googleUser.photo}} />
         <View style={styles.userInfo}>
-          <TouchableOpacity onPress={signOut}>
-            <Text style={styles.sectionTitle}>{googleUser.name}</Text>
-          </TouchableOpacity>
-
+          <Text style={styles.sectionTitle}>{googleUser.name}</Text>
           <Text style={[styles.smallText2, {marginTop: 5}]}>
             {googleUser.email}
           </Text>
@@ -85,7 +90,7 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
             <Icon
               name="checkmark-circle-outline"
               size={styles.icon.size + 2}
-              color={styles.icon.color}
+              color={styles.colors.green}
             />
             <Text style={[styles.title, {marginLeft: 16, marginRight: 'auto'}]}>
               Completed
@@ -97,7 +102,7 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
         </View>
       </View>
 
-      <DrawerContentScrollView style={styles.navigation}>
+      <View style={styles.navigation}>
         <DrawerItem
           style={{
             marginLeft: -10,
@@ -107,7 +112,7 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
             <Icon
               name="list"
               size={styles.icon.size + 2}
-              color={styles.icon.color}
+              color={styles.colors.white}
             />
           )}
           labelStyle={[{marginLeft: -16}, styles.title]}
@@ -123,7 +128,7 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
             <Icon
               name="ios-basket-outline"
               size={styles.icon.size + 2}
-              color={styles.icon.color}
+              color={styles.colors.white}
             />
           )}
           labelStyle={[{marginLeft: -16}, styles.title]}
@@ -139,14 +144,19 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
             <Icon
               name="ios-settings-outline"
               size={styles.icon.size + 2}
-              color={styles.icon.color}
+              color={styles.colors.white}
             />
           )}
           labelStyle={[{marginLeft: -16}, styles.title]}
           label="Settings"
           onPress={() => navigation.navigate('Todo')}
         />
-      </DrawerContentScrollView>
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={signOut}>
+          <Text style={styles.title}>Sign out</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

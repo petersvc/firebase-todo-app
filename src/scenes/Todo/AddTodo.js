@@ -91,9 +91,9 @@ function AddTodo({todosCollection}) {
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
         <Icon
-          name="add"
-          size={styles.icon.size + 5}
-          color={styles.icon.color}
+          name="ios-create-outline"
+          size={styles.icon.size + 15}
+          color={styles.colors.green}
         />
       </TouchableOpacity>
       <Modal

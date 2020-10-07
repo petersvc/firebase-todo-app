@@ -16,7 +16,7 @@ const general = {
   sectionTitle: {
     color: colors.white,
     fontSize: fonts.lg,
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     // fontWeight: 'bold',
   },
   smallText: {

@@ -9,7 +9,7 @@ import AddTodo from './AddTodo';
 import styles from './style';
 
 function Todo({lists, navigation, setTodos, user}) {
-  const headerTitle = 'To-do list';
+  const headerTitle = 'All Tasks';
   const keyExtractor = useCallback((item) => item.id);
 
   const usersCollection = firestore().collection('users');
@@ -42,7 +42,9 @@ function Todo({lists, navigation, setTodos, user}) {
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
-          <Text style={styles.titleSpoted}>{item.id}</Text>
+          <Text style={[styles.titleSpoted, {textTransform: 'capitalize'}]}>
+            {item.id}
+          </Text>
           <Text style={[styles.smallText, styles.remaining]}>{remaining}</Text>
         </View>
         <FlatList
@@ -57,7 +59,7 @@ function Todo({lists, navigation, setTodos, user}) {
 
   return (
     <View style={styles.todo}>
-      <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
+      <StatusBar backgroundColor="rgba(39, 44, 48, 1)" />
       <TodoHeader
         headerTitle={headerTitle}
         navigation={navigation}

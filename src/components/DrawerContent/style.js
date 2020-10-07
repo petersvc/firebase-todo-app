@@ -19,8 +19,8 @@ const styles = {
     height: 60,
     borderRadius: 100,
     marginRight: diagram.padding,
-    borderWidth: 3,
-    borderColor: colors.main,
+    // borderWidth: 3,
+    // borderColor: colors.main,
   },
   lists: {
     marginTop: diagram.padding * 2,
@@ -34,16 +34,25 @@ const styles = {
   navigation: {
     borderTopWidth: 1,
     borderColor: colors.bgLight2,
+    borderBottomWidth: 1,
+    // backgroundColor: 'red',
     marginTop: 8,
     paddingTop: 8,
+    paddingBottom: 20,
+    marginBottom: 20,
   },
   colors: {
     orange: colors.orange,
     white: colors.white,
-    green2: colors.green2,
+    yellow: colors.yellow,
+    green: colors.green3,
     blue: colors.blue,
     red: colors.red,
     main: colors.main,
+  },
+  footer: {
+    marginTop: 'auto',
+    marginBottom: diagram.margin,
   },
   ...general,
 };
