@@ -9,11 +9,11 @@ function TodoHeader({headerTitle, navigation, signOut}) {
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={{marginLeft: -6}}
+        style={[{marginLeft: -6}, styles.menuIcon]}
         onPress={navigation.toggleDrawer}>
         <Icon
           name="reorder-two-outline"
-          size={styles.icon.size + 18}
+          size={styles.icon.size + 15}
           color={styles.icon.color}
         />
       </TouchableOpacity>
@@ -36,10 +36,10 @@ function TodoHeader({headerTitle, navigation, signOut}) {
             color={styles.icon.color}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={[{marginLeft: -5, marginRight: -7}]}>
           <Icon
-            name="ios-ellipsis-horizontal-circle"
-            size={styles.icon.size + 3}
+            name="ios-ellipsis-vertical"
+            size={styles.icon.size}
             color={styles.icon.color}
           />
         </TouchableOpacity>

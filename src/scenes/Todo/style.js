@@ -52,11 +52,12 @@ const styles = {
     opacity: 0,
   },
   rightSide: {
-    flex: 1 / 3.5,
+    width: 100,
     marginLeft: 'auto',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    // backgroundColor: 'red',
   },
   pomodoro: {
     // marginLeft: 'auto',
@@ -147,6 +148,18 @@ const styles = {
   },
   taskSend: {
     marginLeft: 'auto',
+  },
+  menuIcon: {
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // width: 38,
+    // height: 38,
+    // paddingLeft: 2,
+    // paddingRight: 0,
+    // padding: 0,
+    // borderWidth: 2,
+    // borderColor: colors.icon,
+    // borderRadius: 100,
   },
   ...general,
 };

@@ -39,7 +39,15 @@ function DrawerContent({navigation, lists, user, setUser, googleUser}) {
             size={styles.icon.size + 2}
             color={styles.icon.color}
           />
-          <Text style={[styles.title, {marginLeft: 16, marginRight: 'auto'}]}>
+          <Text
+            style={[
+              styles.title,
+              {
+                marginLeft: 16,
+                marginRight: 'auto',
+                textTransform: 'capitalize',
+              },
+            ]}>
             {item.id}
           </Text>
           <Text style={[{marginTop: -8, marginLeft: 4}, styles.smallText]}>

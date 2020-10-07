@@ -4,13 +4,13 @@ const general = {
   title: {
     color: colors.white,
     fontSize: fonts.md,
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
   },
   titleSpoted: {
     color: colors.main,
     fontSize: fonts.lg,
     // textTransform: 'uppercase',
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     fontWeight: 'bold',
   },
   sectionTitle: {

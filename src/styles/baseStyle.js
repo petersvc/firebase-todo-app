@@ -18,6 +18,8 @@ export const colors = {
   blue: 'rgba(73, 101, 255, 1)',
   blue2: 'rgba(131, 232, 239, 1)',
   purple: 'rgba(73, 70, 168, 1)',
+  purplr2: 'rgba(134, 93, 202, 1)',
+  purple3: 'rgb(146, 145, 239)',
   green: 'rgba(166, 217, 201, 1)',
   green2: 'rgba(89, 166, 102, 1)',
   green3: 'rgba(40, 211, 121,1)',

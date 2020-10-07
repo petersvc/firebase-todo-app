@@ -1,11 +1,12 @@
+/* eslint-disable global-require */
 import React from 'react';
-import {View} from 'react-native';
+import {View, StatusBar, Text, Image, TouchableOpacity} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-community/google-signin';
+import {GoogleSignin} from '@react-native-community/google-signin';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import styles from './style';
 
 GoogleSignin.configure({
   webClientId:
@@ -23,21 +24,41 @@ function Login({setGoogleUser}) {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgb(50,50,50)',
-      }}>
-      <GoogleSigninButton
-        style={{width: 192, height: 48}}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={googleLogin}
-      />
+    <View style={styles.login}>
+      <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
+      <View style={styles.top}>
+        <Image
+          style={styles.loginImg}
+          source={require('../../assets/acc.png')}
+        />
+      </View>
+      <View style={styles.bottom}>
+        <Text style={styles.welcome}>Welcome</Text>
+        <Text style={[styles.title, styles.textItem]}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing.
+        </Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={googleLogin}>
+          <Icon
+            name="logo-google"
+            size={styles.icon.size + 2}
+            color={styles.colors.main}
+          />
+          <Text style={styles.titleSpoted}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 export default Login;
+
+/*
+'rgba(29, 34, 38, 1)',
+      <GoogleSigninButton
+        // style={{width: 230, height: 48}}
+        size={GoogleSigninButton.Size.Wide}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={googleLogin}
+      />
+
+*/
