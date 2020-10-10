@@ -1,4 +1,4 @@
-import {colors, diagram, fonts} from '../../styles/baseStyle';
+import {colors, diagram} from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
@@ -7,26 +7,19 @@ const styles = {
     // alignItems: 'center',
     justifyContent: 'space-evenly',
     width: '75%',
-    height: 250,
+    height: 240,
     alignSelf: 'center',
     marginTop: 'auto',
     marginBottom: 'auto',
     backgroundColor: colors.bg,
     paddingLeft: diagram.margin * 2,
     paddingRight: diagram.margin + 1,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   tagItem: {
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'space-evenly',
-  },
-  taskTitle: {
-    marginLeft: 12,
-    color: colors.white,
-    fontSize: fonts.lg + 2,
-    textTransform: 'capitalize',
-    fontWeight: 'bold',
   },
   colors: {
     orange: colors.orange,

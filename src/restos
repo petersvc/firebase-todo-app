@@ -668,3 +668,83 @@ export default TodoTask;
   {userg.name} {userg.email} {userg.familyName} {userg.givenName}{' '}
   {userg.id} {userg.photo} {Object.keys(userg)}
 </Text>
+// drawerType="back"
+          drawerStyle={{
+            // backgroundColor: '#c6cbef',
+            // borderRadius: 10,
+            width: '75%',
+            height: '80%',
+          }}
+
+drawerContent={(props) => (
+            <DrawerContent
+              navigation={props.navigation}
+              lists={lists}
+              user={user}
+              setUser={setUser}
+              googleUser={googleUser}
+              setGoogleUser={setGoogleUser}
+            />
+          )}
+
+          <View style={[styles.dateHeader, {display: 'none'}]}>
+        <Text style={[styles.dayDate]}>{todayArray[0]}</Text>
+        <View>
+          <Text style={[styles.smallText]}>{todayArray[1]}</Text>
+          <Text style={[styles.smallText]}>{todayArray[2]}</Text>
+        </View>
+      </View>
+
+
+<TouchableOpacity
+        style={styles.tagItem}
+        onPress={() => {
+          setTodo({...todo, tag: 'free'});
+          toggleTagModal();
+        }}>
+        <Icon
+          name={radioBtn}
+          size={styles.icon.size + 8}
+          color={styles.icon.color}
+        />
+        <Text style={[styles.title, {marginLeft: 30}]}>Free</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tagItem}
+        onPress={() => {
+          setTodo({...todo, tag: 'health'});
+          toggleTagModal();
+        }}>
+        <Icon
+          name={radioBtn}
+          size={styles.icon.size + 8}
+          color={styles.icon.color}
+        />
+        <Text style={[styles.title, {marginLeft: 30}]}>Health</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tagItem}
+        onPress={() => {
+          setTodo({...todo, tag: 'learn'});
+          toggleTagModal();
+        }}>
+        <Icon
+          name={radioBtn}
+          size={styles.icon.size + 8}
+          color={styles.icon.color}
+        />
+        <Text style={[styles.title, {marginLeft: 30}]}>Learn</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tagItem}
+        onPress={() => {
+          setTodo({...todo, tag: 'work'});
+          toggleTagModal();
+        }}>
+        <Icon
+          name={radioBtn}
+          size={styles.icon.size + 8}
+          color={styles.icon.color}
+        />
+        <Text style={[styles.title, {marginLeft: 30}]}>Work</Text>
+      </TouchableOpacity>

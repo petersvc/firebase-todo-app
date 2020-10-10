@@ -5,64 +5,38 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './style';
 
-function TagModal({todo, setTodo, toggleTagModal}) {
+function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
+  let radioBtn;
+  const tagList = ['free', 'health', 'learn', 'work'];
+
+  const tagView = tagList.map((tag) => {
+    if (todo.tag === tag) radioBtn = 'radio-button-on';
+    else radioBtn = 'radio-button-off';
+    return (
+      <TouchableOpacity
+        style={styles.tagItem}
+        onPress={() => {
+          setTodo({...todo, tag});
+          toggleTagModal();
+        }}>
+        <Icon
+          name={radioBtn}
+          size={styles.icon.size + 8}
+          color={styles.icon.color}
+        />
+        <Text
+          style={[styles.title, {marginLeft: 30, textTransform: 'capitalize'}]}>
+          {tag}
+        </Text>
+      </TouchableOpacity>
+    );
+  });
+
   return (
-    <View style={styles.tagModal}>
-      <Text style={[styles.sectionTitle]}>Tags</Text>
-      <TouchableOpacity
-        style={styles.tagItem}
-        onPress={() => {
-          setTodo({...todo, tag: 'free'});
-          toggleTagModal();
-        }}>
-        <Icon
-          name="ellipse-outline"
-          size={styles.icon.size + 5}
-          color={styles.icon.color}
-        />
-        <Text style={[styles.title, {marginLeft: 18}]}>Free</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tagItem}
-        onPress={() => {
-          setTodo({...todo, tag: 'health'});
-          toggleTagModal();
-        }}>
-        <Icon
-          name="ellipse-outline"
-          size={styles.icon.size + 5}
-          color={styles.icon.color}
-        />
-        <Text style={[styles.title, {marginLeft: 18}]}>Health</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tagItem}
-        onPress={() => {
-          setTodo({...todo, tag: 'learn'});
-          toggleTagModal();
-        }}>
-        <Icon
-          name="ellipse-outline"
-          size={styles.icon.size + 5}
-          color={styles.icon.color}
-        />
-        <Text style={[styles.title, {marginLeft: 18}]}>Learn</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tagItem}
-        onPress={() => {
-          setTodo({...todo, tag: 'work'});
-          toggleTagModal();
-        }}>
-        <Icon
-          name="ellipse-outline"
-          size={styles.icon.size + 5}
-          color={styles.icon.color}
-        />
-        <Text style={[styles.title, {marginLeft: 18}]}>Work</Text>
-      </TouchableOpacity>
+    <View style={[styles.tagModal, {marginBottom: bottomMargin}]}>
+      {tagView}
     </View>
   );
 }
-// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+
 export default TagModal;

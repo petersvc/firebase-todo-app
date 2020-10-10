@@ -41,9 +41,15 @@ function Login({setGoogleUser}) {
           <Icon
             name="logo-google"
             size={styles.icon.size + 2}
-            color={styles.colors.white}
+            color={styles.colors.bg}
           />
-          <Text style={[styles.title, {fontWeight: 'bold'}]}>Login</Text>
+          <Text
+            style={[
+              styles.title,
+              {fontWeight: 'bold', color: styles.colors.bg},
+            ]}>
+            Login
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

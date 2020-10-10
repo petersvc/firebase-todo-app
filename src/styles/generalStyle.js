@@ -15,7 +15,7 @@ const general = {
   },
   sectionTitle: {
     color: colors.white,
-    fontSize: fonts.lg,
+    fontSize: fonts.lg + 2,
     // textTransform: 'capitalize',
     // fontWeight: 'bold',
   },
@@ -25,7 +25,8 @@ const general = {
   },
   smallText2: {
     color: colors.icon,
-    fontSize: fonts.sm + 1,
+    fontSize: fonts.sm,
+    textTransform: 'capitalize',
   },
   icon: {
     size: 18,

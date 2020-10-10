@@ -87,6 +87,9 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
     await todosCollection.doc(task.id).delete();
   }
 
+  const bottomMargin = 105;
+  const leftMargin = 100;
+
   return (
     <View style={[styles.editArea]}>
       <View style={styles.top}>
@@ -155,6 +158,8 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
               todo={todo}
               setTodo={setTodo}
               toggleTagModal={toggleTagModal}
+              bottomMargin={bottomMargin}
+              leftMargin={leftMargin}
             />
           </Modal>
         </TouchableOpacity>

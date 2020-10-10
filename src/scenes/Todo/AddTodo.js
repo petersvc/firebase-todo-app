@@ -87,13 +87,16 @@ function AddTodo({todosCollection}) {
     await todosCollection.add(todo);
   }
 
+  const bottomMargin = 50;
+  const leftMargin = 280;
+
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
         <Icon
-          name="ios-create-outline"
-          size={styles.icon.size + 15}
-          color={styles.colors.green}
+          name="add"
+          size={styles.icon.size + 10}
+          color={styles.colors.white}
         />
       </TouchableOpacity>
       <Modal
@@ -171,6 +174,8 @@ function AddTodo({todosCollection}) {
                   todo={todo}
                   setTodo={setTodo}
                   toggleTagModal={toggleTagModal}
+                  bottomMargin={bottomMargin}
+                  leftMargin={leftMargin}
                 />
               </Modal>
             </TouchableOpacity>

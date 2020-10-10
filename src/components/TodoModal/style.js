@@ -11,6 +11,8 @@ const styles = {
     paddingRight: diagram.margin + 1,
     paddingLeft: diagram.margin,
     marginTop: 'auto',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   top: {
     flexDirection: 'row',
@@ -73,7 +75,7 @@ const styles = {
   taskTitle: {
     marginLeft: 12,
     color: colors.white,
-    fontSize: fonts.lg + 2,
+    fontSize: fonts.lg,
     textTransform: 'capitalize',
     fontWeight: 'bold',
   },

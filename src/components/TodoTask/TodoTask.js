@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 
 import styles from './style';
 import TodoModal from '../TodoModal/TodoModal';
 
-function TodoTask({task, todosCollection}) {
+function TodoTask({task, todosCollection, listId}) {
   const [todoModal, setTodoModal] = useState(false);
   function toggleTodoModal() {
     setTodoModal(!todoModal);
@@ -17,18 +17,18 @@ function TodoTask({task, todosCollection}) {
     await todosCollection.doc(task.id).update({complete: !task.complete});
   }
 
-  let tagColor = styles.colors.main;
+  const tagColor = styles.colors.green;
 
-  if (task.tag === 'work') tagColor = styles.colors.orange;
-  else if (task.tag === 'learn') tagColor = styles.colors.blue;
-  else if (task.tag === 'health') tagColor = styles.colors.red;
-  else if (task.tag === 'free') tagColor = styles.colors.green;
+  // if (task.tag === 'work') tagColor = styles.colors.orange;
+  // else if (task.tag === 'learn') tagColor = styles.colors.blue;
+  // else if (task.tag === 'health') tagColor = styles.colors.red;
+  // else if (task.tag === 'free') tagColor = styles.colors.green;
 
   return (
     <View style={styles.task}>
       <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
         <Icon
-          name={task.complete ? 'md-checkmark' : 'ellipse-outline'}
+          name={task.complete ? 'check' : 'circle-outline'}
           size={styles.icon.size + 10}
           color={task.complete ? tagColor : styles.colors.dim}
         />
@@ -40,30 +40,50 @@ function TodoTask({task, todosCollection}) {
             {task.title}
           </Text>
           <Icon
-            style={{marginLeft: 5}}
-            name="ios-ellipse"
+            style={{marginLeft: 7, marginTop: 3, opacity: 0}}
+            name="circle-outline"
             size={styles.icon.size - 12}
             color={tagColor}
           />
         </View>
 
-        <View style={styles.times}>
-          <Icon
-            style={{marginRight: 3}}
-            name="ios-time-outline"
-            size={styles.icon.size - 6}
-            color={styles.icon.color}
-          />
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
+          <View style={styles.contentItem}>
+            <Icon
+              style={[{marginRight: 5, display: 'none'}]}
+              name="calendar-today"
+              size={styles.icon.size - 6}
+              color={styles.icon.color}
+            />
 
-          <Text
-            style={
-              task.complete
-                ? [styles.smallText, styles.done]
-                : [styles.smallText, styles.begin]
-            }>
-            {task.begin}
-          </Text>
+            <Text
+              style={
+                task.complete
+                  ? [styles.smallText2, styles.done]
+                  : [styles.smallText2, styles.begin]
+              }>
+              {listId !== 'agendada' ? listId : task.date.slice(0, 6)},{' '}
+              {task.begin}
+            </Text>
+          </View>
+          <View style={[styles.contentItem, {display: 'none'}]}>
+            <Icon
+              style={{marginLeft: 0, marginRight: 5}}
+              name="tag-outline"
+              size={styles.icon.size - 7}
+              color={styles.icon.color}
+            />
+            <Text
+              style={[
+                {textTransform: 'capitalize'},
+                task.complete ? styles.done : styles.smallText2,
+              ]}>
+              {task.tag}
+            </Text>
+          </View>
         </View>
+
         <Modal
           style={{margin: 0}}
           isVisible={todoModal}
