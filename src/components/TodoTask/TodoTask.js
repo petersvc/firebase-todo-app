@@ -17,8 +17,8 @@ function TodoTask({task, todosCollection, listId}) {
     await todosCollection.doc(task.id).update({complete: !task.complete});
   }
 
-  const tagColor = styles.colors.green;
-  let listColor = styles.colors.white;
+  const tagColor = styles.colors.dim;
+  let listColor = styles.colors.dim;
 
   // if (task.tag === 'work') tagColor = styles.colors.orange;
   // else if (task.tag === 'learn') tagColor = styles.colors.blue;
@@ -28,34 +28,20 @@ function TodoTask({task, todosCollection, listId}) {
   else if (listId === 'atrasada') listColor = styles.colors.red;
   return (
     <View style={styles.task}>
-      <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
-        <Icon
-          name={task.complete ? 'check' : 'circle-outline'}
-          size={styles.icon.size + 7}
-          color={task.complete ? tagColor : styles.colors.dim}
-        />
-      </TouchableOpacity>
-
       <TouchableOpacity style={styles.content} onPress={toggleTodoModal}>
+        <Text style={[styles.smallText2, {marginBottom: 8}]}>{task.tag}</Text>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
-          <Icon
-            style={{marginLeft: 7, marginTop: 3, opacity: 0}}
-            name="circle-outline"
-            size={styles.icon.size - 12}
-            color={tagColor}
-          />
         </View>
-        {listId !== 'completada' ? (
-          <View
-            style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
+        {listId !== 'completada' && listId !== 'amanhã' ? (
+          <View style={styles.taskBottom}>
             <View style={styles.contentItem}>
               <Icon
-                style={[{marginRight: 5}]}
+                style={[{marginRight: 3}]}
                 name="alarm"
-                size={styles.icon.size - 4}
+                size={styles.icon.size - 5}
                 color={listColor}
               />
 
@@ -65,12 +51,21 @@ function TodoTask({task, todosCollection, listId}) {
                     ? [styles.smallText2, styles.done]
                     : [styles.smallText2, styles.begin, {color: listColor}]
                 }>
-                {listId !== 'agendada' && listId !== 'atrasada'
-                  ? listId
-                  : task.date.slice(0, 6)}
-                , {task.begin}
+                {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
+                {task.begin}
               </Text>
             </View>
+            {listId !== 'agendada' ? (
+              <TouchableOpacity
+                style={styles.complete}
+                onPress={toggleComplete}>
+                <Icon
+                  name={task.complete ? 'check' : 'circle-outline'}
+                  size={styles.icon.size + 3}
+                  color={task.complete ? tagColor : styles.colors.dim}
+                />
+              </TouchableOpacity>
+            ) : null}
           </View>
         ) : null}
 

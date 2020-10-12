@@ -93,7 +93,11 @@ function AddTodo({todosCollection}) {
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
-        <Icon name="add" size={styles.icon.size + 5} color={styles.colors.bg} />
+        <Icon
+          name="add"
+          size={styles.icon.size + 5}
+          color={styles.colors.white}
+        />
       </TouchableOpacity>
       <Modal
         style={{margin: 0}}

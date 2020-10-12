@@ -108,7 +108,7 @@ function DrawerContent({
         <TouchableOpacity
           onPress={() => navigation.navigate('Skills')}
           style={[styles.navItem]}>
-          <Text style={[styles.title, styles.itemName]}>Pomodoro</Text>
+          <Text style={[styles.title, styles.itemName]}>Configurações</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}>

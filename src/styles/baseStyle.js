@@ -36,7 +36,7 @@ export const diagram = {
 
 export const fonts = {
   sm: 12,
-  md: 15,
+  md: 14,
   lg: 17,
   primary: 'Roboto',
 };
