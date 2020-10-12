@@ -29,7 +29,7 @@ function Login({setGoogleUser}) {
       <View style={styles.top}>
         <Image
           style={styles.loginImg}
-          source={require('../../assets/acc.png')}
+          source={require('../../assets/acc7.png')}
         />
       </View>
       <View style={styles.bottom}>
@@ -40,15 +40,19 @@ function Login({setGoogleUser}) {
         <TouchableOpacity style={styles.loginBtn} onPress={googleLogin}>
           <Icon
             name="logo-google"
-            size={styles.icon.size + 2}
-            color={styles.colors.bg}
+            size={styles.icon.size}
+            color={styles.colors.main}
           />
           <Text
             style={[
               styles.title,
-              {fontWeight: 'bold', color: styles.colors.bg},
+              {
+                fontWeight: 'bold',
+                color: styles.colors.main,
+                marginLeft: 10,
+              },
             ]}>
-            Login
+            Login com Google
           </Text>
         </TouchableOpacity>
       </View>

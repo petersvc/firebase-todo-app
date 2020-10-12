@@ -45,7 +45,7 @@ function AddTodo({todosCollection}) {
 
   const [todo, setTodo] = useState({
     title: '',
-    tag: 'free',
+    tag: 'livre',
     begin,
     date,
     complete: false,
@@ -93,11 +93,7 @@ function AddTodo({todosCollection}) {
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
-        <Icon
-          name="add"
-          size={styles.icon.size + 10}
-          color={styles.colors.white}
-        />
+        <Icon name="add" size={styles.icon.size + 5} color={styles.colors.bg} />
       </TouchableOpacity>
       <Modal
         style={{margin: 0}}
@@ -117,9 +113,9 @@ function AddTodo({todosCollection}) {
             />
             <TextInput
               style={{marginLeft: 10, color: styles.icon.color}}
-              placeholder="What would you like to do?"
+              placeholder="O que você deseja fazer?"
               placeholderTextColor={styles.title.color}
-              autoFocus
+              // autoFocus
               onChangeText={(title) => setTodo({...todo, title})}
             />
           </View>

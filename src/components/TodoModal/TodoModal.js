@@ -169,13 +169,13 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
           style={[styles.taskItem2, {marginRight: 16}]}
           onPress={deleteTodo}>
           <Icon
-            name="ios-trash-outline"
-            size={styles.icon.size - 18}
+            style={{display: 'none'}}
+            name="trash-outline"
+            size={styles.icon.size}
             color={styles.icon.color}
           />
-          <Text
-            style={[styles.title, {marginLeft: 6, color: styles.colors.white}]}>
-            Delete
+          <Text style={[styles.title, {color: styles.colors.red}]}>
+            Deletar
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -185,16 +185,17 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             toggleTodoModal();
           }}>
           <Icon
-            name="ios-save-outline"
-            size={styles.icon.size - 18}
+            style={{display: 'none'}}
+            name="save-outline"
+            size={styles.icon.size}
             color={styles.icon.color}
           />
           <Text
             style={[
               styles.title,
-              {marginLeft: 6, color: styles.colors.green, fontWeight: 'bold'},
+              {color: styles.colors.green, fontWeight: 'bold'},
             ]}>
-            Save changes
+            Salvar
           </Text>
         </TouchableOpacity>
       </View>

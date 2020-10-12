@@ -3,11 +3,8 @@ import general from '../../styles/generalStyle';
 
 const styles = {
   drawer: {
-    flex: 1 / 1.4,
-    marginTop: 'auto',
+    flex: 1,
     backgroundColor: colors.bg,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
   },
   user: {
     flexDirection: 'row',
@@ -32,7 +29,7 @@ const styles = {
     marginLeft: -5,
   },
   lists: {
-    paddingLeft: diagram.margin + 5,
+    paddingLeft: diagram.margin * 1.2,
     paddingRight: diagram.margin * 1.3,
     marginTop: diagram.padding * 1.5,
   },
@@ -47,28 +44,38 @@ const styles = {
     textTransform: 'capitalize',
   },
   navigation: {
-    paddingLeft: diagram.margin,
-    paddingRight: diagram.margin + 1,
+    // flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: diagram.margin * 2.9,
+    paddingRight: diagram.margin * 1.3,
     borderTopWidth: 1,
     borderColor: colors.bgLight,
-    // borderBottomWidth: 1,
-    // backgroundColor: 'red',
+    borderBottomWidth: 1,
     marginTop: 8,
-    paddingTop: 8,
-    paddingBottom: 20,
+    paddingTop: diagram.margin,
+    paddingBottom: 8,
     // marginBottom: 20,
+  },
+  navItem: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBottom: 20,
+  },
+  itemName: {
+    marginLeft: 5,
   },
   colors: {
     orange: colors.orange,
     white: colors.white,
     yellow: colors.yellow,
+    dim: colors.dim,
     green: colors.green3,
     blue: colors.blue,
     red: colors.red,
     main: colors.main,
   },
   footer: {
-    // marginTop: 'auto',
+    marginTop: diagram.margin,
     marginBottom: diagram.margin,
     paddingLeft: diagram.margin * 1.3,
     paddingRight: diagram.margin + 1,

@@ -18,18 +18,20 @@ function TodoTask({task, todosCollection, listId}) {
   }
 
   const tagColor = styles.colors.green;
+  let listColor = styles.colors.white;
 
   // if (task.tag === 'work') tagColor = styles.colors.orange;
   // else if (task.tag === 'learn') tagColor = styles.colors.blue;
   // else if (task.tag === 'health') tagColor = styles.colors.red;
   // else if (task.tag === 'free') tagColor = styles.colors.green;
-
+  if (listId === 'hoje') listColor = styles.colors.green;
+  else if (listId === 'atrasada') listColor = styles.colors.red;
   return (
     <View style={styles.task}>
       <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
         <Icon
           name={task.complete ? 'check' : 'circle-outline'}
-          size={styles.icon.size + 10}
+          size={styles.icon.size + 7}
           color={task.complete ? tagColor : styles.colors.dim}
         />
       </TouchableOpacity>
@@ -46,43 +48,31 @@ function TodoTask({task, todosCollection, listId}) {
             color={tagColor}
           />
         </View>
+        {listId !== 'completada' ? (
+          <View
+            style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
+            <View style={styles.contentItem}>
+              <Icon
+                style={[{marginRight: 5}]}
+                name="alarm"
+                size={styles.icon.size - 4}
+                color={listColor}
+              />
 
-        <View
-          style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
-          <View style={styles.contentItem}>
-            <Icon
-              style={[{marginRight: 5, display: 'none'}]}
-              name="calendar-today"
-              size={styles.icon.size - 6}
-              color={styles.icon.color}
-            />
-
-            <Text
-              style={
-                task.complete
-                  ? [styles.smallText2, styles.done]
-                  : [styles.smallText2, styles.begin]
-              }>
-              {listId !== 'agendada' ? listId : task.date.slice(0, 6)},{' '}
-              {task.begin}
-            </Text>
+              <Text
+                style={
+                  task.complete
+                    ? [styles.smallText2, styles.done]
+                    : [styles.smallText2, styles.begin, {color: listColor}]
+                }>
+                {listId !== 'agendada' && listId !== 'atrasada'
+                  ? listId
+                  : task.date.slice(0, 6)}
+                , {task.begin}
+              </Text>
+            </View>
           </View>
-          <View style={[styles.contentItem, {display: 'none'}]}>
-            <Icon
-              style={{marginLeft: 0, marginRight: 5}}
-              name="tag-outline"
-              size={styles.icon.size - 7}
-              color={styles.icon.color}
-            />
-            <Text
-              style={[
-                {textTransform: 'capitalize'},
-                task.complete ? styles.done : styles.smallText2,
-              ]}>
-              {task.tag}
-            </Text>
-          </View>
-        </View>
+        ) : null}
 
         <Modal
           style={{margin: 0}}

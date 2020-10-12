@@ -748,3 +748,20 @@ drawerContent={(props) => (
         />
         <Text style={[styles.title, {marginLeft: 30}]}>Work</Text>
       </TouchableOpacity>
+
+
+      <View style={[styles.contentItem, {display: 'none'}]}>
+              <Icon
+                style={{marginLeft: 0, marginRight: 5}}
+                name="tag-outline"
+                size={styles.icon.size - 7}
+                color={styles.icon.color}
+              />
+              <Text
+                style={[
+                  {textTransform: 'capitalize'},
+                  task.complete ? styles.done : styles.smallText2,
+                ]}>
+                {task.tag}
+              </Text>
+            </View>

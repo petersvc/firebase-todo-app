@@ -5,15 +5,16 @@ import {Text, View, Button, TouchableOpacity} from 'react-native';
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Loading from './scenes/Loading/Loading';
 import Login from './scenes/Login/Login';
 import Todo from './scenes/Todo/Todo';
 import Skills from './scenes/Skills/Skills';
 import Settings from './scenes/Settings/Settings';
+import DrawerContent from './components/DrawerContent/DrawerContent';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const d = new Date();
 
@@ -101,18 +102,31 @@ function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator
+        <Drawer.Navigator
+          // drawerType="back"
+          drawerStyle={{
+            // backgroundColor: '#c6cbef',
+            width: '75%',
+          }}
           initialRouteName="Loading"
-          screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Loading">
+          drawerContent={(props) => (
+            <DrawerContent
+              navigation={props.navigation}
+              lists={lists}
+              setUser={setUser}
+              googleUser={googleUser}
+              setGoogleUser={setGoogleUser}
+            />
+          )}>
+          <Drawer.Screen name="Loading">
             {(props) => (
               <Loading setUser={setUser} navigation={props.navigation} />
             )}
-          </Stack.Screen>
-          <Stack.Screen name="Login">
+          </Drawer.Screen>
+          <Drawer.Screen name="Login">
             {(props) => <Login setGoogleUser={setGoogleUser} />}
-          </Stack.Screen>
-          <Stack.Screen name="Todo">
+          </Drawer.Screen>
+          <Drawer.Screen name="Todo">
             {(props) => (
               <Todo
                 user={user}
@@ -125,14 +139,14 @@ function App() {
                 todayArray={todayArray}
               />
             )}
-          </Stack.Screen>
-          <Stack.Screen name="Skills">
+          </Drawer.Screen>
+          <Drawer.Screen name="Skills">
             {(props) => <Skills todos={todos} />}
-          </Stack.Screen>
-          <Stack.Screen name="Settings">
+          </Drawer.Screen>
+          <Drawer.Screen name="Settings">
             {(props) => <Settings todos={todos} />}
-          </Stack.Screen>
-        </Stack.Navigator>
+          </Drawer.Screen>
+        </Drawer.Navigator>
       </NavigationContainer>
     </>
   );

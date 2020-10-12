@@ -7,7 +7,7 @@ import styles from './style';
 
 function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
   let radioBtn;
-  const tagList = ['free', 'health', 'learn', 'work'];
+  const tagList = ['livre', 'saúde', 'aprender', 'trabalho'];
 
   const tagView = tagList.map((tag) => {
     if (todo.tag === tag) radioBtn = 'radio-button-on';

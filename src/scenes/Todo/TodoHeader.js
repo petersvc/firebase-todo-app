@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import Modal from 'react-native-modal';
+// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './style';
-import AddTodo from './AddTodo';
-import MenuModal from '../../components/MenuModal/MenuModal';
 
 function TodoHeader({
   headerTitle,
@@ -18,11 +16,6 @@ function TodoHeader({
   setGoogleUser,
   lists,
 }) {
-  const [menuModal, setMenuModal] = useState(false);
-
-  function toggleMenuModal() {
-    setMenuModal(!menuModal);
-  }
   // <AddTodo todosCollection={todosCollection} />
   return (
     <View style={styles.header}>
@@ -30,58 +23,37 @@ function TodoHeader({
         style={[{marginLeft: -1}, styles.footerItem]}
         onPress={toggleMenuModal}>
         <Icon
-          name="menu-outline"
-          size={styles.icon.size + 12}
+          name="menu"
+          size={styles.icon.size + 4}
           color={styles.colors.white}
         />
       </TouchableOpacity>
 
-      <Text style={[styles.headerTitle]}>{headerTitle}</Text>
       <View style={styles.rightSide}>
-        <AddTodo todosCollection={todosCollection} />
         <TouchableOpacity style={[styles.footerItem]}>
           <Icon
-            name="ios-basket-outline"
+            name="basket-outline"
             size={styles.icon.size + 4}
-            color={styles.colors.white}
+            color={styles.colors.dim2}
           />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.footerItem}>
           <Icon
-            name="ios-stopwatch-outline"
+            name="timer-outline"
             size={styles.icon.size + 4}
-            color={styles.colors.white}
+            color={styles.colors.dim2}
           />
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.footerItem]}>
           <Icon
-            name="ellipsis-horizontal-circle"
+            name="dots-horizontal-circle-outline"
             size={styles.icon.size + 4}
-            color={styles.colors.white}
+            color={styles.colors.dim2}
           />
         </TouchableOpacity>
       </View>
-      <Modal
-        style={{margin: 0}}
-        isVisible={menuModal}
-        onBackdropPress={toggleMenuModal}
-        useNativeDriver
-        hideModalContentWhileAnimating
-        animationIn="fadeInUp"
-        animationOut="fadeOutDown"
-        animationInTiming={300}>
-        <MenuModal
-          navigation={navigation}
-          lists={lists}
-          user={user}
-          setUser={setUser}
-          googleUser={googleUser}
-          setGoogleUser={setGoogleUser}
-          toggleMenuModal={toggleMenuModal}
-        />
-      </Modal>
     </View>
   );
 }
@@ -89,7 +61,8 @@ function TodoHeader({
 export default TodoHeader;
 
 /*
-
+<Text style={[styles.headerTitle]}>{headerTitle}</Text>
+<AddTodo todosCollection={todosCollection} />
 <TouchableOpacity
         style={[{marginLeft: -1}, styles.menuIcon]}
         onPress={navigation.toggleDrawer}>
@@ -178,6 +151,25 @@ style={{marginLeft: 'auto'}}
         />
       </TouchableOpacity>
 
+      <Modal
+        style={{margin: 0}}
+        isVisible={menuModal}
+        onBackdropPress={toggleMenuModal}
+        useNativeDriver
+        hideModalContentWhileAnimating
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown"
+        animationInTiming={300}>
+        <MenuModal
+          navigation={navigation}
+          lists={lists}
+          user={user}
+          setUser={setUser}
+          googleUser={googleUser}
+          setGoogleUser={setGoogleUser}
+          toggleMenuModal={toggleMenuModal}
+        />
+      </Modal>
 
 
 */

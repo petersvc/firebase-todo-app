@@ -5,16 +5,16 @@ import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-community/google-signin';
+// import Modal from 'react-native-modal';
 
 import styles from './style';
 
-function MenuModal({
+function DrawerContent({
   navigation,
   lists,
   setUser,
   googleUser,
   setGoogleUser,
-  toggleMenuModal,
 }) {
   async function signOut() {
     await GoogleSignin.revokeAccess();
@@ -36,7 +36,7 @@ function MenuModal({
   const renderList = useCallback(({item}) => {
     const remaining = item.todos.filter((todo) => !todo.complete).length;
 
-    const colorIcon = styles.colors.white;
+    const colorIcon = styles.colors.dim;
     let listIcon = 'list';
 
     if (item.id === 'completada') {
@@ -59,7 +59,12 @@ function MenuModal({
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
-          <Icon name={listIcon} size={styles.icon.size + 1} color={colorIcon} />
+          <Icon
+            // style={{display: 'none'}}
+            name={listIcon}
+            size={styles.icon.size + 2}
+            color={colorIcon}
+          />
           <Text style={[styles.title, styles.listName]}>{item.id}</Text>
           <Text style={[styles.smallText]}>
             {item.id !== 'completada' ? remaining : item.todos.length}
@@ -89,26 +94,53 @@ function MenuModal({
         />
       </View>
 
-      <View style={styles.navigation} />
+      <View style={styles.navigation}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Todo')}
+          style={[styles.navItem]}>
+          <Text style={[styles.title, styles.itemName]}>Tarefas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Skills')}
+          style={[styles.navItem]}>
+          <Text style={[styles.title, styles.itemName]}>Habilidades</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Skills')}
+          style={[styles.navItem]}>
+          <Text style={[styles.title, styles.itemName]}>Pomodoro</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {
             signOut();
-            toggleMenuModal();
+            // toggleMenuModal();
           }}
           style={[styles.listHeader]}>
           <Icon
             name="logout-variant"
-            size={styles.icon.size + 1}
-            color={styles.colors.white}
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
           />
-          <Text style={[styles.title, styles.listName]}>Sign out</Text>
+          <Text style={[styles.title, styles.listName]}>Sair</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-export default MenuModal;
+export default DrawerContent;
 
 // settings, todo, groceries, skills
+
+/*
+<TouchableOpacity style={styles.menuButton}>
+        <Icon
+          name="menu"
+          size={styles.icon.size + 4}
+          color={styles.colors.white}
+        />
+      </TouchableOpacity>
+
+*/
