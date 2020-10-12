@@ -35,7 +35,7 @@ function TodoTask({task, todosCollection, listId}) {
             {task.title}
           </Text>
         </View>
-        {listId !== 'completada' && listId !== 'amanhã' ? (
+        {listId !== 'completada' ? (
           <View style={styles.taskBottom}>
             <View style={styles.contentItem}>
               <Icon

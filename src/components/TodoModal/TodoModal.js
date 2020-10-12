@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {TextInput, View, Text, TouchableOpacity} from 'react-native';
+import {
+  TextInput,
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -92,7 +98,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
 
   return (
     <View style={[styles.editArea]}>
-      <View style={styles.top}>
+      <KeyboardAvoidingView style={styles.top}>
         <TouchableOpacity
           style={styles.complete}
           onPress={() => setTodo({...todo, complete: !todo.complete})}>
@@ -108,7 +114,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
           placeholderTextColor={styles.colors.white}
           onChangeText={(title) => setTodo({...todo, title})}
         />
-      </View>
+      </KeyboardAvoidingView>
       <View style={styles.dateHour}>
         {show && (
           <DateTimePicker

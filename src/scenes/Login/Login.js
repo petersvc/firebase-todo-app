@@ -33,7 +33,7 @@ function Login({setGoogleUser}) {
         />
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.welcome}>Welcome</Text>
+        <Text style={styles.welcome}>Bem vindo</Text>
         <Text style={[styles.title, styles.textItem]}>
           Lorem ipsum dolor sit amet, consectetur adipiscing.
         </Text>

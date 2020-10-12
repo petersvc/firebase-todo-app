@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from 'react-native';
 
 import firestore from '@react-native-firebase/firestore';
@@ -75,7 +76,8 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
           data={item.todos}
           keyExtractor={keyExtractor2}
           renderItem={renderTodo}
-          initialNumToRender={8}
+          // horizontal={false}
+          // initialNumToRender={8}
           numColumns={2}
         />
       </View>
@@ -84,7 +86,7 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
   // {todayArray[2]}, {todayArray[0]} {todayArray[1]}
 
   return (
-    <View style={styles.todo}>
+    <>
       <StatusBar backgroundColor="rgb(30, 35, 38)" />
       <View style={styles.todoHeader}>
         <Text style={[styles.headerTitle]}>{headerTitle}</Text>
@@ -105,15 +107,15 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
           <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
         </View>
       </View>
-      <View style={styles.container}>
+      <ScrollView style={styles.todo}>
         <FlatList
-          style={styles.flatTodo}
+          // style={{flex: 1, backgroundColor: 'red'}}
           data={listFilter}
           keyExtractor={keyExtractor}
           renderItem={renderList}
+          horizontal={false}
         />
-      </View>
-
+      </ScrollView>
       <AddTodo todosCollection={todosCollection} />
       <TouchableOpacity
         style={styles.menuButton}
@@ -124,7 +126,7 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
           color={styles.colors.white}
         />
       </TouchableOpacity>
-    </View>
+    </>
   );
 }
 

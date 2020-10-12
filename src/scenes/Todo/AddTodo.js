@@ -119,7 +119,6 @@ function AddTodo({todosCollection}) {
               style={{marginLeft: 10, color: styles.icon.color}}
               placeholder="O que você deseja fazer?"
               placeholderTextColor={styles.title.color}
-              // autoFocus
               onChangeText={(title) => setTodo({...todo, title})}
             />
           </View>

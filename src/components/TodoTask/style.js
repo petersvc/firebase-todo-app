@@ -4,7 +4,6 @@ import general from '../../styles/generalStyle';
 const styles = {
   task: {
     flex: 1 / 2,
-    // width: '50%',
     // flexDirection: 'row',
     // alignItems: 'center',
     // justifyContent: 'space-between',
@@ -16,12 +15,11 @@ const styles = {
     paddingRight: diagram.margin + 1,
     marginLeft: 6,
     marginRight: 6,
-    // marginRight: diagram.margin - 12,
     borderWidth: 0.3,
     borderColor: colors.dim,
-    // backgroundColor: colors.bgLight2,
     borderRadius: 10,
     marginBottom: diagram.margin,
+    // backgroundColor: colors.bgLight2,
   },
   content: {
     marginTop: 1,
