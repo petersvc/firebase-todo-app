@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
   task: {
     flexDirection: 'row',
-    // alignItems: 'center',
+    alignItems: 'center',
     // justifyContent: 'space-between',
     paddingTop: diagram.padding,
     paddingBottom: diagram.padding,
