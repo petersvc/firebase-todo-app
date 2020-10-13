@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoTask from '../../components/TodoTask/TodoTask';
 import AddTodo from './AddTodo';
 import styles from './style';
+import {colors} from '../../styles/baseStyle';
 
 function Todo({lists, setTodos, user, googleUser, navigation}) {
   const headerTitle = 'Tarefas';
@@ -86,22 +87,22 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
   // {todayArray[2]}, {todayArray[0]} {todayArray[1]}
 
   return (
-    <>
-      <StatusBar backgroundColor="rgb(30, 35, 38)" />
+    <View style={{backgroundColor: colors.bg, flex: 1}}>
+      <StatusBar backgroundColor={colors.bg} />
       <View style={styles.todoHeader}>
         <Text style={[styles.headerTitle]}>{headerTitle}</Text>
-
         <View style={styles.rightSide}>
           <Icon
             // style={[{marginRight: 8}]}
             name="basket-outline"
-            size={styles.icon.size + 2}
+            size={styles.icon.size + 1}
             color={styles.colors.dim}
           />
           <Icon
-            // style={[{marginRight: 8}]}
+            // style={{opacity: 0}}
+            onPress={() => navigation.toggleDrawer()}
             name="dots-vertical"
-            size={styles.icon.size + 2}
+            size={styles.icon.size + 3}
             color={styles.colors.dim}
           />
           <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
@@ -126,7 +127,7 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
           color={styles.colors.white}
         />
       </TouchableOpacity>
-    </>
+    </View>
   );
 }
 
@@ -134,5 +135,24 @@ export default Todo;
 // <AddTodo todosCollection={todosCollection} />
 // , {todayArray[2]} {todayArray[0]} {todayArray[1]}
 /*
-
+<View style={[styles.tasksNumbers]}>
+          <Text style={[styles.remaining]}>
+            {remaining}/{total}
+          </Text>
+        </View>
+        <View style={styles.rightSide}>
+          <Icon
+            // style={[{marginRight: 8}]}
+            name="basket-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Icon
+            // style={[{marginRight: 8}]}
+            name="dots-vertical"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
+        </View>
 */

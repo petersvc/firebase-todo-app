@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
   todo: {
     // flex: 1,
-    // paddingBottom: 12,
+    // paddingTop: 12,
     backgroundColor: colors.bg,
   },
   container: {
@@ -14,23 +14,27 @@ const styles = {
   },
   todoHeader: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingRight: diagram.padding - 2,
-    paddingTop: diagram.padding,
-    paddingBottom: diagram.margin - 6,
-    paddingLeft: diagram.margin + 3, // * 2.7,
-    backgroundColor: colors.bg,
+    paddingRight: diagram.padding - 5,
+    paddingTop: diagram.padding - 6,
+    paddingBottom: diagram.margin - 11,
+    paddingLeft: diagram.margin - 6, // * 2.7,
+    // backgroundColor: colors.bgLight,
+    // borderBottomWidth: 0.4,
+    // borderColor: colors.dim,
+    borderRadius: 10,
+    margin: 8,
   },
   headerTitle: {
-    // marginLeft: diagram.margin - 4,
+    // marginLeft: diagram.margin, // diagram.margin - 4,
     // marginBottom: 5,
-    // marginTop: diagram.margin,
-    color: colors.white,
-    fontSize: fonts.lg + 5,
+    marginTop: -6,
+    color: colors.dim,
+    fontSize: fonts.lg + 3,
     // textTransform: 'uppercase',
-    // fontWeight: 'bold',
-    // alignSelf: 'center'
+    fontWeight: 'bold',
+    // alignSelf: 'center',
     // display: 'none',
   },
   tasksNumbers: {
@@ -49,9 +53,9 @@ const styles = {
     borderRadius: 100,
   },
   rightSide: {
-    marginLeft: 'auto',
+    // marginLeft: 'auto',
     marginRight: 3,
-    width: 100,
+    width: 95, // 56,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -60,9 +64,10 @@ const styles = {
   },
   avatar: {
     // marginLeft: 'auto',
-    width: 36,
-    height: 36,
+    width: 32,
+    height: 32,
     borderRadius: 100,
+    // display: 'none',
   },
   remaining: {
     // marginTop: 6,
@@ -89,8 +94,9 @@ const styles = {
   },
   listName: {
     color: colors.dim,
-    fontSize: fonts.md,
-    textTransform: 'capitalize',
+    fontSize: fonts.sm - 1,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
   },
   addModal: {
     marginTop: 'auto',

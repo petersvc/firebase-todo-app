@@ -28,34 +28,88 @@ function TodoTask({task, todosCollection, listId}) {
   else if (listId === 'atrasada') listColor = styles.colors.red;
   return (
     <View style={styles.task}>
-      <TouchableOpacity style={styles.content} onPress={toggleTodoModal}>
+      <TouchableOpacity style={styles.taskLeft} onPress={toggleTodoModal}>
         <Text style={[styles.smallText2, {marginBottom: 8}]}>{task.tag}</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={task.complete ? styles.done : styles.title}>
-            {task.title}
-          </Text>
-        </View>
-        {listId !== 'completada' ? (
-          <View style={styles.taskBottom}>
-            <View style={styles.contentItem}>
-              <Icon
-                style={[{marginRight: 3}]}
-                name="alarm"
-                size={styles.icon.size - 5}
-                color={listColor}
-              />
 
-              <Text
-                style={
-                  task.complete
-                    ? [styles.smallText2, styles.done]
-                    : [styles.smallText2, styles.begin, {color: listColor}]
-                }>
-                {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
-                {task.begin}
-              </Text>
-            </View>
-            {listId !== 'agendada' ? (
+        <Text style={task.complete ? styles.done : styles.title}>
+          {task.title}
+        </Text>
+
+        {listId !== 'completada' ? (
+          <View style={[styles.contentItem, {marginTop: 8}]}>
+            <Icon
+              style={[{marginRight: 3}]}
+              name="alarm"
+              size={styles.icon.size - 5}
+              color={listColor}
+            />
+
+            <Text
+              style={
+                task.complete
+                  ? [styles.smallText2, styles.done]
+                  : [styles.smallText2, styles.begin, {color: listColor}]
+              }>
+              {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
+              {task.begin}
+            </Text>
+          </View>
+        ) : null}
+      </TouchableOpacity>
+
+      <View style={styles.taskRight}>
+        {listId !== 'agendada' ? (
+          <TouchableOpacity
+            style={[styles.contentItem, {marginRight: -8}]}
+            onPress={toggleComplete}>
+            <Icon
+              name={task.complete ? 'check' : 'checkbox-blank-outline'}
+              size={styles.icon.size}
+              color={task.complete ? tagColor : styles.colors.dim}
+            />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+
+      <Modal
+        style={{margin: 0}}
+        isVisible={todoModal}
+        onBackdropPress={toggleTodoModal}
+        useNativeDriver
+        hideModalContentWhileAnimating
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown"
+        animationInTiming={300}>
+        <TodoModal
+          task={task}
+          tagColor={tagColor}
+          todosCollection={todosCollection}
+          toggleTodoModal={toggleTodoModal}
+        />
+      </Modal>
+    </View>
+  );
+}
+// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+// <Text style={[styles.smallText, styles.end]}>{task.end}</Text>
+export default TodoTask;
+
+/*
+<View style={styles.taskRight}>
+        <Text style={[styles.smallText2]}>{task.tag}</Text>
+        {listId !== 'agendada' ? (
+          <TouchableOpacity
+            style={[styles.contentItem, {marginRight: -8}]}
+            onPress={toggleComplete}>
+            <Icon
+              name={task.complete ? 'check' : 'circle-outline'}
+              size={styles.icon.size}
+              color={task.complete ? tagColor : styles.colors.dim}
+            />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+{listId !== 'agendada' ? (
               <TouchableOpacity
                 style={styles.complete}
                 onPress={toggleComplete}>
@@ -66,36 +120,6 @@ function TodoTask({task, todosCollection, listId}) {
                 />
               </TouchableOpacity>
             ) : null}
-          </View>
-        ) : null}
-
-        <Modal
-          style={{margin: 0}}
-          isVisible={todoModal}
-          onBackdropPress={toggleTodoModal}
-          useNativeDriver
-          hideModalContentWhileAnimating
-          animationIn="fadeInUp"
-          animationOut="fadeOutDown"
-          animationInTiming={300}>
-          <TodoModal
-            task={task}
-            tagColor={tagColor}
-            todosCollection={todosCollection}
-            toggleTodoModal={toggleTodoModal}
-          />
-        </Modal>
-      </TouchableOpacity>
-      <View style={styles.rightSide} />
-    </View>
-  );
-}
-// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
-// <Text style={[styles.smallText, styles.end]}>{task.end}</Text>
-export default TodoTask;
-
-/*
-
 <Icon
           style={{marginLeft: 17, marginTop: -13}}
           name="ios-ellipse"
