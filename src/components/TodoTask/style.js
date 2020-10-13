@@ -1,4 +1,4 @@
-import {colors, diagram} from '../../styles/baseStyle';
+import {colors, diagram, fonts} from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
@@ -39,21 +39,22 @@ const styles = {
     marginLeft: 16,
   },
   contentItem: {
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    // marginBottom: 5,
-    marginRight: 18,
+    marginBottom: -2,
+    marginLeft: 10,
     // marginLeft: 'auto',
-    // justifyContent: 'center',
     // width: 62,
     // height: 26,
-    padding: 6,
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: 2,
+    paddingLeft: 7,
+    paddingRight: 7,
     borderWidth: 0.3,
     borderColor: colors.dim,
     borderRadius: 100,
-    // opacity: 0.8,
+  },
+  timeInfo: {
+    fontSize: fonts.sm - 2,
   },
   complete: {
     // marginLeft: 18,

@@ -18,7 +18,7 @@ function TodoTask({task, todosCollection, listId}) {
   }
 
   const tagColor = styles.colors.green;
-  let listColor = styles.colors.white;
+  let listColor = styles.colors.dim;
 
   // if (task.tag === 'work') tagColor = styles.colors.orange;
   // else if (task.tag === 'learn') tagColor = styles.colors.blue;
@@ -41,38 +41,20 @@ function TodoTask({task, todosCollection, listId}) {
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
-          <Icon
-            style={{marginLeft: 7, marginTop: 3, opacity: 0}}
-            name="circle-outline"
-            size={styles.icon.size - 12}
-            color={tagColor}
-          />
-        </View>
-        {listId !== 'completada' ? (
-          <View
-            style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
+          {listId !== 'completada' ? (
             <View style={styles.contentItem}>
-              <Icon
-                style={[{marginRight: 5}]}
-                name="alarm"
-                size={styles.icon.size - 4}
-                color={listColor}
-              />
-
               <Text
                 style={
                   task.complete
-                    ? [styles.smallText2, styles.done]
-                    : [styles.smallText2, styles.begin, {color: listColor}]
+                    ? [styles.timeInfo, styles.done]
+                    : [styles.timeInfo, styles.begin, {color: listColor}]
                 }>
-                {listId !== 'agendada' && listId !== 'atrasada'
-                  ? listId
-                  : task.date.slice(0, 6)}
-                , {task.begin}
+                {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
+                {task.begin}
               </Text>
             </View>
-          </View>
-        ) : null}
+          ) : null}
+        </View>
 
         <Modal
           style={{margin: 0}}
