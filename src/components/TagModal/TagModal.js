@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './style';
 
@@ -10,8 +10,8 @@ function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
   const tagList = ['livre', 'saúde', 'aprender', 'trabalho'];
 
   const tagView = tagList.map((tag) => {
-    if (todo.tag === tag) radioBtn = 'radio-button-on';
-    else radioBtn = 'radio-button-off';
+    if (todo.tag === tag) radioBtn = 'circle-slice-8';
+    else radioBtn = 'circle-outline';
     return (
       <TouchableOpacity
         style={styles.tagItem}

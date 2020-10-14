@@ -20,6 +20,7 @@ export const colors = {
   blue2: 'rgba(131, 232, 239, 1)', // 'rgb(0, 168, 195)'
   purple: 'rgb(176,153,174)', // 'rgb(176,153,203)', //
   green: 'rgba(166, 217, 201, 1)', // 'rgb(178, 228, 189)', // 'rgb(10, 220, 197)', //
+  greenBg: 'rgba(35, 45, 47, 1)', // 'rgba(60,72,71, 0.25)',
   red: 'rgb(247, 165, 165)', // 'rgb(237, 70, 75)', // 'rgba(255, 60, 86, 1)',
   main: '',
 };
@@ -35,7 +36,7 @@ export const diagram = {
 
 export const fonts = {
   sm: 11,
-  md: 15,
+  md: 14,
   lg: 17,
   primary: 'Roboto',
 };

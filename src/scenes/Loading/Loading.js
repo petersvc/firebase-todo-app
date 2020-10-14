@@ -9,7 +9,7 @@ function Loading({navigation, setUser}) {
       if (user) {
         setUser(user.email);
 
-        navigation.navigate('Todo');
+        navigation.navigate('Tarefas');
       } else {
         navigation.navigate('Login');
       }

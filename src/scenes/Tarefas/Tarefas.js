@@ -5,7 +5,6 @@ import {
   StatusBar,
   Text,
   TouchableOpacity,
-  Image,
   ScrollView,
 } from 'react-native';
 
@@ -17,7 +16,7 @@ import AddTodo from './AddTodo';
 import styles from './style';
 import {colors} from '../../styles/baseStyle';
 
-function Todo({lists, setTodos, user, googleUser, navigation}) {
+function Tarefas({lists, setTodos, user, navigation}) {
   const headerTitle = 'Tarefas';
   const keyExtractor = useCallback((item) => item.id);
   const keyExtractor2 = useCallback((item) => item.id);
@@ -130,7 +129,7 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
   );
 }
 
-export default Todo;
+export default Tarefas;
 // <AddTodo todosCollection={todosCollection} />
 // , {todayArray[2]} {todayArray[0]} {todayArray[1]}
 /*

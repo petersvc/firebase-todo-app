@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
   drawer: {
     flex: 1,
-    backgroundColor: colors.bg,
+    backgroundColor: colors.bg2,
   },
   user: {
     flexDirection: 'row',
@@ -26,20 +26,23 @@ const styles = {
     // borderColor: colors.main,
   },
   userInfo: {
-    marginLeft: -5,
+    marginLeft: 3,
   },
   lists: {
-    paddingLeft: diagram.margin * 1.2,
-    paddingRight: diagram.margin * 1.3,
+    paddingLeft: diagram.margin + 6,
+    paddingRight: diagram.margin + 6,
     marginTop: diagram.padding * 1.5,
+    marginBottom: diagram.padding - 10,
+    borderBottomWidth: 1,
+    borderColor: colors.bgLight,
   },
   listHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: diagram.padding + 5,
+    marginBottom: diagram.padding * 2,
   },
   listName: {
-    marginLeft: diagram.margin + 1,
+    marginLeft: diagram.margin + 8,
     marginRight: 'auto',
     textTransform: 'capitalize',
   },
@@ -51,7 +54,7 @@ const styles = {
     borderTopWidth: 1,
     borderColor: colors.bgLight,
     borderBottomWidth: 1,
-    marginTop: 8,
+    marginTop: 18,
     paddingTop: diagram.margin,
     paddingBottom: 8,
     // marginBottom: 20,
@@ -75,10 +78,13 @@ const styles = {
     main: colors.main,
   },
   footer: {
-    marginTop: diagram.margin,
-    marginBottom: diagram.margin,
-    paddingLeft: diagram.margin * 1.3,
-    paddingRight: diagram.margin + 1,
+    // marginTop: 'auto', // diagram.margin,
+    // marginBottom: diagram.margin,
+    paddingTop: diagram.padding + 8,
+    paddingLeft: diagram.margin + 6,
+    paddingRight: diagram.margin + 6,
+    borderTopWidth: 1,
+    borderColor: colors.bgLight,
   },
   ...general,
 };

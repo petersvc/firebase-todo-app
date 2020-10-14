@@ -765,3 +765,70 @@ drawerContent={(props) => (
                 {task.tag}
               </Text>
             </View>
+
+
+      <View style={styles.navigation}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Todo')}
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="clipboard-text-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Tarefas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Skills')}
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="map-marker-radius-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Geotask</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Skills')}
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="basket-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Compras</Text>
+        </TouchableOpacity>
+      </View>
+
+      <DrawerContentScrollView
+        {...navProps}
+        activeBackgroundColor={colors.greenBg}
+        activeTintColor={colors.main}
+        inactiveTintColor={colors.white}>
+        <DrawerItem
+          {...navProps}
+          label="Tarefas"
+          activeBackgroundColor={colors.greenBg}
+          activeTintColor={colors.main}
+          inactiveTintColor={colors.white}
+        />
+      </DrawerContentScrollView>
+
+      const {state, ...rest} = navProps;
+  const newState = {...state}; // copy from state before applying any filter. do not change original state
+  // const {navState} = newState.routes.filter((item) => item.name !== 'Login');
+  // newState.routes = newState.routes.filter(
+  // (item) => !['Loading', 'Login'].includes(item.name),
+  // ); // replace "Login' with your route name
+  newState.routes = navProps.state.routes.slice(0, 3);
+
+  /*
+  const tasksCompleted = lists.map(
+    (list) => list.todos.filter((todo) => todo.complete).length,
+  );
+  
+  const reducer = tasksCompleted.reduce((prev, next) => prev + next);
+ */

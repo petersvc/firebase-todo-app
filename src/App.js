@@ -1,18 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
 
-import {Text, View, Button, TouchableOpacity} from 'react-native';
+// import {Text, View, Button, TouchableOpacity} from 'react-native';
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import auth from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-community/google-signin';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Loading from './scenes/Loading/Loading';
 import Login from './scenes/Login/Login';
-import Todo from './scenes/Todo/Todo';
-import Skills from './scenes/Skills/Skills';
+import Tarefas from './scenes/Tarefas/Tarefas';
+import GeoTasks from './scenes/GeoTasks/GeoTasks';
 import Settings from './scenes/Settings/Settings';
 import DrawerContent from './components/DrawerContent/DrawerContent';
+import {colors, fonts} from './styles/baseStyle';
 
 const Drawer = createDrawerNavigator();
 
@@ -48,6 +52,14 @@ function App() {
   const usrLists = ['completada', 'atrasada', 'hoje', 'amanhã', 'agendada'];
   const [user, setUser] = useState();
   const [googleUser, setGoogleUser] = useState({});
+
+  async function signOut() {
+    await GoogleSignin.revokeAccess();
+    await GoogleSignin.signOut();
+    auth().signOut();
+    setUser();
+    setGoogleUser({});
+  }
 
   const lists = usrLists.map((list) => {
     const temp = {id: list, todos: []};
@@ -103,32 +115,58 @@ function App() {
     <>
       <NavigationContainer>
         <Drawer.Navigator
-          // drawerType="back"
+          // drawerType="slide"
           drawerStyle={{
             // backgroundColor: '#c6cbef',
             width: '75%',
           }}
           initialRouteName="Loading"
-          drawerContent={(props) => (
-            <DrawerContent
-              navigation={props.navigation}
-              lists={lists}
-              setUser={setUser}
-              googleUser={googleUser}
-              setGoogleUser={setGoogleUser}
-            />
-          )}>
-          <Drawer.Screen name="Loading">
+          drawerContentOptions={{
+            activeBackgroundColor: colors.greenBg,
+            activeTintColor: colors.main,
+            inactiveTintColor: colors.white,
+            labelStyle: {fontSize: fonts.md},
+            itemStyle: {
+              paddingLeft: 22,
+              marginLeft: 0,
+              marginRight: 12,
+              borderTopRightRadius: 100,
+              borderBottomRightRadius: 100,
+            },
+          }}
+          screenOptions={({route}) => ({
+            drawerIcon: ({focused}) => {
+              let iconColor = colors.dim;
+              let iconName = 'basket-outline';
+              if (focused) {
+                iconColor = colors.green;
+              }
+              if (route.name === 'Tarefas') iconName = 'clipboard-text-outline';
+              else if (route.name === 'Geotasks') iconName = 'map-outline';
+              else if (route.name === 'Settings') iconName = 'cog-outline';
+              return (
+                <Icon
+                  // style={{marginRight: 0, paddingRight: 0}}
+                  name={iconName}
+                  size={18}
+                  color={iconColor}
+                />
+              );
+            },
+          })}
+          drawerContent={(props) => {
+            return (
+              <DrawerContent
+                navProps={props}
+                lists={lists}
+                signOut={signOut}
+                googleUser={googleUser}
+              />
+            );
+          }}>
+          <Drawer.Screen name="Tarefas">
             {(props) => (
-              <Loading setUser={setUser} navigation={props.navigation} />
-            )}
-          </Drawer.Screen>
-          <Drawer.Screen name="Login">
-            {(props) => <Login setGoogleUser={setGoogleUser} />}
-          </Drawer.Screen>
-          <Drawer.Screen name="Todo">
-            {(props) => (
-              <Todo
+              <Tarefas
                 user={user}
                 setUser={setUser}
                 googleUser={googleUser}
@@ -140,11 +178,19 @@ function App() {
               />
             )}
           </Drawer.Screen>
-          <Drawer.Screen name="Skills">
-            {(props) => <Skills todos={todos} />}
+          <Drawer.Screen name="Geotasks">
+            {(props) => <GeoTasks todos={todos} />}
           </Drawer.Screen>
           <Drawer.Screen name="Settings">
             {(props) => <Settings todos={todos} />}
+          </Drawer.Screen>
+          <Drawer.Screen name="Loading" options={{drawerLabel: () => null}}>
+            {(props) => (
+              <Loading setUser={setUser} navigation={props.navigation} />
+            )}
+          </Drawer.Screen>
+          <Drawer.Screen name="Login" options={{drawerLabel: () => null}}>
+            {(props) => <Login setGoogleUser={setGoogleUser} />}
           </Drawer.Screen>
         </Drawer.Navigator>
       </NavigationContainer>
