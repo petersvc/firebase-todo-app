@@ -93,19 +93,18 @@ function Todo({lists, setTodos, user, googleUser, navigation}) {
         <Text style={[styles.headerTitle]}>{headerTitle}</Text>
         <View style={styles.rightSide}>
           <Icon
-            // style={[{marginRight: 8}]}
+            // style={[{marginRight: -5}]}
             name="basket-outline"
-            size={styles.icon.size + 1}
-            color={styles.colors.dim}
-          />
-          <Icon
-            // style={{opacity: 0}}
-            onPress={() => navigation.toggleDrawer()}
-            name="dots-vertical"
             size={styles.icon.size + 3}
             color={styles.colors.dim}
           />
-          <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
+          <Icon
+            style={[{marginRight: -8}]}
+            onPress={() => navigation.toggleDrawer()}
+            name="dots-vertical"
+            size={styles.icon.size + 5}
+            color={styles.colors.dim}
+          />
         </View>
       </View>
       <ScrollView style={styles.todo}>
@@ -135,6 +134,8 @@ export default Todo;
 // <AddTodo todosCollection={todosCollection} />
 // , {todayArray[2]} {todayArray[0]} {todayArray[1]}
 /*
+
+          <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
 <View style={[styles.tasksNumbers]}>
           <Text style={[styles.remaining]}>
             {remaining}/{total}

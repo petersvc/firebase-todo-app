@@ -18,20 +18,20 @@ function TodoTask({task, todosCollection, listId}) {
   }
 
   const tagColor = styles.colors.green;
-  let listColor = styles.colors.dim;
+  const listColor = styles.colors.dim;
 
   // if (task.tag === 'work') tagColor = styles.colors.orange;
   // else if (task.tag === 'learn') tagColor = styles.colors.blue;
   // else if (task.tag === 'health') tagColor = styles.colors.red;
   // else if (task.tag === 'free') tagColor = styles.colors.green;
-  if (listId === 'hoje') listColor = styles.colors.green;
-  else if (listId === 'atrasada') listColor = styles.colors.red;
+  // if (listId === 'hoje') listColor = styles.colors.green;
+  // else if (listId === 'atrasada') listColor = styles.colors.red;
   return (
     <View style={styles.task}>
       <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
         <Icon
           name={task.complete ? 'check' : 'circle-outline'}
-          size={styles.icon.size + 7}
+          size={styles.icon.size + 5}
           color={task.complete ? tagColor : styles.colors.dim}
         />
       </TouchableOpacity>

@@ -46,7 +46,7 @@ const styles = {
   navigation: {
     // flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: diagram.margin * 2.9,
+    paddingLeft: diagram.margin * 1.2,
     paddingRight: diagram.margin * 1.3,
     borderTopWidth: 1,
     borderColor: colors.bgLight,

@@ -19,7 +19,7 @@ const styles = {
     // marginBottom: diagram.margin,
   },
   content: {
-    marginTop: 1,
+    marginTop: -1,
     // flexDirection: 'row',
     marginLeft: diagram.padding, // * 1.5,
     justifyContent: 'center',

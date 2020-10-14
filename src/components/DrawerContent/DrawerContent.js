@@ -97,18 +97,36 @@ function DrawerContent({
       <View style={styles.navigation}>
         <TouchableOpacity
           onPress={() => navigation.navigate('Todo')}
-          style={[styles.navItem]}>
-          <Text style={[styles.title, styles.itemName]}>Tarefas</Text>
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="clipboard-text-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Tarefas</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Skills')}
-          style={[styles.navItem]}>
-          <Text style={[styles.title, styles.itemName]}>Habilidades</Text>
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="map-marker-radius-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Geotask</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Skills')}
-          style={[styles.navItem]}>
-          <Text style={[styles.title, styles.itemName]}>Pomodoro</Text>
+          style={[styles.listHeader]}>
+          <Icon
+            // style={{display: 'none'}}
+            name="basket-outline"
+            size={styles.icon.size + 2}
+            color={styles.colors.dim}
+          />
+          <Text style={[styles.title, styles.listName]}>Compras</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}>

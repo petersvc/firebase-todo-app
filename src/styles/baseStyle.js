@@ -18,24 +18,23 @@ export const colors = {
   orange: 'rgba(249, 100, 0, 1)',
   blue: 'rgba(73, 101, 255, 1)', // 'rgba(73, 101, 255, 1)',
   blue2: 'rgba(131, 232, 239, 1)', // 'rgb(0, 168, 195)'
-  purple: 'rgba(73, 70, 168, 1)',
-  purple2: 'rgb(142, 10, 186)', // 'rgb(192, 60, 230)''rgba(134, 93, 202, 1)', 'rgba(164, 93, 202, 1)',
-  purple3: 'rgb(146, 145, 239)',
-  green: 'rgb(178, 228, 189)', // 'rgb(10, 220, 197)', // 'rgba(166, 217, 201, 1)',
+  purple: 'rgb(176,153,174)', // 'rgb(176,153,203)', //
+  green: 'rgba(166, 217, 201, 1)', // 'rgb(178, 228, 189)', // 'rgb(10, 220, 197)', //
   red: 'rgb(247, 165, 165)', // 'rgb(237, 70, 75)', // 'rgba(255, 60, 86, 1)',
   main: '',
 };
+
 colors.main = colors.green;
 
 export const diagram = {
   top: 18,
   bottom: 12,
   margin: 23,
-  padding: 16,
+  padding: 15,
 };
 
 export const fonts = {
-  sm: 12,
+  sm: 11,
   md: 15,
   lg: 17,
   primary: 'Roboto',
