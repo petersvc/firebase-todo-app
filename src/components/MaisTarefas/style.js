@@ -5,12 +5,12 @@ const styles = {
   maisModal: {
     marginBottom: 'auto',
     marginLeft: 'auto',
-    paddingTop: diagram.margin,
-    paddingBottom: diagram.margin - 10,
-    paddingLeft: diagram.margin * 1.3,
-    width: 180,
+    paddingTop: diagram.padding,
+    // paddingBottom: diagram.margin - 10,
+    paddingLeft: diagram.margin,
+    width: 165,
     backgroundColor: colors.bg,
-    borderBottomLeftRadius: 15,
+    borderBottomLeftRadius: 10,
   },
   maisItem: {
     marginBottom: diagram.margin,

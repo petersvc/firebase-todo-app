@@ -122,7 +122,7 @@ function App() {
           }}
           initialRouteName="Loading"
           drawerContentOptions={{
-            activeBackgroundColor: colors.greenBg,
+            activeBackgroundColor: colors.mainBg,
             activeTintColor: colors.main,
             inactiveTintColor: colors.white,
             labelStyle: {fontSize: fonts.md},
@@ -139,7 +139,7 @@ function App() {
               let iconColor = colors.dim;
               let iconName = 'basket-outline';
               if (focused) {
-                iconColor = colors.green;
+                iconColor = colors.main;
               }
               if (route.name === 'Tarefas') iconName = 'clipboard-text-outline';
               else if (route.name === 'Geotasks') iconName = 'map-outline';

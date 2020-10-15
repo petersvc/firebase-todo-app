@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, View, Text, TouchableOpacity} from 'react-native';
+import {TextInput, View, Text, TouchableOpacity, Platform} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
@@ -93,7 +93,11 @@ function AddTodo({todosCollection}) {
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
-        <Icon name="add" size={styles.icon.size + 5} color={styles.colors.bg} />
+        <Icon
+          name="add"
+          size={styles.icon.size + 5}
+          color={styles.colors.main}
+        />
       </TouchableOpacity>
       <Modal
         style={{margin: 0}}

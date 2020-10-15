@@ -13,10 +13,14 @@ function MaisTarefas({todosCollection, lists}) {
   }
 
   async function completarTarefa(todoId) {
-    await todosCollection.doc(todoId).update({complete: true});
+    await todosCollection.doc(todoId).update({complete: false});
   }
 
-  async function deletarTarefa(todoId) {
+  async function deletarConcluida(todoId) {
+    await todosCollection.doc(todoId).delete();
+  }
+
+  async function deletarAtrasada(todoId) {
     await todosCollection.doc(todoId).delete();
   }
 
@@ -27,13 +31,14 @@ function MaisTarefas({todosCollection, lists}) {
   ];
   const keyExtractor = useCallback((item) => item);
 
-  const renderMaisItens = useCallback(({item}) => {
-    let maisItemFunction;
+  const renderMaisItens = ({item}) => {
+    let maisItemFunction; // = () => toggleModal();
+
     if (item === 'Concluir todas') {
       maisItemFunction = () => {
         lists.map((list) =>
           list.todos.map((todo) => {
-            if (!todo.complete) {
+            if (todo.complete) {
               completarTarefa(todo.id);
             }
             return 0;
@@ -45,22 +50,29 @@ function MaisTarefas({todosCollection, lists}) {
         lists.map((list) =>
           list.todos.map((todo) => {
             if (todo.complete) {
-              deletarTarefa(todo.id);
+              deletarConcluida(todo.id);
             }
             return 0;
           }),
         );
       };
+    } else if (item === 'Excluir atrasadas') {
+      const listFilter = lists.filter((list) => list.id === 'atrasada');
+      const listId = listFilter[0].id;
+      maisItemFunction = () => {
+        if (listId === 'atrasada' && listFilter[0].todos.length > 0) {
+          listFilter[0].todos.map((todo) => deletarAtrasada(todo.id));
+        }
+      };
+      // 30 caracteres
     }
 
     return (
-      <TouchableOpacity
-        style={styles.maisItem}
-        onPress={() => maisItemFunction()}>
+      <TouchableOpacity style={styles.maisItem} onPress={maisItemFunction}>
         <Text style={styles.title}>{item}</Text>
       </TouchableOpacity>
     );
-  }, []);
+  };
 
   return (
     <View style={styles.maisArea}>
@@ -92,5 +104,5 @@ function MaisTarefas({todosCollection, lists}) {
     </View>
   );
 }
-// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+
 export default MaisTarefas;

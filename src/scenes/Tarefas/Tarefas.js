@@ -54,7 +54,6 @@ function Tarefas({lists, setTodos, user, navigation}) {
     // eslint-disable-next-line no-shadow
     const renderTodo = ({item}) => {
       // item = todo
-      // <Text style={{color: 'white'}}>{remaining}</Text>
       return (
         <TodoTask
           task={item}
@@ -82,7 +81,6 @@ function Tarefas({lists, setTodos, user, navigation}) {
     );
   }, []);
   // {todayArray[2]}, {todayArray[0]} {todayArray[1]}
-
   return (
     <View style={{backgroundColor: colors.bg, flex: 1}}>
       <StatusBar backgroundColor={colors.bg} />
@@ -103,7 +101,6 @@ function Tarefas({lists, setTodos, user, navigation}) {
           data={listFilter}
           keyExtractor={keyExtractor}
           renderItem={renderList}
-          horizontal={false}
         />
       </ScrollView>
       <AddTodo todosCollection={todosCollection} />
@@ -113,7 +110,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
         <Icon
           name="menu"
           size={styles.icon.size + 2}
-          color={styles.colors.white}
+          color={styles.colors.dim}
         />
       </TouchableOpacity>
     </View>

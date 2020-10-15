@@ -5,20 +5,20 @@ const styles = {
   tagModal: {
     // flexDirection: 'row',
     // alignItems: 'center',
-    justifyContent: 'space-evenly',
+    // justifyContent: 'space-evenly',
     width: '75%',
     height: 240,
     alignSelf: 'center',
     marginTop: 'auto',
     marginBottom: 'auto',
     backgroundColor: colors.bg,
-    paddingLeft: diagram.margin * 2,
-    paddingRight: diagram.margin + 1,
+    padding: diagram.margin * 1.4,
     borderRadius: 20,
   },
   tagItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingBottom: diagram.padding * 1.4,
     // justifyContent: 'space-evenly',
   },
   colors: {
