@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import TodoTask from '../../components/TodoTask/TodoTask';
+import MaisTarefas from '../../components/MaisTarefas/MaisTrefas';
 import AddTodo from './AddTodo';
 import styles from './style';
 import {colors} from '../../styles/baseStyle';
@@ -23,7 +24,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
 
   const usersCollection = firestore().collection('users');
   const todosCollection = usersCollection.doc(user).collection('todos');
-
+  /*
   const tasksCompleted = lists.map(
     (list) => list.todos.filter((todo) => todo.complete).length,
   );
@@ -33,8 +34,8 @@ function Tarefas({lists, setTodos, user, navigation}) {
   const remaining = tasksCompleted.reduce((prev, next) => prev + next);
   const total = tasksTotal.reduce((prev, next) => prev + next);
 
-  // remaining < 10 ? (remaining = `0${remaining}`) : null;
-
+  remaining < 10 ? (remaining = `0${remaining}`) : null;
+  */
   useEffect(() => {
     todosCollection.onSnapshot((snap) => {
       const copy = [];
@@ -76,9 +77,6 @@ function Tarefas({lists, setTodos, user, navigation}) {
           data={item.todos}
           keyExtractor={keyExtractor2}
           renderItem={renderTodo}
-          // horizontal={false}
-          // initialNumToRender={8}
-          // numColumns={2}
         />
       </View>
     );
@@ -97,18 +95,11 @@ function Tarefas({lists, setTodos, user, navigation}) {
             size={styles.icon.size + 3}
             color={styles.colors.dim}
           />
-          <Icon
-            style={[{marginRight: -8}]}
-            onPress={() => navigation.toggleDrawer()}
-            name="dots-vertical"
-            size={styles.icon.size + 5}
-            color={styles.colors.dim}
-          />
+          <MaisTarefas todosCollection={todosCollection} lists={lists} />
         </View>
       </View>
       <ScrollView style={styles.todo}>
         <FlatList
-          // style={{flex: 1, backgroundColor: 'red'}}
           data={listFilter}
           keyExtractor={keyExtractor}
           renderItem={renderList}

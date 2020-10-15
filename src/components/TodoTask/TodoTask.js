@@ -41,7 +41,7 @@ function TodoTask({task, todosCollection, listId}) {
           <Text style={task.complete ? styles.done : styles.title}>
             {task.title}
           </Text>
-          {listId !== 'completada' ? (
+          {listId !== 'concluída' ? (
             <View style={styles.contentItem}>
               <Text
                 style={

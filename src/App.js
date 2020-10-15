@@ -49,7 +49,7 @@ const todayArray = [dayDate, months[d.getMonth()], weekDay[d.getDay()]];
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const usrLists = ['completada', 'atrasada', 'hoje', 'amanhã', 'agendada'];
+  const usrLists = ['concluída', 'atrasada', 'hoje', 'amanhã', 'agendada'];
   const [user, setUser] = useState();
   const [googleUser, setGoogleUser] = useState({});
 
@@ -65,7 +65,7 @@ function App() {
     const temp = {id: list, todos: []};
     const [month, day, year] = today.split(' ');
     // day < 10 ? (day = 0 + day) : day;
-    if (temp.id === 'completada') {
+    if (temp.id === 'concluída') {
       temp.todos = todos.filter((todo) => todo.complete);
     } else if (temp.id === 'hoje') {
       temp.todos = todos.filter(

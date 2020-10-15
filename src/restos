@@ -832,3 +832,13 @@ drawerContent={(props) => (
   
   const reducer = tasksCompleted.reduce((prev, next) => prev + next);
  */
+
+ maisItemFunction = () => {
+        lists.map((list) =>
+          list.todos.map((todo) => {
+            if (!todo.complete) {
+              complete(todo.id);
+            }
+          }),
+        );
+      };

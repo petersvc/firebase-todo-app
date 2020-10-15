@@ -20,7 +20,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
 
     let listIcon = 'list';
 
-    if (item.id === 'completada') {
+    if (item.id === 'concluída') {
       listIcon = 'check';
     } else if (item.id === 'atrasada') {
       listIcon = 'clock-alert-outline';
@@ -42,7 +42,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
           />
           <Text style={[styles.title, styles.listName]}>{item.id}</Text>
           <Text style={[styles.smallText]}>
-            {item.id !== 'completada' ? remaining : item.todos.length}
+            {item.id !== 'concluída' ? remaining : item.todos.length}
           </Text>
         </View>
       </View>
