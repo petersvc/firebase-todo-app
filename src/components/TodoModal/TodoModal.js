@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {TextInput, View, Text, TouchableOpacity, Platform} from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Modal from 'react-native-modal';
 
 import styles from './style';
+import {colors, diagram} from '../../styles/baseStyle';
 import TagModal from '../TagModal/TagModal';
 
 function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
@@ -16,6 +17,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
 
   const [todo, setTodo] = useState({
     title: task.title,
+    description: task.description,
     tag: task.tag,
     begin: task.begin,
     date: task.date,
@@ -93,23 +95,34 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
   return (
     <View style={[styles.editArea]}>
       <View style={styles.top}>
-        <TouchableOpacity
-          style={styles.complete}
-          onPress={() => setTodo({...todo, complete: !todo.complete})}>
-          <Icon
-            name={todo.complete ? 'md-checkmark' : 'ellipse-outline'}
-            size={styles.icon.size + 10}
-            color={todo.complete ? tagColor : styles.icon.color}
+        <View style={styles.titleComplete}>
+          <TouchableOpacity
+            style={styles.complete}
+            onPress={() => setTodo({...todo, complete: !todo.complete})}>
+            <Icon
+              name={todo.complete ? 'check' : 'circle-outline'}
+              size={diagram.iconSize + 3}
+              color={todo.complete ? tagColor : colors.main}
+            />
+          </TouchableOpacity>
+          <TextInput
+            style={[styles.taskTitle]}
+            placeholder={task.title}
+            placeholderTextColor={styles.colors.white}
+            onChangeText={(title) => setTodo({...todo, title})}
           />
-        </TouchableOpacity>
+        </View>
+
         <TextInput
-          style={styles.taskTitle}
-          placeholder={task.title}
-          placeholderTextColor={styles.colors.white}
-          onChangeText={(title) => setTodo({...todo, title})}
+          style={[styles.taskDescription]}
+          placeholder={
+            task.description !== '' ? task.description : 'Sem descrição'
+          }
+          placeholderTextColor={colors.dim}
+          onChangeText={(title) => setTodo({...todo, description: title})}
         />
       </View>
-      <View style={styles.dateHour}>
+      <View style={styles.mid}>
         {show && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -123,28 +136,34 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
         )}
         <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
           <Icon
-            name="ios-calendar-outline"
-            size={styles.icon.size - 3}
-            color={styles.icon.color}
+            name="calendar-outline"
+            size={diagram.iconSize}
+            color={colors.dim}
           />
-          <Text style={[styles.smallText2, {marginLeft: 6}]}>{todo.date}</Text>
+          <Text style={[styles.title, {marginLeft: 23}]}>{todo.date}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
           <Icon
-            name="time-outline"
-            size={styles.icon.size - 2}
-            color={styles.icon.color}
+            name="clock-time-three-outline"
+            size={diagram.iconSize}
+            color={colors.dim}
           />
-          <Text style={[styles.smallText2, {marginLeft: 4}]}>{todo.begin}</Text>
+          <Text style={[styles.title, {marginLeft: 23}]}>{todo.begin}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
           <Icon
-            name="pricetags-outline"
-            size={styles.icon.size - 2}
-            color={styles.icon.color}
+            name="tag-text-outline"
+            size={diagram.iconSize}
+            color={colors.dim}
           />
-          <Text style={[styles.smallText2, {marginLeft: 6}]}>{todo.tag}</Text>
+          <Text
+            style={[
+              styles.title,
+              {marginLeft: 23, textTransform: 'capitalize'},
+            ]}>
+            {todo.tag}
+          </Text>
           <Modal
             style={{margin: 0}}
             isVisible={tagModal}
@@ -166,41 +185,35 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
       </View>
       <View style={styles.bottom}>
         <TouchableOpacity
-          style={[styles.taskItem2, {marginRight: 16}]}
-          onPress={deleteTodo}>
-          <Icon
-            style={{display: 'none'}}
-            name="trash-outline"
-            size={styles.icon.size}
-            color={styles.icon.color}
-          />
-          <Text style={[styles.title, {color: styles.colors.red}]}>
-            Deletar
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           style={styles.taskItem2}
           onPress={() => {
             updateTodo();
             toggleTodoModal();
           }}>
           <Icon
-            style={{display: 'none'}}
-            name="save-outline"
-            size={styles.icon.size}
-            color={styles.icon.color}
+            // style={{marginRight: 16}}
+            name="check"
+            size={diagram.iconSize}
+            color={colors.white}
           />
-          <Text
-            style={[
-              styles.title,
-              {color: styles.colors.green, fontWeight: 'bold'},
-            ]}>
+          <Text style={[styles.title, {fontWeight: 'bold', display: 'none'}]}>
             Salvar
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.taskItem2]} onPress={deleteTodo}>
+          <Icon
+            // style={{marginRight: 16}}
+            name="trash-can-outline"
+            size={diagram.iconSize}
+            color={colors.dim}
+          />
+          <Text style={[styles.title, {display: 'none'}]}>Excluir</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 // <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+// <Text style={[styles.title, {fontWeight: 'bold'}]}>Salvar</Text>
+// <Text style={[styles.title]}>Deletar</Text>
 export default TodoModal;

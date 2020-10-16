@@ -16,7 +16,7 @@ import Tarefas from './scenes/Tarefas/Tarefas';
 import GeoTasks from './scenes/GeoTasks/GeoTasks';
 import Settings from './scenes/Settings/Settings';
 import DrawerContent from './components/DrawerContent/DrawerContent';
-import {colors, fonts} from './styles/baseStyle';
+import {colors, fonts, diagram} from './styles/baseStyle';
 
 const Drawer = createDrawerNavigator();
 
@@ -148,7 +148,7 @@ function App() {
                 <Icon
                   // style={{marginRight: 0, paddingRight: 0}}
                   name={iconName}
-                  size={18}
+                  size={diagram.iconSize}
                   color={iconColor}
                 />
               );

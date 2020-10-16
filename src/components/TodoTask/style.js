@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
   task: {
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
     // justifyContent: 'space-between',
     paddingTop: diagram.padding,
     paddingBottom: diagram.padding,
@@ -19,12 +19,11 @@ const styles = {
     // marginBottom: diagram.margin,
   },
   content: {
-    marginTop: -1,
-    // flexDirection: 'row',
+    marginTop: 1,
     marginLeft: diagram.padding, // * 1.5,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     flex: 1,
-    // alignItems: 'center',
+    // backgroundColor: 'red',
   },
   done: {
     opacity: 0.5,
@@ -39,22 +38,23 @@ const styles = {
     marginLeft: 16,
   },
   contentItem: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: -2,
-    marginLeft: 10,
+    marginTop: 8,
+    // justifyContent: 'center',
+    // marginLeft: 10,
     // marginLeft: 'auto',
     // width: 62,
     // height: 26,
-    padding: 2,
-    paddingLeft: 7,
-    paddingRight: 7,
-    borderWidth: 0.3,
-    borderColor: colors.dim,
-    borderRadius: 100,
+    // padding: 4,
+    // paddingLeft: 8,
+    // paddingRight: 8,
+    // borderWidth: 0.3,
+    // borderColor: colors.dim,
+    // borderRadius: 100,
   },
   timeInfo: {
-    fontSize: fonts.sm - 2,
+    fontSize: fonts.md - 3,
   },
   complete: {
     // marginLeft: 18,
@@ -62,6 +62,11 @@ const styles = {
   },
   begin: {
     // marginLeft: 2,
+  },
+  taskDescription: {
+    marginTop: 5,
+    color: colors.dim,
+    fontSize: fonts.md - 1,
   },
   colors: {
     orange: colors.orange,

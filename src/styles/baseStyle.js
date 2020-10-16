@@ -9,9 +9,11 @@ export const colors = {
   black: 'rgba(25, 30, 33, 1)',
   black2: 'rgba(28, 33, 36, 1)',
   blackDimmed: 'rgba(35, 40, 44, 1)',
+  blackDimmed2: 'rgba(40, 45, 49, 1)',
   bgDark: 'rgba(15, 20, 24, 1)',
   icon: 'rgba(200, 200, 200, 1)',
   dim: 'rgba(160, 160, 160, 1)',
+  dim2: 'rgba(75, 75, 75, 1)',
   white: 'rgba(250, 250, 250, 1)',
   yellow: 'rgb(255, 170, 46)',
   orange: 'rgb(255, 126, 108)', // 'rgb(255, 172, 101)',
@@ -29,6 +31,7 @@ export const colors = {
   bg: '',
   bg2: '',
   bgLight: '',
+  bgLight2: '',
 };
 
 colors.main = colors.orange;
@@ -36,17 +39,19 @@ colors.mainBg = colors.orangeBg;
 colors.bg = colors.black;
 colors.bg2 = colors.black2;
 colors.bgLight = colors.blackDimmed;
+colors.bgLight2 = colors.blackDimmed2;
 
 export const diagram = {
   top: 18,
   bottom: 12,
   margin: 23,
   padding: 15,
+  iconSize: 20,
 };
 
 export const fonts = {
   sm: 11,
-  md: 14,
+  md: 15,
   lg: 17,
   primary: 'Roboto',
 };

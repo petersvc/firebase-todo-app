@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 
 import styles from './style';
+import {colors} from '../../styles/baseStyle';
 import TodoModal from '../TodoModal/TodoModal';
 
 function TodoTask({task, todosCollection, listId}) {
@@ -26,17 +27,26 @@ function TodoTask({task, todosCollection, listId}) {
         <Icon
           name={task.complete ? 'check' : 'circle-outline'}
           size={styles.icon.size + 5}
-          color={task.complete ? tagColor : styles.colors.dim}
+          color={task.complete ? tagColor : colors.main}
         />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.content} onPress={toggleTodoModal}>
+        <Text style={task.complete ? styles.done : styles.title}>
+          {task.title}
+        </Text>
+        {task.description !== '' ? (
+          <Text style={styles.taskDescription}>{task.description}</Text>
+        ) : null}
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={task.complete ? styles.done : styles.title}>
-            {task.title}
-          </Text>
           {listId !== 'concluída' ? (
             <View style={styles.contentItem}>
+              <Icon
+                style={{marginRight: 3, marginTop: -0.5}}
+                name={listId !== 'agendada' ? 'alarm' : 'calendar'}
+                size={styles.icon.size - 6}
+                color={colors.dim}
+              />
               <Text
                 style={
                   task.complete

@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/drawer';
 
 import styles from './style';
+import {colors, diagram} from '../../styles/baseStyle';
 
 function DrawerContent({navProps, lists, googleUser, signOut}) {
   const {state} = navProps;
@@ -35,11 +36,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
-          <Icon
-            name={listIcon}
-            size={styles.icon.size}
-            color={styles.colors.dim}
-          />
+          <Icon name={listIcon} size={diagram.iconSize} color={colors.dim} />
           <Text style={[styles.title, styles.listName]}>{item.id}</Text>
           <Text style={[styles.smallText]}>
             {item.id !== 'concluída' ? remaining : item.todos.length}
@@ -70,7 +67,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
           renderItem={renderList}
         />
       </View>
-      <DrawerContentScrollView>
+      <DrawerContentScrollView style={{marginLeft: -2}}>
         <DrawerItemList
           state={newState}
           descriptors={navProps.descriptors}
@@ -92,8 +89,8 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
           style={[styles.listHeader]}>
           <Icon
             name="logout-variant"
-            size={styles.icon.size}
-            color={styles.colors.dim}
+            size={diagram.iconSize}
+            color={colors.dim}
           />
           <Text style={[styles.title, styles.listName]}>Sair</Text>
         </TouchableOpacity>

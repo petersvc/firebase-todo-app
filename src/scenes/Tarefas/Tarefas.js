@@ -15,7 +15,7 @@ import TodoTask from '../../components/TodoTask/TodoTask';
 import MaisTarefas from '../../components/MaisTarefas/MaisTrefas';
 import AddTodo from './AddTodo';
 import styles from './style';
-import {colors} from '../../styles/baseStyle';
+import {colors, diagram} from '../../styles/baseStyle';
 
 function Tarefas({lists, setTodos, user, navigation}) {
   const headerTitle = 'Tarefas';
@@ -65,6 +65,12 @@ function Tarefas({lists, setTodos, user, navigation}) {
     return (
       <View style={styles.list}>
         <View style={styles.listHeader}>
+          <Icon
+            style={{marginBottom: -3, display: 'none'}}
+            name="chevron-down"
+            size={diagram.iconSize}
+            color={colors.main}
+          />
           <Text style={[styles.listName]}>{item.id}</Text>
           <View style={[styles.tasksNumbers]}>
             <Text style={[styles.remaining]}>
@@ -77,6 +83,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
           keyExtractor={keyExtractor2}
           renderItem={renderTodo}
         />
+        <View style={styles.separador} />
       </View>
     );
   }, []);
@@ -86,15 +93,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
       <StatusBar backgroundColor={colors.bg} />
       <View style={styles.todoHeader}>
         <Text style={[styles.headerTitle]}>{headerTitle}</Text>
-        <View style={styles.rightSide}>
-          <Icon
-            // style={[{marginRight: -5}]}
-            name="basket-outline"
-            size={styles.icon.size + 3}
-            color={styles.colors.dim}
-          />
-          <MaisTarefas todosCollection={todosCollection} lists={lists} />
-        </View>
+        <View style={styles.rightSide} />
       </View>
       <ScrollView style={styles.todo}>
         <FlatList
@@ -104,14 +103,11 @@ function Tarefas({lists, setTodos, user, navigation}) {
         />
       </ScrollView>
       <AddTodo todosCollection={todosCollection} />
+      <MaisTarefas todosCollection={todosCollection} lists={lists} />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.toggleDrawer()}>
-        <Icon
-          name="menu"
-          size={styles.icon.size + 2}
-          color={styles.colors.dim}
-        />
+        <Icon name="menu" size={diagram.iconSize} color={colors.bg} />
       </TouchableOpacity>
     </View>
   );
@@ -121,6 +117,14 @@ export default Tarefas;
 // <AddTodo todosCollection={todosCollection} />
 // , {todayArray[2]} {todayArray[0]} {todayArray[1]}
 /*
+<Icon
+  // style={[{marginRight: -5}]}
+  name="basket-outline"
+  size={styles.icon.size + 3}
+  color={styles.colors.dim}
+/>
+<MaisTarefas todosCollection={todosCollection} lists={lists} />
+
 
           <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
 <View style={[styles.tasksNumbers]}>

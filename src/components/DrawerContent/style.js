@@ -9,12 +9,12 @@ const styles = {
   user: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: diagram.margin - 3,
+    paddingLeft: diagram.margin - 4,
     paddingRight: diagram.margin + 1,
     paddingTop: diagram.margin,
     paddingBottom: diagram.margin,
-    borderBottomWidth: 1,
-    borderColor: colors.bgLight,
+    borderBottomWidth: 0.3,
+    borderColor: colors.dim2,
     // backgroundColor: 'red',
   },
   avatar: {
@@ -29,12 +29,12 @@ const styles = {
     marginLeft: 3,
   },
   lists: {
-    paddingLeft: diagram.margin + 6,
-    paddingRight: diagram.margin + 6,
+    paddingLeft: diagram.margin + 4,
+    paddingRight: diagram.margin + 4,
     marginTop: diagram.padding * 1.5,
     marginBottom: diagram.padding - 10,
-    borderBottomWidth: 1,
-    borderColor: colors.bgLight,
+    borderBottomWidth: 0.3,
+    borderColor: colors.dim2,
   },
   listHeader: {
     flexDirection: 'row',
@@ -83,8 +83,8 @@ const styles = {
     paddingTop: diagram.padding + 8,
     paddingLeft: diagram.margin + 6,
     paddingRight: diagram.margin + 6,
-    borderTopWidth: 1,
-    borderColor: colors.bgLight,
+    borderTopWidth: 0.3,
+    borderColor: colors.dim2,
   },
   ...general,
 };

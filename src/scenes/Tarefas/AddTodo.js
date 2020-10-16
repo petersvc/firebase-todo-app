@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {TextInput, View, Text, TouchableOpacity, Platform} from 'react-native';
+import {TextInput, View, TouchableOpacity, Platform} from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import styles from './style';
+import {colors, diagram} from '../../styles/baseStyle';
 import TagModal from '../../components/TagModal/TagModal';
 
 function AddTodo({todosCollection}) {
@@ -46,6 +47,7 @@ function AddTodo({todosCollection}) {
   const [todo, setTodo] = useState({
     title: '',
     tag: 'livre',
+    description: '',
     begin,
     date,
     complete: false,
@@ -92,12 +94,8 @@ function AddTodo({todosCollection}) {
 
   return (
     <View style={styles.addArea}>
-      <TouchableOpacity style={styles.addButton2} onPress={toggleModal}>
-        <Icon
-          name="add"
-          size={styles.icon.size + 5}
-          color={styles.colors.main}
-        />
+      <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
+        <Icon name="plus" size={diagram.iconSize} color={colors.bg} />
       </TouchableOpacity>
       <Modal
         style={{margin: 0}}
@@ -109,18 +107,29 @@ function AddTodo({todosCollection}) {
         animationOut="fadeOutDown"
         animationInTiming={300}>
         <View style={styles.addModal}>
-          <View style={styles.inputTask}>
-            <Icon
-              name="ellipse-outline"
-              size={styles.icon.size + 8}
-              color={styles.icon.color}
-            />
+          <View style={styles.addHead}>
+            <View style={styles.inputTask}>
+              <Icon
+                name="circle-outline"
+                size={diagram.iconSize}
+                color={colors.main}
+              />
+              <TextInput
+                style={[styles.taskTitle]}
+                placeholder="O que você deseja fazer?"
+                placeholderTextColor={colors.white}
+                maxLength={32}
+                // autoFocus
+                onChangeText={(title) => setTodo({...todo, title})}
+              />
+            </View>
             <TextInput
-              style={{marginLeft: 10, color: styles.icon.color}}
-              placeholder="O que você deseja fazer?"
-              placeholderTextColor={styles.title.color}
-              // autoFocus
-              onChangeText={(title) => setTodo({...todo, title})}
+              style={[styles.taskDescription]}
+              placeholder={
+                todo.description !== '' ? todo.description : 'Sem descrição'
+              }
+              placeholderTextColor={colors.dim}
+              onChangeText={(title) => setTodo({...todo, description: title})}
             />
           </View>
 
@@ -138,29 +147,24 @@ function AddTodo({todosCollection}) {
           <View style={styles.newTaskDetails}>
             <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
               <Icon
-                name="ios-calendar-outline"
-                size={styles.icon.size - 3}
-                color={styles.icon.color}
+                name="calendar"
+                size={styles.icon.size}
+                color={colors.dim}
               />
-              <Text style={[styles.smallText2, {marginLeft: 6}]}>{date}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
               <Icon
-                name="time-outline"
-                size={styles.icon.size - 2}
-                color={styles.icon.color}
+                name="clock-time-three"
+                size={diagram.iconSize}
+                color={colors.dim}
               />
-              <Text style={[styles.smallText2, {marginLeft: 4}]}>{begin}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={toggleTagModal} style={styles.taskItem}>
               <Icon
-                name="pricetags-outline"
-                size={styles.icon.size - 2}
-                color={styles.icon.color}
+                name="tag-text"
+                size={diagram.iconSize}
+                color={colors.dim}
               />
-              <Text style={[styles.smallText2, {marginLeft: 6}]}>
-                {todo.tag}
-              </Text>
               <Modal
                 style={{margin: 0}}
                 isVisible={tagModal}
@@ -179,6 +183,7 @@ function AddTodo({todosCollection}) {
                 />
               </Modal>
             </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.taskSend}
               onPress={() => {
@@ -187,8 +192,8 @@ function AddTodo({todosCollection}) {
               }}>
               <Icon
                 name="send"
-                size={styles.icon.size + 5}
-                color={styles.icon.colorMain}
+                size={diagram.iconSize + 3}
+                color={colors.main}
               />
             </TouchableOpacity>
           </View>
@@ -197,5 +202,15 @@ function AddTodo({todosCollection}) {
     </View>
   );
 }
-// <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
+
 export default AddTodo;
+
+/*
+<TouchableOpacity style={styles.taskItem}>
+  <Icon
+    name="text-box"
+    size={diagram.iconSize}
+    color={colors.dim}
+  />
+</TouchableOpacity>
+*/

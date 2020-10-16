@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 
 import styles from './style';
+import {colors, diagram} from '../../styles/baseStyle';
 
 function MaisTarefas({todosCollection, lists}) {
   const [modal, setModal] = useState(false);
@@ -78,10 +79,10 @@ function MaisTarefas({todosCollection, lists}) {
     <View style={styles.maisArea}>
       <TouchableOpacity style={styles.maisButton} onPress={toggleModal}>
         <Icon
-          style={[{marginRight: -8}]}
-          name="dots-vertical"
-          size={styles.icon.size + 5}
-          color={styles.colors.dim}
+          // style={[{marginRight: -8}]}
+          name="dots-horizontal"
+          size={diagram.iconSize}
+          color={colors.dim}
         />
       </TouchableOpacity>
       <Modal
