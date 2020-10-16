@@ -24,18 +24,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
 
   const usersCollection = firestore().collection('users');
   const todosCollection = usersCollection.doc(user).collection('todos');
-  /*
-  const tasksCompleted = lists.map(
-    (list) => list.todos.filter((todo) => todo.complete).length,
-  );
 
-  const tasksTotal = lists.map((list) => list.todos.length);
-
-  const remaining = tasksCompleted.reduce((prev, next) => prev + next);
-  const total = tasksTotal.reduce((prev, next) => prev + next);
-
-  remaining < 10 ? (remaining = `0${remaining}`) : null;
-  */
   useEffect(() => {
     todosCollection.onSnapshot((snap) => {
       const copy = [];
@@ -71,9 +60,9 @@ function Tarefas({lists, setTodos, user, navigation}) {
             size={diagram.iconSize}
             color={colors.main}
           />
-          <Text style={[styles.listName]}>{item.id}</Text>
+          <Text style={[styles.titleSpoted]}>{item.id}</Text>
           <View style={[styles.tasksNumbers]}>
-            <Text style={[styles.remaining]}>
+            <Text style={[styles.numbersSm, styles.remaining]}>
               {listComplete}/{listTotal}
             </Text>
           </View>

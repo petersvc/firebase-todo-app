@@ -34,8 +34,7 @@ const styles = {
     marginTop: diagram.margin,
     color: colors.white,
     fontSize: fonts.lg + 5,
-    // textTransform: 'capitalize',
-    fontWeight: 'bold',
+    fontFamily: fonts.family.bold,
   },
   textItem: {
     marginLeft: diagram.margin * 3,

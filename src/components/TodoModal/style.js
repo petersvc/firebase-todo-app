@@ -81,14 +81,19 @@ const styles = {
     alignItems: 'center',
   },
   taskTitle: {
-    marginLeft: 12,
+    flex: 1,
+    paddingLeft: 18,
+    paddingRight: 12,
     color: colors.white,
     fontSize: fonts.md,
+    fontFamily: fonts.family.regular,
+    // backgroundColor: 'red',
   },
   taskDescription: {
     marginLeft: diagram.margin * 1.63,
     color: colors.dim,
     fontSize: fonts.md - 1,
+    fontFamily: fonts.family.regular,
   },
   colors: {
     orange: colors.orange,

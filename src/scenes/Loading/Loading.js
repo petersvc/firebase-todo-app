@@ -3,10 +3,10 @@ import {View, Text} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 
-function Loading({navigation, setUser}) {
+function Loading({navigation, setUser, googleUser}) {
   function checkLoggedIn() {
     auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (user && googleUser) {
         setUser(user.email);
 
         navigation.navigate('Tarefas');

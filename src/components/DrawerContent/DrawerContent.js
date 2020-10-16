@@ -38,7 +38,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
         <View style={styles.listHeader}>
           <Icon name={listIcon} size={diagram.iconSize} color={colors.dim} />
           <Text style={[styles.title, styles.listName]}>{item.id}</Text>
-          <Text style={[styles.smallText]}>
+          <Text style={[styles.numbersSm]}>
             {item.id !== 'concluída' ? remaining : item.todos.length}
           </Text>
         </View>
@@ -53,7 +53,7 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
         <View style={styles.userInfo}>
           <Text style={styles.title}>{googleUser.name}</Text>
           <Text
-            style={[styles.smallText, {marginTop: 5, opacity: 0.7}]}
+            style={[styles.smallText2, {marginTop: 5, textTransform: 'none'}]}
             onPress={() => navProps.navigation.navigate('Todo')}>
             {googleUser.email}
           </Text>

@@ -108,7 +108,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
           <TextInput
             style={[styles.taskTitle]}
             placeholder={task.title}
-            placeholderTextColor={styles.colors.white}
+            placeholderTextColor={colors.white}
             onChangeText={(title) => setTodo({...todo, title})}
           />
         </View>
@@ -140,7 +140,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             size={diagram.iconSize}
             color={colors.dim}
           />
-          <Text style={[styles.title, {marginLeft: 23}]}>{todo.date}</Text>
+          <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.date}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
@@ -149,7 +149,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             size={diagram.iconSize}
             color={colors.dim}
           />
-          <Text style={[styles.title, {marginLeft: 23}]}>{todo.begin}</Text>
+          <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.begin}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
           <Icon
@@ -159,7 +159,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
           />
           <Text
             style={[
-              styles.title,
+              styles.numbers,
               {marginLeft: 23, textTransform: 'capitalize'},
             ]}>
             {todo.tag}

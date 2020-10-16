@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
 
-// import {Text, View, Button, TouchableOpacity} from 'react-native';
+import {Text, View, Button, TouchableOpacity} from 'react-native';
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
@@ -50,14 +50,15 @@ const todayArray = [dayDate, months[d.getMonth()], weekDay[d.getDay()]];
 function App() {
   const [todos, setTodos] = useState([]);
   const usrLists = ['concluída', 'atrasada', 'hoje', 'amanhã', 'agendada'];
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [googleUser, setGoogleUser] = useState({});
 
   async function signOut() {
     await GoogleSignin.revokeAccess();
     await GoogleSignin.signOut();
     auth().signOut();
-    setUser();
+    // if (user)
+    setUser(null);
     setGoogleUser({});
   }
 
@@ -186,7 +187,11 @@ function App() {
           </Drawer.Screen>
           <Drawer.Screen name="Loading" options={{drawerLabel: () => null}}>
             {(props) => (
-              <Loading setUser={setUser} navigation={props.navigation} />
+              <Loading
+                setUser={setUser}
+                googleUser={googleUser}
+                navigation={props.navigation}
+              />
             )}
           </Drawer.Screen>
           <Drawer.Screen name="Login" options={{drawerLabel: () => null}}>

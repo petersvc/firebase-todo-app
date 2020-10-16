@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StatusBar, Text, Image, TouchableOpacity} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
@@ -45,11 +45,11 @@ function Login({setGoogleUser}) {
           />
           <Text
             style={[
-              styles.title,
+              styles.titleSpoted,
               {
-                fontWeight: 'bold',
-                color: styles.colors.main,
+                // color: styles.colors.main,
                 marginLeft: 10,
+                textTransform: 'none',
               },
             ]}>
             Login com Google

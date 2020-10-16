@@ -897,3 +897,17 @@ drawerContent={(props) => (
 
    ...
 </resources>
+
+
+/*
+  const tasksCompleted = lists.map(
+    (list) => list.todos.filter((todo) => todo.complete).length,
+  );
+
+  const tasksTotal = lists.map((list) => list.todos.length);
+
+  const remaining = tasksCompleted.reduce((prev, next) => prev + next);
+  const total = tasksTotal.reduce((prev, next) => prev + next);
+
+  remaining < 10 ? (remaining = `0${remaining}`) : null;
+  */

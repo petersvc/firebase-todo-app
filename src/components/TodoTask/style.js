@@ -19,7 +19,7 @@ const styles = {
     // marginBottom: diagram.margin,
   },
   content: {
-    marginTop: 1,
+    marginTop: 0,
     marginLeft: diagram.padding, // * 1.5,
     // justifyContent: 'center',
     flex: 1,
@@ -53,9 +53,6 @@ const styles = {
     // borderColor: colors.dim,
     // borderRadius: 100,
   },
-  timeInfo: {
-    fontSize: fonts.md - 3,
-  },
   complete: {
     // marginLeft: 18,
     // marginRight: -4,
@@ -67,6 +64,7 @@ const styles = {
     marginTop: 5,
     color: colors.dim,
     fontSize: fonts.md - 1,
+    fontFamily: fonts.family.regular,
   },
   colors: {
     orange: colors.orange,

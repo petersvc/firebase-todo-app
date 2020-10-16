@@ -26,7 +26,7 @@ function TodoTask({task, todosCollection, listId}) {
       <TouchableOpacity style={styles.complete} onPress={toggleComplete}>
         <Icon
           name={task.complete ? 'check' : 'circle-outline'}
-          size={styles.icon.size + 5}
+          size={styles.icon.size + 4}
           color={task.complete ? tagColor : colors.main}
         />
       </TouchableOpacity>
@@ -50,8 +50,8 @@ function TodoTask({task, todosCollection, listId}) {
               <Text
                 style={
                   task.complete
-                    ? [styles.timeInfo, styles.done]
-                    : [styles.timeInfo, styles.begin, {color: listColor}]
+                    ? [styles.numbersSm, styles.done]
+                    : [styles.numbersSm, styles.begin, {color: listColor}]
                 }>
                 {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
                 {task.begin}
