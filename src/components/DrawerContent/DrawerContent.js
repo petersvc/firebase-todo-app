@@ -10,7 +10,7 @@ import {
 import styles from './style';
 import {colors, diagram} from '../../styles/baseStyle';
 
-function DrawerContent({navProps, lists, googleUser, signOut}) {
+function DrawerContent({navProps, lists, user, signOut}) {
   const {state} = navProps;
   const newState = {...state};
   newState.routes = newState.routes.slice(0, 3);
@@ -49,13 +49,13 @@ function DrawerContent({navProps, lists, googleUser, signOut}) {
   return (
     <View style={styles.drawer}>
       <View style={styles.user}>
-        <Image style={styles.avatar} source={{uri: googleUser.photo}} />
+        <Image style={styles.avatar} source={{uri: user.photoURL}} />
         <View style={styles.userInfo}>
-          <Text style={styles.title}>{googleUser.name}</Text>
+          <Text style={styles.title}>{user.displayName}</Text>
           <Text
             style={[styles.smallText2, {marginTop: 5, textTransform: 'none'}]}
             onPress={() => navProps.navigation.navigate('Todo')}>
-            {googleUser.email}
+            {user.email}
           </Text>
         </View>
       </View>

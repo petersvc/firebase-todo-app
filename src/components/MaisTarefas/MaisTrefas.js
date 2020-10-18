@@ -80,7 +80,7 @@ function MaisTarefas({todosCollection, lists}) {
       <TouchableOpacity style={styles.maisButton} onPress={toggleModal}>
         <Icon
           // style={[{marginRight: -8}]}
-          name="dots-horizontal"
+          name="dots-vertical"
           size={diagram.iconSize}
           color={colors.dim}
         />
@@ -91,8 +91,8 @@ function MaisTarefas({todosCollection, lists}) {
         onBackdropPress={toggleModal}
         useNativeDriver
         hideModalContentWhileAnimating
-        animationIn="fadeInDown"
-        animationOut="fadeOutUp"
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown"
         animationInTiming={300}>
         <View style={styles.maisModal}>
           <FlatList

@@ -911,3 +911,32 @@ drawerContent={(props) => (
 
   remaining < 10 ? (remaining = `0${remaining}`) : null;
   */
+
+
+      <TouchableOpacity onPress={addUserInfo}>
+        <Text>{user}</Text>
+      </TouchableOpacity>
+
+      <Image style={styles.avatar} source={{uri: user.photoURL}} />
+        <View style={styles.userInfo}>
+          <Text style={styles.title}>{user.displayName}</Text>
+          <Text
+            style={[styles.smallText2, {marginTop: 5, textTransform: 'none'}]}
+            onPress={() => navProps.navigation.navigate('Todo')}>
+            {user.email}
+          </Text>
+        </View>
+
+        if (todosIsEmpty) {
+        todosCollection.doc('demo').set({
+          title: 'Como adicionar tarefas',
+          tag: 'aprender',
+          description: 'Clique no botão "+" e insira os detalhes da tarefa',
+          begin: '08:00',
+          date: today,
+          complete: false,
+        });
+      }
+
+      <Text>{lists.map((list) => list.todos.length)}</Text>
+      <Text>{todos.length}</Text>

@@ -17,13 +17,13 @@ import AddTodo from './AddTodo';
 import styles from './style';
 import {colors, diagram} from '../../styles/baseStyle';
 
-function Tarefas({lists, setTodos, user, navigation}) {
+function Tarefas({lists, setTodos, todosIsEmpty, user, navigation, today}) {
   const headerTitle = 'Tarefas';
   const keyExtractor = useCallback((item) => item.id);
   const keyExtractor2 = useCallback((item) => item.id);
 
   const usersCollection = firestore().collection('users');
-  const todosCollection = usersCollection.doc(user).collection('todos');
+  const todosCollection = usersCollection.doc(user.email).collection('todos');
 
   useEffect(() => {
     todosCollection.onSnapshot((snap) => {
@@ -31,6 +31,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
       snap.forEach((doc) => {
         copy.push({...doc.data(), id: doc.id});
       });
+
       setTodos(copy);
     });
   }, []);
@@ -80,6 +81,7 @@ function Tarefas({lists, setTodos, user, navigation}) {
   return (
     <View style={{backgroundColor: colors.bg, flex: 1}}>
       <StatusBar backgroundColor={colors.bg} />
+      <Text>{}</Text>
       <View style={styles.todoHeader}>
         <Text style={[styles.headerTitle]}>{headerTitle}</Text>
         <View style={styles.rightSide} />
@@ -92,48 +94,17 @@ function Tarefas({lists, setTodos, user, navigation}) {
         />
       </ScrollView>
       <AddTodo todosCollection={todosCollection} />
-      <MaisTarefas todosCollection={todosCollection} lists={lists} />
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.toggleDrawer()}>
-        <Icon name="menu" size={diagram.iconSize} color={colors.bg} />
-      </TouchableOpacity>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.toggleDrawer()}>
+          <Icon name="menu" size={diagram.iconSize} color={colors.dim} />
+        </TouchableOpacity>
+
+        <MaisTarefas todosCollection={todosCollection} lists={lists} />
+      </View>
     </View>
   );
 }
 
 export default Tarefas;
-// <AddTodo todosCollection={todosCollection} />
-// , {todayArray[2]} {todayArray[0]} {todayArray[1]}
-/*
-<Icon
-  // style={[{marginRight: -5}]}
-  name="basket-outline"
-  size={styles.icon.size + 3}
-  color={styles.colors.dim}
-/>
-<MaisTarefas todosCollection={todosCollection} lists={lists} />
-
-
-          <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
-<View style={[styles.tasksNumbers]}>
-          <Text style={[styles.remaining]}>
-            {remaining}/{total}
-          </Text>
-        </View>
-        <View style={styles.rightSide}>
-          <Icon
-            // style={[{marginRight: 8}]}
-            name="basket-outline"
-            size={styles.icon.size + 2}
-            color={styles.colors.dim}
-          />
-          <Icon
-            // style={[{marginRight: 8}]}
-            name="dots-vertical"
-            size={styles.icon.size + 2}
-            color={styles.colors.dim}
-          />
-          <Image style={[styles.avatar]} source={{uri: googleUser.photo}} />
-        </View>
-*/

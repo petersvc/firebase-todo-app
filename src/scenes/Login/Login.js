@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, StatusBar, Text, Image, TouchableOpacity} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
@@ -13,14 +13,13 @@ GoogleSignin.configure({
     '165120130538-5hqsenrqndj1fhi6hn4k4qlk5udvtseu.apps.googleusercontent.com',
 });
 
-function Login({setGoogleUser}) {
+function Login() {
   const googleLogin = async () => {
     const userInfo = await GoogleSignin.signIn();
-    setGoogleUser(userInfo.user);
     const googleCredential = auth.GoogleAuthProvider.credential(
       userInfo.idToken,
     );
-    return auth().signInWithCredential(googleCredential);
+    await auth().signInWithCredential(googleCredential);
   };
 
   return (

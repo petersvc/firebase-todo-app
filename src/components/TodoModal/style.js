@@ -11,8 +11,8 @@ const styles = {
     // paddingRight: diagram.margin + 1,
     padding: diagram.margin,
     marginTop: 'auto',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
   },
   top: {
     paddingBottom: diagram.margin,

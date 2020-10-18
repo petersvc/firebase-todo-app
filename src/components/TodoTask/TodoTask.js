@@ -19,7 +19,7 @@ function TodoTask({task, todosCollection, listId}) {
   }
 
   const tagColor = styles.colors.green;
-  const listColor = styles.colors.dim;
+  // const listColor = styles.colors.dim;
 
   return (
     <View style={styles.task}>
@@ -27,7 +27,7 @@ function TodoTask({task, todosCollection, listId}) {
         <Icon
           name={task.complete ? 'check' : 'circle-outline'}
           size={styles.icon.size + 4}
-          color={task.complete ? tagColor : colors.main}
+          color={task.complete ? tagColor : colors.dim}
         />
       </TouchableOpacity>
 
@@ -42,17 +42,12 @@ function TodoTask({task, todosCollection, listId}) {
           {listId !== 'concluída' ? (
             <View style={styles.contentItem}>
               <Icon
-                style={{marginRight: 3, marginTop: -0.5}}
+                style={{marginRight: 3, marginTop: -0.5, display: 'none'}}
                 name={listId !== 'agendada' ? 'alarm' : 'calendar'}
                 size={styles.icon.size - 6}
                 color={colors.dim}
               />
-              <Text
-                style={
-                  task.complete
-                    ? [styles.numbersSm, styles.done]
-                    : [styles.numbersSm, styles.begin, {color: listColor}]
-                }>
+              <Text style={[styles.numbersSm, styles.begin]}>
                 {listId === 'agendada' ? `${task.date.slice(0, 6)}, ` : null}
                 {task.begin}
               </Text>

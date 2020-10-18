@@ -102,7 +102,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             <Icon
               name={todo.complete ? 'check' : 'circle-outline'}
               size={diagram.iconSize + 3}
-              color={todo.complete ? tagColor : colors.main}
+              color={todo.complete ? tagColor : colors.dim}
             />
           </TouchableOpacity>
           <TextInput
@@ -135,28 +135,20 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
           />
         )}
         <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
-          <Icon
-            name="calendar-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
+          <Icon name="calendar" size={diagram.iconSize} color={colors.dim} />
           <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.date}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
           <Icon
-            name="clock-time-three-outline"
+            name="clock-time-three"
             size={diagram.iconSize}
             color={colors.dim}
           />
           <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.begin}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
-          <Icon
-            name="tag-text-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
+          <Icon name="tag-text" size={diagram.iconSize} color={colors.dim} />
           <Text
             style={[
               styles.numbers,
@@ -194,7 +186,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             // style={{marginRight: 16}}
             name="check"
             size={diagram.iconSize}
-            color={colors.white}
+            color={colors.main}
           />
           <Text style={[styles.title, {fontWeight: 'bold', display: 'none'}]}>
             Salvar
@@ -205,7 +197,7 @@ function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
             // style={{marginRight: 16}}
             name="trash-can-outline"
             size={diagram.iconSize}
-            color={colors.dim}
+            color={colors.main}
           />
           <Text style={[styles.title, {display: 'none'}]}>Excluir</Text>
         </TouchableOpacity>

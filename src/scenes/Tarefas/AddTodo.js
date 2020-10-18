@@ -95,7 +95,7 @@ function AddTodo({todosCollection}) {
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
-        <Icon name="plus" size={diagram.iconSize} color={colors.bg} />
+        <Icon name="plus" size={diagram.iconSize + 10} color={colors.dim} />
       </TouchableOpacity>
       <Modal
         style={{margin: 0}}
@@ -112,7 +112,7 @@ function AddTodo({todosCollection}) {
               <Icon
                 name="circle-outline"
                 size={diagram.iconSize}
-                color={colors.main}
+                color={colors.dim}
               />
               <TextInput
                 style={[styles.taskTitle]}

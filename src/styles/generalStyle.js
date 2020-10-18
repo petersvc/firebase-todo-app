@@ -9,7 +9,7 @@ const general = {
   },
   titleSpoted: {
     color: colors.main,
-    fontSize: fonts.md,
+    fontSize: fonts.md + 2,
     fontFamily: fonts.family.bold,
     // fontWeight: 'bold',
     textTransform: 'capitalize',

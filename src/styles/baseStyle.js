@@ -50,11 +50,11 @@ export const diagram = {
 };
 
 export const fonts = {
-  sm: 11 + 1,
-  md: 14 + 1,
-  lg: 16 + 1,
+  sm: 12,
+  md: 14,
+  lg: 17,
   family: {
     regular: 'Lato-Medium',
-    bold: 'Lato-Bold',
+    bold: 'Lato-Black',
   },
 };

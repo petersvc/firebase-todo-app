@@ -50,17 +50,24 @@ const todayArray = [dayDate, months[d.getMonth()], weekDay[d.getDay()]];
 function App() {
   const [todos, setTodos] = useState([]);
   const usrLists = ['concluída', 'atrasada', 'hoje', 'amanhã', 'agendada'];
-  const [user, setUser] = useState(null);
-  const [googleUser, setGoogleUser] = useState({});
+  const [listas, setListas] = useState([]);
+  const [user, setUser] = useState({});
+
+  function todosIsEmpty() {
+    return todos.length === 0;
+  }
 
   async function signOut() {
     await GoogleSignin.revokeAccess();
     await GoogleSignin.signOut();
+    setUser({});
+    setTodos([]);
     auth().signOut();
-    // if (user)
-    setUser(null);
-    setGoogleUser({});
   }
+
+  // useEffect(() => {
+  //   checkLoggedIn();
+  // }, []);
 
   const lists = usrLists.map((list) => {
     const temp = {id: list, todos: []};
@@ -105,12 +112,11 @@ function App() {
     }
     return temp;
   });
-
   // async function createUser() {
   //   const usr = usersCollection.doc(user.email);
   //   await usr.set({}, {merge: true});
   //   await usr.collection('todos').doc('test').set({}, {merge: true});
-  // }
+  // }  <Text>{today}</Text>
 
   return (
     <>
@@ -118,7 +124,6 @@ function App() {
         <Drawer.Navigator
           // drawerType="slide"
           drawerStyle={{
-            // backgroundColor: '#c6cbef',
             width: '75%',
           }}
           initialRouteName="Loading"
@@ -147,7 +152,6 @@ function App() {
               else if (route.name === 'Settings') iconName = 'cog-outline';
               return (
                 <Icon
-                  // style={{marginRight: 0, paddingRight: 0}}
                   name={iconName}
                   size={diagram.iconSize}
                   color={iconColor}
@@ -161,7 +165,7 @@ function App() {
                 navProps={props}
                 lists={lists}
                 signOut={signOut}
-                googleUser={googleUser}
+                user={user}
               />
             );
           }}>
@@ -169,13 +173,13 @@ function App() {
             {(props) => (
               <Tarefas
                 user={user}
-                setUser={setUser}
-                googleUser={googleUser}
-                setGoogleUser={setGoogleUser}
+                todos={todos}
                 setTodos={setTodos}
                 lists={lists}
                 navigation={props.navigation}
                 todayArray={todayArray}
+                today={today}
+                todosIsEmpty={todosIsEmpty}
               />
             )}
           </Drawer.Screen>
@@ -188,14 +192,15 @@ function App() {
           <Drawer.Screen name="Loading" options={{drawerLabel: () => null}}>
             {(props) => (
               <Loading
+                user={user}
                 setUser={setUser}
-                googleUser={googleUser}
                 navigation={props.navigation}
+                today={today}
               />
             )}
           </Drawer.Screen>
           <Drawer.Screen name="Login" options={{drawerLabel: () => null}}>
-            {(props) => <Login setGoogleUser={setGoogleUser} />}
+            {(props) => <Login />}
           </Drawer.Screen>
         </Drawer.Navigator>
       </NavigationContainer>
