@@ -204,9 +204,3 @@ function App() {
 }
 
 export default App;
-
-/*
-  <Text style={{color: colors.white, marginLeft: 8}}>
-    {route.name}
-  </Text>
-*/
