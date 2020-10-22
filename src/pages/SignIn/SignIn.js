@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { View, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
-// import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../../services/authProvider';
 
