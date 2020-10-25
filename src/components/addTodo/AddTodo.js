@@ -91,7 +91,7 @@ function AddTodo({ addTodo }) {
   return (
     <View style={styles.addArea}>
       <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
-        <Icon name="plus" size={diagram.iconSize + 3} color={colors.white} />
+        <Icon name="plus" size={diagram.iconSize + 3} color={colors.bg} />
       </TouchableOpacity>
       <Modal
         style={{ margin: 0 }}

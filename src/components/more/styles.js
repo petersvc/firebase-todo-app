@@ -3,9 +3,9 @@ import general from '../../styles/generalStyle';
 
 const styles = {
   maisArea: {
-    position: 'absolute',
-    top: diagram.padding + 13,
-    right: 12,
+    // position: 'absolute',
+    // top: diagram.padding + 13,
+    // right: 12,
     zIndex: 2,
   },
   maisButton: {

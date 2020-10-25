@@ -20,12 +20,14 @@ export const colors = {
   orangeBg: 'rgba(255, 126, 108, 0.1)', // 'rgb(46, 43, 41)',
   blue: 'rgba(23, 106, 250, 2)', // 'rgba(0, 165, 208, 1)', // 'rgba(73, 101, 255, 1)',
   blue2: 'rgba(131, 232, 239, 1)',
-  purple: 'rgba(146, 61, 250, 1)', // 'rgb(176,153,203)', 'rgba(134, 93, 202, 1)', //
+  purple: 'rgba(146, 61, 250, 1)',
   purpleBg: 'rgba(176,153,204, 0.1)',
-  green: 'rgba(42, 128, 132, 1)', // 'rgba(48, 99, 110, 1)', // 'rgba(0, 255, 102, 1)', // 'rgba(166, 217, 201, 1)',
+  green: 'rgba(166, 217, 201, 1)', // 'rgba(0, 255, 102, 1)', // 'rgba(48, 99, 110, 1)', //
   greenBg: 'rgba(0, 255, 102, 0.05)', // 'rgba(35, 45, 47, 1)',
-  red: 'rgba(255, 73, 84, 1)', // 'rgba(255, 60, 86, 1)', // 'rgb(247, 165, 165)',
+  red: 'rgba(255, 73, 84, 1)', // 'rgba(255, 60, 86, 1)', //
+  red2: 'rgb(247, 165, 165)',
   redBg: 'rgba(255, 60, 86, 0.1)',
+  pink: 'rgb(255, 147, 162)',
   main: '',
   mainBg: '',
   bg: '',
@@ -34,7 +36,7 @@ export const colors = {
   bgLight2: '',
 };
 
-colors.main = colors.purple;
+colors.main = colors.green;
 colors.mainBg = colors.orangeBg;
 colors.bg = colors.black;
 colors.bg2 = colors.black2;

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { DatabaseContext } from '../../services/databaseProvider';
 import styles from './styles';
@@ -9,24 +10,24 @@ import { colors, diagram } from '../../styles/baseStyle';
 
 const Todo = ({ todo, listId }) => {
   const { toggleCompleteTodo } = useContext(DatabaseContext);
-  let iconName = 'circle-outline';
+  let iconName = 'ellipse-outline';
   let iconColor = colors.dim;
-  let iconSize = diagram.iconSize + 8;
-  let iconMarginAdjustments = null;
+  let iconSize = diagram.iconSize + 5;
+  const iconMarginAdjustments = null;
   let todoOpacity = null;
   let tagColor = colors.green;
-  let timeComplement = '';
-  const timeColor = { color: colors.white };
+  let time = '';
+  let timeColor = { color: colors.white };
 
   if (todo.tag === 'saúde') tagColor = colors.red;
   else if (todo.tag === 'aprender') tagColor = colors.blue;
   else if (todo.tag === 'trabalho') tagColor = colors.purple;
 
   if (todo.complete) {
-    iconName = 'check';
+    iconName = 'checkmark-outline';
     iconColor = colors.dim;
-    iconSize = diagram.iconSize - 5;
-    iconMarginAdjustments = { marginLeft: 6, marginRight: 6, marginTop: 1 };
+    iconSize = diagram.iconSize + 5;
+    // iconMarginAdjustments = { marginLeft: 6, marginRight: 6, marginTop: 1 };
     todoOpacity = { textDecorationLine: 'line-through', color: colors.dim };
   }
 
@@ -35,15 +36,16 @@ const Todo = ({ todo, listId }) => {
   }
 
   if (listId === 'concluídas') {
-    timeComplement = '';
-  } else if (listId !== 'hoje' || listId === 'amanhã') {
-    timeComplement = `${todo.date.slice(0, 6)}, `;
+    time = todo.begin;
+  } else if (listId === 'atrasadas') {
+    time = 'Atrasada';
+    timeColor = { color: colors.red2 };
+  } else if (listId === 'hoje' || listId === 'amanhã') {
+    time = `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
+    if (listId === 'hoje') timeColor = { color: colors.green };
   } else {
-    timeComplement = `${capitalizeFirstLetter(listId)}, `;
+    time = `${todo.date.slice(0, 6)}`;
   }
-
-  // listId === 'hoje' ? (timeColor = { color: colors.green }) : null;
-  // listId === 'atrasadas' ? (timeColor = { color: colors.red }) : null;
 
   return (
     <View style={[styles.horizontalContainer, styles.todo]}>
@@ -57,14 +59,17 @@ const Todo = ({ todo, listId }) => {
           style={iconMarginAdjustments}
         />
       </TouchableOpacity>
+      <View style={[styles.verticalContainer, { marginTop: 2 }]}>
+        <Text style={[styles.title, todoOpacity]}>{todo.title}</Text>
 
-      <Text style={[styles.title, todoOpacity]}>{todo.title}</Text>
-
-      <View style={[styles.horizontalContainer, styles.timeContent]}>
-        <Text style={[styles.numbersSm, styles.begin, todoOpacity, timeColor]}>
-          {timeComplement}
-          {todo.begin}
-        </Text>
+        <View style={styles.horizontalContainer}>
+          <View style={[styles.horizontalContainer, styles.timeContent]}>
+            <Text
+              style={[styles.numbersSm, styles.begin, timeColor, todoOpacity]}>
+              {time}
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
   );

@@ -2,12 +2,29 @@ import { colors, diagram, fonts } from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
-  dashboard: {},
+  dashboard: {
+    backgroundColor: colors.bg,
+  },
   headerTitle: {
     padding: diagram.margin,
-    paddingLeft: diagram.margin * 2.5,
+    paddingLeft: diagram.margin * 2.6,
+    display: 'none',
+    // alignSelf: 'center',
     // paddingTop: diagram.padding * 2,
     // paddingBottom: diagram.padding * 2,
+  },
+  menuButton: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: diagram.margin,
+    bottom: 12,
+    height: 48,
+    width: 48,
+    backgroundColor: colors.bgLight,
+    borderRadius: 30,
+    elevation: 2,
+    display: 'none',
   },
 
   // List --------------------------
@@ -56,22 +73,30 @@ const styles = {
   // Task ---------------------------
 
   todo: {
-    paddingTop: diagram.padding,
-    paddingBottom: diagram.padding,
-    alignItems: 'center',
+    paddingTop: diagram.padding - 3,
+    paddingBottom: diagram.padding - 3,
+    alignItems: 'flex-start',
+    // paddingLeft: diagram.margin,
+    // marginBottom: 12,
+    borderBottomWidth: 0.8,
+    borderBottomColor: colors.bgLight2,
+    // borderRadius: 13,
+    // backgroundColor: colors.bgLight,
   },
   begin: {
-    fontSize: fonts.sm - 3,
+    fontSize: fonts.sm,
   },
   timeContent: {
-    flex: 0,
-    marginLeft: 10,
-    padding: 2,
-    paddingLeft: 6,
-    paddingRight: 6,
-    borderWidth: 0.3,
-    borderColor: colors.dim,
-    borderRadius: 5,
+    // flexDirection: 'row',
+    // flex: 1,
+    marginTop: 5,
+    // width: 80,
+    // padding: 2,
+    // paddingLeft: 6,
+    // paddingRight: 6,
+    // borderWidth: 0.3,
+    // borderColor: colors.dim,
+    // borderRadius: 5,
   },
   ...general,
 };

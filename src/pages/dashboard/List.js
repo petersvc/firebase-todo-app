@@ -31,11 +31,13 @@ const List = ({ list }) => {
   return (
     <View style={[styles.verticalContainer, styles.list]}>
       <View style={[styles.listHeader, styles.horizontalContainer]}>
-        <Icon name={iconName} color={colors.main} size={diagram.iconSize} />
-        <Text
-          style={[styles.titleSpoted, { paddingLeft: diagram.padding + 1 }]}>
-          {list.id}
-        </Text>
+        <Icon
+          style={{ display: 'none' }}
+          name={iconName}
+          color={colors.main}
+          size={diagram.iconSize}
+        />
+        <Text style={[styles.titleSpoted]}>{list.id}</Text>
       </View>
       <FlatList
         data={list.todos}

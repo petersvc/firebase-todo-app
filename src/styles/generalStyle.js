@@ -3,13 +3,13 @@ import { colors, fonts } from './baseStyle';
 const general = {
   verticalContainer: {
     flex: 1,
-    backgroundColor: colors.bg,
+    // backgroundColor: colors.bg,
   },
   horizontalContainer: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.bg,
+    // backgroundColor: colors.bg,
   },
   title: {
     color: colors.white,
@@ -27,7 +27,7 @@ const general = {
   },
   sectionTitle: {
     color: colors.white,
-    fontSize: fonts.lg + 15,
+    fontSize: fonts.lg + 3,
     fontFamily: fonts.family.bold,
     letterSpacing: -1,
     // textTransform: 'capitalize',

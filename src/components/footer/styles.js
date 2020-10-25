@@ -4,27 +4,28 @@ import general from '../../styles/generalStyle';
 const styles = {
   footer: {
     flex: 0,
-    // width: '97%',
-    height: 50,
+    justifyContent: 'space-between',
+    height: 58,
     backgroundColor: colors.bgLight,
     paddingLeft: diagram.margin,
     paddingRight: 6,
-    // alignSelf: 'center',
+    alignItems: 'center',
     // borderTopLeftRadius: 20,
     // borderTopRightRadius: 20,
-    // marginBottom: 8,
-    elevation: 2,
-    display: 'none',
+    marginBottom: diagram.margin / 2,
+    // elevation: 2,
+    // display: 'none',
   },
-  top: {
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
+  menuButton: {
+    marginLeft: -3, // -7,
   },
-  bottom: {
-    flex: 2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
+  headerTitle: {
+    padding: diagram.margin,
+    paddingLeft: diagram.margin - 8,
+    marginRight: 'auto',
+    // alignSelf: 'center',
+    // paddingTop: diagram.padding * 2,
+    // paddingBottom: diagram.padding * 2,
   },
 
   // List --------------------------

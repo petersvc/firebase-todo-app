@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
   addArea: {
     position: 'absolute',
-    bottom: diagram.padding,
+    bottom: 16,
     right: diagram.margin,
     zIndex: 2,
   },
@@ -16,12 +16,12 @@ const styles = {
     // marginLeft: 15,
     // marginRight: diagram.margin,
     // marginBottom: diagram.padding, // -diagram.margin * 1.8,
-    height: 36,
-    width: 50,
+    height: 56,
+    width: 56,
     backgroundColor: colors.main,
     // borderColor: colors.bg,
     // borderWidth: 6,
-    borderRadius: 50,
+    borderRadius: 30,
     elevation: 2,
   },
   addModal: {

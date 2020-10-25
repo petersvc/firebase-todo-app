@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 
 import { DatabaseContext } from '../../services/databaseProvider';
@@ -74,7 +74,7 @@ function More({ navigation }) {
           // navigation.toggleDrawer();
         }}>
         <Icon
-          name="dots-horizontal"
+          name="ellipsis-vertical"
           size={diagram.iconSize}
           color={colors.dim}
         />

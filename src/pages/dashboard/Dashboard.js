@@ -1,15 +1,16 @@
 import React, { useCallback, useContext } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { AuthContext } from '../../services/authProvider';
 import { DatabaseContext } from '../../services/databaseProvider';
-
 import AddTodo from '../../components/addTodo/AddTodo';
 import More from '../../components/more/More';
 import Footer from '../../components/footer/Footer';
-
 import List from './List';
 import styles from './styles';
+import { diagram, colors } from '../../styles/baseStyle';
 
 const Dashboard = ({ navigation }) => {
   const { googleLogout } = useContext(AuthContext);
@@ -23,23 +24,25 @@ const Dashboard = ({ navigation }) => {
 
   return (
     <View style={[styles.verticalContainer, styles.dashboard]}>
-      <More navigation={navigation} />
-      <Text
-        onPress={googleLogout}
-        style={[styles.sectionTitle, styles.headerTitle]}>
-        Tarefas
-      </Text>
+      <Footer navigation={navigation} googleLogout={googleLogout} />
+
       <FlatList
         data={notEmptySmartLists}
         renderItem={renderList}
         keyExtractor={keyExtractor}
       />
+
       <AddTodo addTodo={addTodo} />
-      <Footer navigation={navigation} addTodo={addTodo} />
     </View>
   );
 };
 
 export default Dashboard;
 
-//
+/* 
+<More navigation={navigation} />
+<TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigation.toggleDrawer()}>
+        <Icon name="menu" size={diagram.iconSize} color={colors.white} />
+      </TouchableOpacity> */
