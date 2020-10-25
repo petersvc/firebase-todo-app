@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GoogleSignin } from '@react-native-community/google-signin';
 
-import SignIn from '../pages/SignIn/SignIn';
+import SignIn from '../pages/signIn/SignIn';
 
 const AuthStack = createStackNavigator();
 

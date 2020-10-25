@@ -39,11 +39,11 @@ export const DatabaseProvider = ({ children }) => {
   }, []);
 
   const smartListsNames = [
-    'concluída',
-    'atrasada',
     'hoje',
     'amanhã',
-    'agendada',
+    'agendadas',
+    'atrasadas',
+    'concluídas',
   ];
 
   const { month, day, year } = todayDate;
@@ -52,22 +52,10 @@ export const DatabaseProvider = ({ children }) => {
 
   const smartLists = smartListsNames.map((list) => {
     const temp = { id: list, todos: [] };
-    if (temp.id === 'concluída') {
-      temp.todos = todos.filter((todo) => todo.complete);
-    } else if (temp.id === 'hoje') {
+    if (temp.id === 'hoje') {
       temp.todos = todos.filter(
         (todo) => todo.date === today && !todo.complete,
       );
-    } else if (temp.id === 'atrasada') {
-      temp.todos = todos.filter((todo) => {
-        const [month2, day2, year2] = todo.date.split(' ');
-        return !todo.complete &&
-          month2 === month &&
-          year2 === year &&
-          day2 < day
-          ? todo
-          : null;
-      });
     } else if (temp.id === 'amanhã') {
       temp.todos = todos.filter((todo) => {
         const [month2, day2, year2] = todo.date.split(' ');
@@ -78,13 +66,25 @@ export const DatabaseProvider = ({ children }) => {
           ? todo
           : null;
       });
-    } else if (temp.id === 'agendada') {
+    } else if (temp.id === 'agendadas') {
       temp.todos = todos.filter((todo) => {
         const [month2, day2, year2] = todo.date.split(' ');
         return !todo.complete &&
           month2 === month &&
           year2 === year &&
           Number(day2) > Number(day) + 1
+          ? todo
+          : null;
+      });
+    } else if (temp.id === 'concluídas') {
+      temp.todos = todos.filter((todo) => todo.complete);
+    } else if (temp.id === 'atrasadas') {
+      temp.todos = todos.filter((todo) => {
+        const [month2, day2, year2] = todo.date.split(' ');
+        return !todo.complete &&
+          month2 === month &&
+          year2 === year &&
+          day2 < day
           ? todo
           : null;
       });
@@ -98,11 +98,22 @@ export const DatabaseProvider = ({ children }) => {
         todos,
         smartLists,
         todayDate,
-        updateTodo: async (taskId, todo) => {
-          await firebaseUsersTodos.doc(taskId).update(todo);
+        toggleCompleteTodo: async (todoId, todoComplete) => {
+          await firebaseUsersTodos
+            .doc(todoId)
+            .update({ complete: !todoComplete });
         },
-        deleteTodo: async (taskId) => {
-          await firebaseUsersTodos.doc(taskId).delete();
+        completeTodo: async (todoId) => {
+          await firebaseUsersTodos.doc(todoId).update({ complete: true });
+        },
+        updateTodo: async (todoId, todo) => {
+          await firebaseUsersTodos.doc(todoId).update(todo);
+        },
+        addTodo: async (todo) => {
+          await firebaseUsersTodos.add(todo);
+        },
+        deleteTodo: async (todoId) => {
+          await firebaseUsersTodos.doc(todoId).delete();
         },
       }}>
       {children}

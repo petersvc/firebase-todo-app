@@ -1,46 +1,61 @@
-import {colors, fonts} from './baseStyle';
+import { colors, fonts } from './baseStyle';
 
 const general = {
+  verticalContainer: {
+    flex: 1,
+    backgroundColor: colors.bg,
+  },
+  horizontalContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.bg,
+  },
   title: {
     color: colors.white,
     fontSize: fonts.md,
     fontFamily: fonts.family.regular,
+    letterSpacing: -0.5,
     // textTransform: 'capitalize',
   },
   titleSpoted: {
     color: colors.main,
-    fontSize: fonts.md,
+    fontSize: fonts.md + 1,
     fontFamily: fonts.family.bold,
-    // fontWeight: 'bold',
     textTransform: 'capitalize',
+    letterSpacing: -0.5,
   },
   sectionTitle: {
     color: colors.white,
-    fontSize: fonts.lg + 2,
-    fontFamily: fonts.family,
+    fontSize: fonts.lg + 15,
+    fontFamily: fonts.family.bold,
+    letterSpacing: -1,
     // textTransform: 'capitalize',
-    // fontWeight: 'bold',
   },
   numbersSm: {
     color: colors.dim,
     fontSize: fonts.sm,
     fontFamily: fonts.family.regular, // 'Lato-Medium',
+    letterSpacing: -0.5,
   },
   numbers: {
     color: colors.white,
     fontSize: fonts.md - 1,
     fontFamily: fonts.family.regular, // 'Lato-Medium',
+    letterSpacing: -0.5,
     // textTransform: 'capitalize',
   },
   smallText: {
     color: colors.white,
     fontSize: fonts.sm - 2,
     fontFamily: fonts.family.regular,
+    letterSpacing: -0.5,
   },
   smallText2: {
     color: colors.icon,
     fontSize: fonts.sm,
     fontFamily: fonts.family.regular,
+    letterSpacing: -0.5,
     textTransform: 'capitalize',
   },
   icon: {

@@ -1,16 +1,16 @@
-import React, {useCallback} from 'react';
-import {FlatList, View, Text, TouchableOpacity} from 'react-native';
+import React, { useCallback } from 'react';
+import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './style';
-import {colors} from '../../styles/baseStyle';
+import { colors } from '../../styles/baseStyle';
 
-function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
+function TagModal({ todo, setTodo, toggleTagModal, bottomMargin }) {
   let radioBtn;
   const tagList = ['livre', 'saúde', 'aprender', 'trabalho'];
   const keyExtractor = useCallback((item) => item);
-  const tagRender = useCallback(({item}) => {
+  const tagRender = useCallback(({ item }) => {
     let iconColor = colors.dim;
     if (todo.tag === item) {
       radioBtn = 'circle-slice-8';
@@ -20,12 +20,15 @@ function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
       <TouchableOpacity
         style={styles.tagItem}
         onPress={() => {
-          setTodo({...todo, tag: item});
+          setTodo({ ...todo, tag: item });
           toggleTagModal();
         }}>
         <Icon name={radioBtn} size={styles.icon.size + 8} color={iconColor} />
         <Text
-          style={[styles.title, {marginLeft: 30, textTransform: 'capitalize'}]}>
+          style={[
+            styles.title,
+            { marginLeft: 30, textTransform: 'capitalize' },
+          ]}>
           {item}
         </Text>
       </TouchableOpacity>
@@ -33,7 +36,7 @@ function TagModal({todo, setTodo, toggleTagModal, bottomMargin}) {
   }, []);
 
   return (
-    <View style={[styles.tagModal, {marginBottom: bottomMargin}]}>
+    <View style={[styles.tagModal, { marginBottom: bottomMargin }]}>
       <FlatList
         data={tagList}
         keyExtractor={keyExtractor}

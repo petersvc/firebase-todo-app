@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { View, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../../services/authProvider';
+import { fonts } from '../../styles/baseStyle';
 
-import styles from './style';
+import styles from './styles';
 
 const loginImg = require('../../assets/acc7.png');
 
@@ -14,9 +15,10 @@ const SignIn = () => {
     <View style={styles.login}>
       <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
       <View style={styles.top}>
-        <Image style={styles.loginImg} source={loginImg} />
+        <Text style={[styles.titleSpoted, styles.logo]}>Todots</Text>
       </View>
-      <View style={styles.bottom}>
+      <View style={styles.mid}>
+        <Image style={styles.loginImg} source={loginImg} />
         <Text onPress={googleLogout} style={styles.welcome}>
           Bem vindo ao Todots
         </Text>
@@ -24,6 +26,8 @@ const SignIn = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing.{' '}
           {user ? user.displayName : 'nadinha'}
         </Text>
+      </View>
+      <View style={styles.bottom}>
         <TouchableOpacity style={styles.loginBtn} onPress={googleLogin}>
           <Icon
             name="logo-google"
@@ -37,6 +41,7 @@ const SignIn = () => {
                 // color: styles.colors.main,
                 marginLeft: 10,
                 textTransform: 'none',
+                // fontFamily: fonts.family.bold,
               },
             ]}>
             Login com Google

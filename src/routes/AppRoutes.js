@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Dashboard from '../pages/Dashboard/Dashboard';
+import Dashboard from '../pages/dashboard/Dashboard';
 import { DatabaseProvider } from '../services/databaseProvider';
 
 const AppDrawer = createDrawerNavigator();

@@ -6,7 +6,7 @@ import auth from '@react-native-firebase/auth';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [todos, setTodos] = useState([]);
 
   return (
@@ -22,10 +22,10 @@ export const AuthProvider = ({ children }) => {
           await auth().signInWithCredential(googleCredential);
         },
         googleLogout: async () => {
-          await GoogleSignin.revokeAccess();
+          // await GoogleSignin.revokeAccess();
           await GoogleSignin.signOut();
-          // setUser(null);
           auth().signOut();
+          setUser({});
         },
       }}>
       {children}

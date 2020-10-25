@@ -1,14 +1,12 @@
-import {colors, diagram} from '../../styles/baseStyle';
+import { colors, diagram } from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
   maisArea: {
-    justifyContent: 'center',
-    alignItems: 'center',
     position: 'absolute',
-    top: diagram.margin + 3, // - 10, // 136, // diagram.margin * 3.2,
-    right: 23, // 16, // 22, // diagram.margin - 4,
-    alignSelf: 'center',
+    top: diagram.padding + 13,
+    right: 12,
+    zIndex: 2,
   },
   maisButton: {
     justifyContent: 'center',
@@ -25,6 +23,7 @@ const styles = {
     // elevation: 2,
     // borderColor: colors.bg,
     // borderWidth: 8,
+    // display: 'none',
   },
   maisModal: {
     marginBottom: 'auto',

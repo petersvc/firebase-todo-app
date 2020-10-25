@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AuthProvider } from '../services/authProvider';
-import Routes from './Routes';
+import Routes from './routes';
 
 const Providers = () => {
   return (

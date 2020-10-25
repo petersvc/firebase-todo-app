@@ -1,18 +1,28 @@
-import {colors, diagram, fonts} from '../../styles/baseStyle';
+import { colors, diagram, fonts } from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
   login: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: colors.bg,
   },
   top: {
     flex: 1,
-    justifyContent: 'flex-end',
+    // justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'rgba(134, 193, 202, 1)',
+  },
+  logo: {
+    marginTop: diagram.margin,
+    fontSize: fonts.lg,
+  },
+  mid: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'rgba(14, 193, 202, 1)',
   },
   loginImg: {
     width: 170,
@@ -24,14 +34,8 @@ const styles = {
     // borderWidth: 2,
     // borderColor: 'red',
   },
-  bottom: {
-    flex: 1,
-    // justifyContent: 'space-around',
-    alignItems: 'center',
-    // backgroundColor: 'rgba(134, 193, 202, 1)',
-  },
   welcome: {
-    marginTop: diagram.margin,
+    marginTop: diagram.margin * 3,
     color: colors.white,
     fontSize: fonts.lg + 5,
     fontFamily: fonts.family.bold,
@@ -44,19 +48,25 @@ const styles = {
     textAlign: 'center',
     // fontWeight: 'bold',
   },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    // backgroundColor: 'rgba(134, 93, 202, 1)',
+  },
   loginBtn: {
-    marginTop: 'auto', // diagram.margin,
+    // marginTop: 'auto', // diagram.margin,
     marginBottom: diagram.margin,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    padding: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
     borderRadius: 100,
-    // backgroundColor: colors.main,
-    borderColor: colors.white,
-    borderWidth: 0.3,
+    backgroundColor: colors.bg,
+    borderColor: colors.main,
+    borderWidth: 1,
   },
   colors: {
     bg: colors.bg,

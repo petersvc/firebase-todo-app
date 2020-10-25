@@ -1,28 +1,18 @@
-import React, {useState, useCallback} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import React, { useState, useCallback, useContext } from 'react';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 
-import styles from './style';
-import {colors, diagram} from '../../styles/baseStyle';
+import { DatabaseContext } from '../../services/databaseProvider';
+import styles from './styles';
+import { colors, diagram } from '../../styles/baseStyle';
 
-function MaisTarefas({todosCollection, lists}) {
+function More({ navigation }) {
+  const { smartLists, completeTodo, deleteTodo } = useContext(DatabaseContext);
   const [modal, setModal] = useState(false);
   function toggleModal() {
     setModal(!modal);
-  }
-
-  async function completarTarefa(todoId) {
-    await todosCollection.doc(todoId).update({complete: false});
-  }
-
-  async function deletarConcluida(todoId) {
-    await todosCollection.doc(todoId).delete();
-  }
-
-  async function deletarAtrasada(todoId) {
-    await todosCollection.doc(todoId).delete();
   }
 
   const maisItens = [
@@ -32,15 +22,15 @@ function MaisTarefas({todosCollection, lists}) {
   ];
   const keyExtractor = useCallback((item) => item);
 
-  const renderMaisItens = ({item}) => {
-    let maisItemFunction; // = () => toggleModal();
+  const renderMaisItens = ({ item }) => {
+    let maisItemFunction;
 
     if (item === 'Concluir todas') {
       maisItemFunction = () => {
-        lists.map((list) =>
+        smartLists.map((list) =>
           list.todos.map((todo) => {
-            if (todo.complete) {
-              completarTarefa(todo.id);
+            if (todo.complete === false) {
+              completeTodo(todo.id);
             }
             return 0;
           }),
@@ -48,21 +38,21 @@ function MaisTarefas({todosCollection, lists}) {
       };
     } else if (item === 'Excluir concluídas') {
       maisItemFunction = () => {
-        lists.map((list) =>
+        smartLists.map((list) =>
           list.todos.map((todo) => {
             if (todo.complete) {
-              deletarConcluida(todo.id);
+              deleteTodo(todo.id);
             }
             return 0;
           }),
         );
       };
     } else if (item === 'Excluir atrasadas') {
-      const listFilter = lists.filter((list) => list.id === 'atrasada');
+      const listFilter = smartLists.filter((list) => list.id === 'atrasadas');
       const listId = listFilter[0].id;
       maisItemFunction = () => {
-        if (listId === 'atrasada' && listFilter[0].todos.length > 0) {
-          listFilter[0].todos.map((todo) => deletarAtrasada(todo.id));
+        if (listId === 'atrasadas' && listFilter[0].todos.length > 0) {
+          listFilter[0].todos.map((todo) => deleteTodo(todo.id));
         }
       };
       // 30 caracteres
@@ -77,16 +67,20 @@ function MaisTarefas({todosCollection, lists}) {
 
   return (
     <View style={styles.maisArea}>
-      <TouchableOpacity style={styles.maisButton} onPress={toggleModal}>
+      <TouchableOpacity
+        style={styles.maisButton}
+        onPress={() => {
+          toggleModal();
+          // navigation.toggleDrawer();
+        }}>
         <Icon
-          // style={[{marginRight: -8}]}
           name="dots-horizontal"
           size={diagram.iconSize}
           color={colors.dim}
         />
       </TouchableOpacity>
       <Modal
-        style={{margin: 0}}
+        style={{ margin: 0 }}
         isVisible={modal}
         onBackdropPress={toggleModal}
         useNativeDriver
@@ -106,4 +100,4 @@ function MaisTarefas({todosCollection, lists}) {
   );
 }
 
-export default MaisTarefas;
+export default More;
