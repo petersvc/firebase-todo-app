@@ -13,8 +13,8 @@ const List = ({ list }) => {
     <Todo todo={item} listId={list.id} />
   ));
 
-  // const listComplete = list.todos.filter((todo) => todo.complete).length;
-  // const listTotal = list.todos.length;
+  const listComplete = list.todos.filter((todo) => todo.complete).length;
+  const listTotal = list.todos.length;
 
   let iconName = 'calendar-today';
 
@@ -37,7 +37,12 @@ const List = ({ list }) => {
           color={colors.main}
           size={diagram.iconSize}
         />
-        <Text style={[styles.titleSpoted]}>{list.id}</Text>
+        <Text style={[styles.titleSpoted, styles.listName]}>{list.id}</Text>
+        <View style={[styles.tasksNumbers]}>
+          <Text style={[styles.numbersSm, styles.remaining]}>
+            {list.id === 'concluídas' ? listTotal : listTotal - listComplete}
+          </Text>
+        </View>
       </View>
       <FlatList
         data={list.todos}

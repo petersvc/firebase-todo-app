@@ -12,7 +12,7 @@ const Todo = ({ todo, listId }) => {
   const { toggleCompleteTodo } = useContext(DatabaseContext);
   let iconName = 'ellipse-outline';
   let iconColor = colors.dim;
-  let iconSize = diagram.iconSize + 5;
+  const iconSize = diagram.iconSize + 12;
   const iconMarginAdjustments = null;
   let todoOpacity = null;
   let tagColor = colors.green;
@@ -24,27 +24,27 @@ const Todo = ({ todo, listId }) => {
   else if (todo.tag === 'trabalho') tagColor = colors.purple;
 
   if (todo.complete) {
-    iconName = 'checkmark-outline';
-    iconColor = colors.dim;
-    iconSize = diagram.iconSize + 5;
+    iconName = 'checkmark-circle';
+    iconColor = colors.main;
+    // iconSize = diagram.iconSize + 5;
     // iconMarginAdjustments = { marginLeft: 6, marginRight: 6, marginTop: 1 };
     todoOpacity = { textDecorationLine: 'line-through', color: colors.dim };
   }
 
-  function capitalizeFirstLetter(string) {
+  /* function capitalizeFirstLetter(string) {
     return string[0].toUpperCase() + string.slice(1);
-  }
+  } */
 
   if (listId === 'concluídas') {
     time = todo.begin;
   } else if (listId === 'atrasadas') {
-    time = 'Atrasada';
-    timeColor = { color: colors.red2 };
-  } else if (listId === 'hoje' || listId === 'amanhã') {
-    time = `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
+    time = `${todo.date.slice(0, 6)}`; // 'Atrasada';
+    // timeColor = { color: colors.pink };
+  } else if (listId === 'agendadas' || listId === 'amanhã') {
+    time = `${todo.date.slice(0, 6)}, ${todo.begin}`; // `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
     if (listId === 'hoje') timeColor = { color: colors.green };
   } else {
-    time = `${todo.date.slice(0, 6)}`;
+    time = todo.begin;
   }
 
   return (

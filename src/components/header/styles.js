@@ -2,7 +2,7 @@ import { colors, diagram } from '../../styles/baseStyle';
 import general from '../../styles/generalStyle';
 
 const styles = {
-  footer: {
+  header: {
     flex: 0,
     justifyContent: 'space-between',
     height: 58,
@@ -10,9 +10,9 @@ const styles = {
     paddingLeft: diagram.margin,
     paddingRight: 6,
     alignItems: 'center',
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
-    marginBottom: diagram.margin / 2,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.bgLight2,
+    marginBottom: 0,
     // elevation: 2,
     // display: 'none',
   },

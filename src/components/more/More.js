@@ -75,7 +75,7 @@ function More({ navigation }) {
         }}>
         <Icon
           name="ellipsis-vertical"
-          size={diagram.iconSize}
+          size={diagram.iconSize + 1}
           color={colors.dim}
         />
       </TouchableOpacity>

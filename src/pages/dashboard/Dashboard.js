@@ -1,16 +1,13 @@
 import React, { useCallback, useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text, FlatList } from 'react-native';
 
 import { AuthContext } from '../../services/authProvider';
 import { DatabaseContext } from '../../services/databaseProvider';
 import AddTodo from '../../components/addTodo/AddTodo';
-import More from '../../components/more/More';
-import Footer from '../../components/footer/Footer';
+import Header from '../../components/header/Header';
+import todayDate from '../../services/todayDate';
 import List from './List';
 import styles from './styles';
-import { diagram, colors } from '../../styles/baseStyle';
 
 const Dashboard = ({ navigation }) => {
   const { googleLogout } = useContext(AuthContext);
@@ -24,7 +21,12 @@ const Dashboard = ({ navigation }) => {
 
   return (
     <View style={[styles.verticalContainer, styles.dashboard]}>
-      <Footer navigation={navigation} googleLogout={googleLogout} />
+      <Header navigation={navigation} googleLogout={googleLogout} />
+      <View style={[styles.horizontalContainer, styles.dateView]}>
+        <Text style={[styles.title, styles.todayDate]}>
+          {todayDate.weekDay}, {todayDate.day} de {todayDate.month}
+        </Text>
+      </View>
 
       <FlatList
         data={notEmptySmartLists}

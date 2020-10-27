@@ -182,6 +182,8 @@
 		4DF382FDB91F426E843F9C5C /* routed-gothic-narrow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E13A6D49E71B4A2DBC02D0D5 /* routed-gothic-narrow.ttf */; };
 		EE94EC7C65A1487B92C75F5C /* routed-gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB217DAC7FA5435F8FF9D3B3 /* routed-gothic.ttf */; };
 		F9A7869A49094D2593DE0F9B /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */; };
+		D640428852054E3395A9AD09 /* Karla-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */; };
+		56F1483E69D24D7EB3189EEE /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D62235214E114DF88FBAD316 /* Karla-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +385,8 @@
 		E13A6D49E71B4A2DBC02D0D5 /* routed-gothic-narrow.ttf */ = {isa = PBXFileReference; name = "routed-gothic-narrow.ttf"; path = "../assets/fonts/routed-gothic-narrow.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BB217DAC7FA5435F8FF9D3B3 /* routed-gothic.ttf */ = {isa = PBXFileReference; name = "routed-gothic.ttf"; path = "../assets/fonts/routed-gothic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */ = {isa = PBXFileReference; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */ = {isa = PBXFileReference; name = "Karla-Bold.ttf"; path = "../assets/fonts/Karla-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D62235214E114DF88FBAD316 /* Karla-Regular.ttf */ = {isa = PBXFileReference; name = "Karla-Regular.ttf"; path = "../assets/fonts/Karla-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -659,6 +663,8 @@
 				E13A6D49E71B4A2DBC02D0D5 /* routed-gothic-narrow.ttf */,
 				BB217DAC7FA5435F8FF9D3B3 /* routed-gothic.ttf */,
 				A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */,
+				2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */,
+				D62235214E114DF88FBAD316 /* Karla-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -968,6 +974,8 @@
 				4DF382FDB91F426E843F9C5C /* routed-gothic-narrow.ttf in Resources */,
 				EE94EC7C65A1487B92C75F5C /* routed-gothic.ttf in Resources */,
 				F9A7869A49094D2593DE0F9B /* Lato-Black.ttf in Resources */,
+				D640428852054E3395A9AD09 /* Karla-Bold.ttf in Resources */,
+				56F1483E69D24D7EB3189EEE /* Karla-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
