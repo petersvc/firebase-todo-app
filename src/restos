@@ -911,3 +911,15 @@ drawerContent={(props) => (
 
   remaining < 10 ? (remaining = `0${remaining}`) : null;
   */
+
+  let iconName = 'calendar-today';
+
+   if (list.id === 'concluídas') {
+      iconName = 'check-circle-outline';
+   } else if (list.id === 'pendentes') {
+      iconName = 'clock-alert-outline';
+   } else if (list.id === 'amanhã') {
+      iconName = 'calendar-arrow-right';
+   } else if (list.id === 'agendadas') {
+      iconName = 'timer-outline';
+   }

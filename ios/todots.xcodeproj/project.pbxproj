@@ -184,6 +184,8 @@
 		F9A7869A49094D2593DE0F9B /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */; };
 		D640428852054E3395A9AD09 /* Karla-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */; };
 		56F1483E69D24D7EB3189EEE /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D62235214E114DF88FBAD316 /* Karla-Regular.ttf */; };
+		8D5EA81310544F00A1052B58 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD8035312BA444194129346 /* Poppins-Black.ttf */; };
+		9F30D9A462CD497CAD7A0B5D /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 459F7C188F694016A5792471 /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,6 +389,8 @@
 		A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */ = {isa = PBXFileReference; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */ = {isa = PBXFileReference; name = "Karla-Bold.ttf"; path = "../assets/fonts/Karla-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D62235214E114DF88FBAD316 /* Karla-Regular.ttf */ = {isa = PBXFileReference; name = "Karla-Regular.ttf"; path = "../assets/fonts/Karla-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8DD8035312BA444194129346 /* Poppins-Black.ttf */ = {isa = PBXFileReference; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		459F7C188F694016A5792471 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -665,6 +669,8 @@
 				A46EA66AA3154C80991E4B00 /* Lato-Black.ttf */,
 				2BB8AD9F12FA46FF83D153CC /* Karla-Bold.ttf */,
 				D62235214E114DF88FBAD316 /* Karla-Regular.ttf */,
+				8DD8035312BA444194129346 /* Poppins-Black.ttf */,
+				459F7C188F694016A5792471 /* Poppins-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -976,6 +982,8 @@
 				F9A7869A49094D2593DE0F9B /* Lato-Black.ttf in Resources */,
 				D640428852054E3395A9AD09 /* Karla-Bold.ttf in Resources */,
 				56F1483E69D24D7EB3189EEE /* Karla-Regular.ttf in Resources */,
+				8D5EA81310544F00A1052B58 /* Poppins-Black.ttf in Resources */,
+				9F30D9A462CD497CAD7A0B5D /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

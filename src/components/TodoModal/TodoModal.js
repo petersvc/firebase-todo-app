@@ -1,217 +1,239 @@
-import React, {useState} from 'react';
-import {TextInput, View, Text, TouchableOpacity, Platform} from 'react-native';
+import React, { useState, useContext } from 'react';
+import {
+   TextInput,
+   View,
+   Text,
+   TouchableOpacity,
+   Platform,
+} from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
+import IconFeather from 'react-native-vector-icons/Feather';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Modal from 'react-native-modal';
 
-import styles from './style';
-import {colors, diagram} from '../../styles/baseStyle';
-import TagModal from '../TagModal/TagModal';
+// eslint-disable-next-line import/no-unresolved
+import styles from './styles';
+import { colors, diagram } from '../../styles/baseStyle';
+import TagModal from '../tagModal/TagModal';
+import { DatabaseContext } from '../../services/databaseProvider';
 
-function TodoModal({todosCollection, task, tagColor, toggleTodoModal}) {
-  const [tagModal, setTagModal] = useState(false);
-  function toggleTagModal() {
-    setTagModal(!tagModal);
-  }
+function TodoModal({ todo, tagColor, toggleTodoModal }) {
+   const [tagModal, setTagModal] = useState(false);
+   function toggleTagModal() {
+      setTagModal(!tagModal);
+   }
 
-  const [todo, setTodo] = useState({
-    title: task.title,
-    description: task.description,
-    tag: task.tag,
-    begin: task.begin,
-    date: task.date,
-    complete: task.complete,
-  });
+   const { updateTodo, deleteTodo } = useContext(DatabaseContext);
 
-  const [rawDate, setRawDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+   const [newTodo, setNewTodo] = useState({
+      title: todo.title,
+      description: todo.description,
+      tag: todo.tag,
+      begin: todo.begin,
+      date: todo.date,
+      complete: todo.complete,
+   });
 
-  const d = new Date();
-  let fdate = rawDate.toString();
-  let yearIndex = fdate.indexOf(String(d.getFullYear()));
-  let date = fdate.substring(4, yearIndex + 4);
-  let begin = fdate.substring(yearIndex + 5, yearIndex + 10);
-  let [month, day, year] = date.split(' ');
+   const [rawDate, setRawDate] = useState(new Date());
+   const [mode, setMode] = useState('date');
+   const [show, setShow] = useState(false);
 
-  const months = {
-    Feb: 'Fev',
-    Apr: 'Abr',
-    May: 'Mai',
-    Aug: 'Ago',
-    Sep: 'Set',
-    Oct: 'Out',
-    Dec: 'Dez',
-  };
+   const d = new Date();
+   let fdate = rawDate.toString();
+   let yearIndex = fdate.indexOf(String(d.getFullYear()));
+   let date = fdate.substring(4, yearIndex + 4);
+   let begin = fdate.substring(yearIndex + 5, yearIndex + 10);
+   let [month, day, year] = date.split(' ');
 
-  month = months[month];
-  date = `${month} ${day} ${year}`;
+   const months = {
+      Feb: 'Fev',
+      Apr: 'Abr',
+      May: 'Mai',
+      Aug: 'Ago',
+      Sep: 'Set',
+      Oct: 'Out',
+      Nov: 'Nov',
+      Dec: 'Dez',
+   };
 
-  const onChange = (event, selectedrawDate) => {
-    const currentrawDate = selectedrawDate || rawDate;
-    setShow(Platform.OS === 'ios');
-    setRawDate(currentrawDate);
+   month = months[month];
+   date = `${month} ${day} ${year}`;
 
-    fdate = currentrawDate.toString();
-    yearIndex = fdate.indexOf(String(d.getFullYear()));
-    date = fdate.substring(4, yearIndex + 4);
-    begin = fdate.substring(yearIndex + 5, yearIndex + 10);
-    [month, day, year] = date.split(' ');
+   const onChange = (event, selectedrawDate) => {
+      const currentrawDate = selectedrawDate || rawDate;
+      setShow(Platform.OS === 'ios');
+      setRawDate(currentrawDate);
 
-    month = months[month];
-    date = `${month} ${day} ${year}`;
-    if (mode === 'date') {
-      setTodo({...todo, date});
-    } else {
-      setTodo({...todo, begin});
-    }
-  };
+      fdate = currentrawDate.toString();
+      yearIndex = fdate.indexOf(String(d.getFullYear()));
+      date = fdate.substring(4, yearIndex + 4);
+      begin = fdate.substring(yearIndex + 5, yearIndex + 10);
+      [month, day, year] = date.split(' ');
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
+      month = months[month];
+      date = `${month} ${day} ${year}`;
+      if (mode === 'date') {
+         setNewTodo({ ...newTodo, date });
+      } else {
+         setNewTodo({ ...newTodo, begin });
+      }
+   };
 
-  const showDatepicker = () => {
-    showMode('date');
-  };
+   const showMode = (currentMode) => {
+      setShow(true);
+      setMode(currentMode);
+   };
 
-  const showTimepicker = () => {
-    showMode('time');
-  };
+   const showDatepicker = () => {
+      showMode('date');
+   };
 
-  async function updateTodo() {
-    await todosCollection.doc(task.id).update(todo);
-  }
+   const showTimepicker = () => {
+      showMode('time');
+   };
 
-  async function deleteTodo() {
-    await todosCollection.doc(task.id).delete();
-  }
+   const bottomMargin = 105;
+   const leftMargin = 100;
 
-  const bottomMargin = 105;
-  const leftMargin = 100;
+   return (
+      <View style={[styles.editArea]}>
+         <View style={styles.top}>
+            <View style={styles.titleComplete}>
+               <TouchableOpacity
+                  style={styles.complete}
+                  onPress={() =>
+                     setNewTodo({ ...newTodo, complete: !newTodo.complete })
+                  }>
+                  <Icon
+                     name={newTodo.complete ? 'checkmark' : 'ellipse-outline'}
+                     size={diagram.iconSize + 5}
+                     color={newTodo.complete ? tagColor : colors.dim}
+                  />
+               </TouchableOpacity>
+               <TextInput
+                  style={[styles.taskTitle]}
+                  placeholder={newTodo.title}
+                  placeholderTextColor={colors.white}
+                  onChangeText={(title) => setNewTodo({ ...newTodo, title })}
+               />
+            </View>
 
-  return (
-    <View style={[styles.editArea]}>
-      <View style={styles.top}>
-        <View style={styles.titleComplete}>
-          <TouchableOpacity
-            style={styles.complete}
-            onPress={() => setTodo({...todo, complete: !todo.complete})}>
-            <Icon
-              name={todo.complete ? 'check' : 'circle-outline'}
-              size={diagram.iconSize + 3}
-              color={todo.complete ? tagColor : colors.main}
+            <TextInput
+               style={[styles.taskDescription]}
+               placeholder={
+                  newTodo.description !== ''
+                     ? newTodo.description
+                     : 'Sem descrição'
+               }
+               placeholderTextColor={colors.dim}
+               onChangeText={(title) =>
+                  setNewTodo({ ...newTodo, description: title })
+               }
             />
-          </TouchableOpacity>
-          <TextInput
-            style={[styles.taskTitle]}
-            placeholder={task.title}
-            placeholderTextColor={colors.white}
-            onChangeText={(title) => setTodo({...todo, title})}
-          />
-        </View>
+         </View>
+         <View style={styles.mid}>
+            {show && (
+               <DateTimePicker
+                  testID="dateTimePicker"
+                  value={rawDate}
+                  mode={mode}
+                  is24Hour
+                  display="default"
+                  minimumDate={new Date()}
+                  onChange={onChange}
+               />
+            )}
+            <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
+               <Icon
+                  name="today-outline"
+                  size={diagram.iconSize - 3}
+                  color={colors.dim}
+               />
+               <Text
+                  style={[
+                     styles.smallText2,
+                     { marginLeft: 17, color: colors.dim },
+                  ]}>
+                  {newTodo.date}
+               </Text>
+            </TouchableOpacity>
 
-        <TextInput
-          style={[styles.taskDescription]}
-          placeholder={
-            task.description !== '' ? task.description : 'Sem descrição'
-          }
-          placeholderTextColor={colors.dim}
-          onChangeText={(title) => setTodo({...todo, description: title})}
-        />
+            <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
+               <Icon
+                  name="time-outline"
+                  size={diagram.iconSize - 2}
+                  color={colors.dim}
+               />
+               <Text
+                  style={[
+                     styles.smallText2,
+                     { marginLeft: 17, color: colors.dim },
+                  ]}>
+                  {newTodo.begin}
+               </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
+               <IconFeather
+                  name="hash"
+                  size={diagram.iconSize - 2}
+                  color={colors.dim}
+               />
+               <Text
+                  style={[
+                     styles.smallText2,
+                     {
+                        marginLeft: 17,
+                        textTransform: 'capitalize',
+                        color: colors.dim,
+                     },
+                  ]}>
+                  {newTodo.tag}
+               </Text>
+               <Modal
+                  style={{ margin: 0 }}
+                  isVisible={tagModal}
+                  onBackdropPress={toggleTagModal}
+                  useNativeDriver
+                  hideModalContentWhileAnimating
+                  animationIn="fadeInUp"
+                  animationOut="fadeOutDown"
+                  animationInTiming={300}>
+                  <TagModal
+                     todo={newTodo}
+                     setTodo={setNewTodo}
+                     toggleTagModal={toggleTagModal}
+                     bottomMargin={bottomMargin}
+                     leftMargin={leftMargin}
+                  />
+               </Modal>
+            </TouchableOpacity>
+         </View>
+         <View style={styles.bottom}>
+            <TouchableOpacity style={[styles.taskItem2]} onPress={deleteTodo}>
+               <Icon
+                  // style={{marginRight: 16}}
+                  name="trash-outline"
+                  size={diagram.iconSize}
+                  color={colors.dim}
+               />
+            </TouchableOpacity>
+            <TouchableOpacity
+               style={styles.taskItem2}
+               onPress={() => {
+                  updateTodo(todo.id, newTodo);
+                  toggleTodoModal();
+               }}>
+               <Icon
+                  style={{ marginTop: 0 }}
+                  name="checkmark-circle"
+                  size={diagram.iconSize + 3}
+                  color={colors.mainAlt}
+               />
+            </TouchableOpacity>
+         </View>
       </View>
-      <View style={styles.mid}>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={rawDate}
-            mode={mode}
-            is24Hour
-            display="default"
-            minimumDate={new Date()}
-            onChange={onChange}
-          />
-        )}
-        <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
-          <Icon
-            name="calendar-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
-          <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.date}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
-          <Icon
-            name="clock-time-three-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
-          <Text style={[styles.numbers, {marginLeft: 23}]}>{todo.begin}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
-          <Icon
-            name="tag-text-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
-          <Text
-            style={[
-              styles.numbers,
-              {marginLeft: 23, textTransform: 'capitalize'},
-            ]}>
-            {todo.tag}
-          </Text>
-          <Modal
-            style={{margin: 0}}
-            isVisible={tagModal}
-            onBackdropPress={toggleTagModal}
-            useNativeDriver
-            hideModalContentWhileAnimating
-            animationIn="fadeInUp"
-            animationOut="fadeOutDown"
-            animationInTiming={300}>
-            <TagModal
-              todo={todo}
-              setTodo={setTodo}
-              toggleTagModal={toggleTagModal}
-              bottomMargin={bottomMargin}
-              leftMargin={leftMargin}
-            />
-          </Modal>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.bottom}>
-        <TouchableOpacity
-          style={styles.taskItem2}
-          onPress={() => {
-            updateTodo();
-            toggleTodoModal();
-          }}>
-          <Icon
-            // style={{marginRight: 16}}
-            name="check"
-            size={diagram.iconSize}
-            color={colors.white}
-          />
-          <Text style={[styles.title, {fontWeight: 'bold', display: 'none'}]}>
-            Salvar
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.taskItem2]} onPress={deleteTodo}>
-          <Icon
-            // style={{marginRight: 16}}
-            name="trash-can-outline"
-            size={diagram.iconSize}
-            color={colors.dim}
-          />
-          <Text style={[styles.title, {display: 'none'}]}>Excluir</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+   );
 }
 // <Text style={[styles.date, styles.smallText]}>{task.date}</Text>
 // <Text style={[styles.title, {fontWeight: 'bold'}]}>Salvar</Text>
