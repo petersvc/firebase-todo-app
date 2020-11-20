@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
    addArea: {
       position: 'absolute',
-      bottom: 16,
+      bottom: 23,
       right: diagram.padding,
       // alignSelf: 'center',
       zIndex: 2,
@@ -15,11 +15,11 @@ const styles = {
       // padding: 10,
       // paddingLeft: 30,
       // paddingRight: 30,
-      backgroundColor: colors.mainAlt,
+      backgroundColor: colors.main,
       // width: 140,
-      width: 48,
-      height: 48,
-      borderRadius: 15,
+      width: 54,
+      height: 54,
+      borderRadius: 125,
       elevation: 2,
    },
    addModal: {
@@ -30,8 +30,8 @@ const styles = {
       // height: 115,
       // justifyContent: 'space-around',
       backgroundColor: colors.bg,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
+      // borderTopLeftRadius: 20,
+      // borderTopRightRadius: 20,
    },
    addHead: {
       flexDirection: 'row',
@@ -54,7 +54,7 @@ const styles = {
       // height: 42,
       padding: 0,
       color: colors.dim,
-      // fontSize: fonts.md,
+      fontSize: fonts.lg,
       // fontFamily: fonts.family.regular,
       // backgroundColor: 'red',
    },
@@ -76,7 +76,7 @@ const styles = {
    },
    taskItem: {
       flexDirection: 'row',
-      marginRight: diagram.margin * 1.3,
+      marginRight: diagram.margin * 1.5,
       justifyContent: 'space-around',
       alignItems: 'center',
       // paddingLeft: diagram.margin - 10,

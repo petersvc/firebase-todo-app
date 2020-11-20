@@ -14,7 +14,7 @@ const styles = {
       paddingTop: diagram.margin,
       paddingBottom: diagram.margin,
       borderBottomWidth: 0.3,
-      borderColor: colors.dim2,
+      borderColor: colors.bgLight2,
       // backgroundColor: 'red',
    },
    avatar: {
@@ -35,7 +35,7 @@ const styles = {
       marginTop: diagram.padding * 1.5,
       marginBottom: diagram.padding - 10,
       borderBottomWidth: 0.3,
-      borderColor: colors.dim2,
+      borderColor: colors.bgLight2,
    },
    listHeader: {
       flexDirection: 'row',
@@ -85,7 +85,7 @@ const styles = {
       paddingLeft: diagram.margin + 6,
       paddingRight: diagram.margin + 6,
       borderTopWidth: 0.3,
-      borderColor: colors.dim2,
+      borderColor: colors.bgLight2,
    },
    ...general,
 };

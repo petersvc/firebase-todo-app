@@ -147,13 +147,13 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
                <Icon
                   name="today-outline"
-                  size={diagram.iconSize - 3}
+                  size={diagram.iconSize}
                   color={colors.dim}
                />
                <Text
                   style={[
                      styles.smallText2,
-                     { marginLeft: 17, color: colors.dim },
+                     { marginLeft: 17, fontSize: 14, color: colors.dim },
                   ]}>
                   {newTodo.date}
                </Text>
@@ -162,13 +162,13 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
                <Icon
                   name="time-outline"
-                  size={diagram.iconSize - 2}
+                  size={diagram.iconSize}
                   color={colors.dim}
                />
                <Text
                   style={[
                      styles.smallText2,
-                     { marginLeft: 17, color: colors.dim },
+                     { marginLeft: 17, fontSize: 14, color: colors.dim },
                   ]}>
                   {newTodo.begin}
                </Text>
@@ -176,7 +176,7 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             <TouchableOpacity style={styles.taskItem} onPress={toggleTagModal}>
                <IconFeather
                   name="hash"
-                  size={diagram.iconSize - 2}
+                  size={diagram.iconSize}
                   color={colors.dim}
                />
                <Text
@@ -184,6 +184,7 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
                      styles.smallText2,
                      {
                         marginLeft: 17,
+                        fontSize: 14,
                         textTransform: 'capitalize',
                         color: colors.dim,
                      },
@@ -210,7 +211,9 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             </TouchableOpacity>
          </View>
          <View style={styles.bottom}>
-            <TouchableOpacity style={[styles.taskItem2]} onPress={deleteTodo}>
+            <TouchableOpacity
+               style={[styles.taskItem2]}
+               onPress={() => deleteTodo(todo.id)}>
                <Icon
                   // style={{marginRight: 16}}
                   name="trash-outline"
@@ -226,9 +229,9 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
                }}>
                <Icon
                   style={{ marginTop: 0 }}
-                  name="checkmark-circle"
+                  name="checkmark"
                   size={diagram.iconSize + 3}
-                  color={colors.mainAlt}
+                  color={colors.white}
                />
             </TouchableOpacity>
          </View>

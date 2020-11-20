@@ -14,7 +14,7 @@ function TagModal({ todo, setTodo, toggleTagModal, bottomMargin }) {
       let iconColor = colors.dim;
       if (todo.tag === item) {
          radioBtn = 'radio-button-on';
-         iconColor = colors.mainAlt;
+         iconColor = colors.main;
       } else radioBtn = 'radio-button-off';
       return (
          <TouchableOpacity

@@ -4,7 +4,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Tarefas from '../pages/tarefas/Tarefas';
-import GeoTasks from '../pages/geoTasks/GeoTasks';
 import ShoppingList from '../pages/shoppingList/ShoppingList';
 import Settings from '../pages/settings/Settings';
 import DrawerContent from '../components/DrawerContent/DrawerContent';
@@ -19,7 +18,7 @@ const AppRoutes = () => {
          <AppDrawer.Navigator
             // drawerType="slide"
             drawerStyle={{
-               width: '82%',
+               width: '75%',
             }}
             // initialRouteName="Dashboard"
             drawerContentOptions={{
@@ -31,8 +30,8 @@ const AppRoutes = () => {
                   paddingLeft: diagram.margin,
                   marginLeft: 0,
                   marginRight: 12,
-                  borderTopRightRadius: 10,
-                  borderBottomRightRadius: 10,
+                  borderTopRightRadius: 100,
+                  borderBottomRightRadius: 100,
                },
             }}
             screenOptions={({ route }) => ({
@@ -61,7 +60,6 @@ const AppRoutes = () => {
                return <DrawerContent navProps={props} />;
             }}>
             <AppDrawer.Screen name="Tarefas" component={Tarefas} />
-            <AppDrawer.Screen name="GeoTasks" component={GeoTasks} />
             <AppDrawer.Screen name="ShoppingList" component={ShoppingList} />
             <AppDrawer.Screen name="Settings" component={Settings} />
          </AppDrawer.Navigator>

@@ -2,16 +2,14 @@ import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import EvilIcon from 'react-native-vector-icons/EvilIcons';
-import AntIcon from 'react-native-vector-icons/AntDesign';
 
 import More from '../more/More';
 import todayDate from '../../services/todayDate';
 import styles from './styles';
-import { colors, diagram, fonts } from '../../styles/baseStyle';
+import { colors, diagram } from '../../styles/baseStyle';
 
-const Header = ({ navigation, googleLogout }) => {
-   const { weekDay, day, month } = todayDate;
+const Header = ({ navigation }) => {
+   // const { weekDay, day, month } = todayDate;
    return (
       <View style={[styles.horizontalContainer, styles.header]}>
          <View style={[styles.horizontalContainer, styles.left]}>
@@ -19,39 +17,32 @@ const Header = ({ navigation, googleLogout }) => {
                style={styles.menuButton}
                onPress={() => navigation.toggleDrawer()}>
                <Icon
-                  // style={{ marginRight: diagram.margin - 30 }}
+                  style={{ marginRight: 18 }}
                   // name="chevron-left"
-                  name="menu"
-                  size={diagram.iconSize + 3}
-                  color={colors.dim}
+                  name="menu-outline"
+                  size={diagram.iconSize + 8}
+                  color={colors.white}
                />
             </TouchableOpacity>
-            <View style={[styles.verticalContainer, { marginLeft: 16 }]}>
-               <Text
-                  onPress={googleLogout}
-                  style={[styles.headerTitle, styles.sectionTitle]}>
-                  Tarefas
+            <Text style={[styles.title, styles.headerTitle]}>
+               {todayDate.weekDay},{' '}
+               <Text style={{ color: 'white' }}>
+                  {todayDate.day} {todayDate.month}
                </Text>
-               <Text
-                  style={[
-                     styles.smallText2,
-                     {
-                        textTransform: 'capitalize',
-                        fontSize: 10,
-                        color: colors.dim,
-                        fontFamily: fonts.family.bold,
-                        display: 'none',
-                     },
-                  ]}>
-                  {weekDay}, {day} {month}{' '}
-               </Text>
-            </View>
+            </Text>
          </View>
+         <View style={[styles.horizontalContainer, styles.mid]} />
          <View style={[styles.horizontalContainer, styles.right]}>
             <Icon
                // style={{ display: 'none' }}
                name="basket"
-               size={diagram.iconSize + 2}
+               size={diagram.iconSize + 1}
+               color={colors.dim}
+            />
+            <Icon
+               style={{ marginLeft: 23, marginRight: 23 }}
+               name="timer"
+               size={diagram.iconSize + 1}
                color={colors.dim}
             />
             <More />
@@ -62,7 +53,6 @@ const Header = ({ navigation, googleLogout }) => {
 
 export default Header;
 // <More />
-
 /*
 Tarefas {''} {'-'} {''}{' '}
  <View style={[styles.horizontalContainer, styles.left]}>

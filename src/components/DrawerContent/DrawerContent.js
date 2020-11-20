@@ -16,7 +16,7 @@ function DrawerContent({ navProps }) {
    const { smartLists } = useContext(DatabaseContext);
    const { user, googleLogout } = useContext(AuthContext);
 
-   const FilteredLists = smartLists.slice(0, 3);
+   const FilteredLists = smartLists.slice(0);
 
    const { state } = navProps;
    const newState = { ...state };
@@ -58,7 +58,7 @@ function DrawerContent({ navProps }) {
    }, []);
 
    return (
-      <View style={styles.drawer}>
+      <DrawerContentScrollView style={styles.drawer}>
          <View style={styles.user}>
             <Image style={styles.avatar} source={{ uri: user.photoURL }} />
             <View style={styles.userInfo}>
@@ -109,7 +109,7 @@ function DrawerContent({ navProps }) {
                <Text style={[styles.title, styles.listName]}>Sair</Text>
             </TouchableOpacity>
          </View>
-      </View>
+      </DrawerContentScrollView>
    );
 }
 

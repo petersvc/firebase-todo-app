@@ -1,6 +1,14 @@
 const d = new Date();
 
-const weekDay = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+const weekDay = [
+   'Segunda',
+   'Terça',
+   'Quarta',
+   'Quinta',
+   'Sexta',
+   'Sábado',
+   'Domingo',
+];
 
 const dayDate = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
 

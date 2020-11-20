@@ -18,14 +18,14 @@ const List = ({ list }) => {
    let visibleStyle = {
       backgroundColor: 'transparent', // colors.bg2,
       // marginBottom: 16,
-      marginTop: 12,
+      // marginTop: 12,
    };
 
    if (!listVisibility) {
       visibleStyle = {
          backgroundColor: 'transparent', // colors.black2,
          marginBottom: 0,
-         marginTop: 12,
+         // marginTop: 12,
       };
    }
 
@@ -40,7 +40,7 @@ const List = ({ list }) => {
          style={[
             styles.verticalContainer,
             styles.list,
-            // listVisibility ? { paddingBottom: 0 } : { paddingBottom: 10 },
+            listVisibility ? { paddingBottom: 16 } : { paddingBottom: 0 },
          ]}>
          <TouchableOpacity
             style={[
@@ -59,10 +59,10 @@ const List = ({ list }) => {
                </Text>
             </View>
             <Icon
-               style={{ marginLeft: 5, marginRight: 2, marginTop: 2 }}
+               style={{ marginLeft: 3, marginRight: 2, marginTop: 1 }}
                name={listVisibility ? 'chevron-up' : 'chevron-down'}
                color={colors.dim}
-               size={diagram.iconSize - 2}
+               size={diagram.iconSize - 5}
             />
          </TouchableOpacity>
          {listVisibility ? (

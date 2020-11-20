@@ -24,10 +24,15 @@ export const AuthProvider = ({ children }) => {
                await auth().signInWithCredential(googleCredential);
             },
             googleLogout: async () => {
-               // await GoogleSignin.revokeAccess();
-               await GoogleSignin.signOut();
+               try {
+                  GoogleSignin.configure({});
+                  await GoogleSignin.revokeAccess();
+                  await GoogleSignin.signOut();
+               } catch (error) {
+                  console.error(error);
+               }
                auth().signOut();
-               setUser({});
+               setUser(null);
             },
          }}>
          {children}

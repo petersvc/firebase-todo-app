@@ -7,18 +7,18 @@ import SignIn from '../pages/signIn/SignIn';
 const AuthStack = createStackNavigator();
 
 const AuthRoutes = () => {
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        '165120130538-5hqsenrqndj1fhi6hn4k4qlk5udvtseu.apps.googleusercontent.com',
-    });
-  }, []);
+   useEffect(() => {
+      GoogleSignin.configure({
+         webClientId:
+            '165120130538-5hqsenrqndj1fhi6hn4k4qlk5udvtseu.apps.googleusercontent.com',
+      });
+   }, []);
 
-  return (
-    <AuthStack.Navigator headerShown={false} headerMode="none">
-      <AuthStack.Screen name="SignIn" component={SignIn} />
-    </AuthStack.Navigator>
-  );
+   return (
+      <AuthStack.Navigator headerShown={false} headerMode="none">
+         <AuthStack.Screen name="SignIn" component={SignIn} />
+      </AuthStack.Navigator>
+   );
 };
 
 export default AuthRoutes;

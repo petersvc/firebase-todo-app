@@ -9,13 +9,13 @@ import styles from './styles';
 const loginImg = require('../../assets/acc7.png');
 
 const SignIn = () => {
-   const { googleLogin, googleLogout, user } = useContext(AuthContext);
+   const { googleLogin, googleLogout } = useContext(AuthContext);
 
    return (
       <View style={styles.login}>
          <StatusBar backgroundColor="rgba(27, 31, 36, 1)" />
          <View style={styles.top}>
-            <Text style={[styles.title, styles.logo]}>Todots</Text>
+            <Text style={[styles.titleSpoted, styles.logo]}>Todots</Text>
          </View>
          <View style={styles.mid}>
             <Image style={styles.loginImg} source={loginImg} />
@@ -23,8 +23,8 @@ const SignIn = () => {
                Bem vindo ao Todots
             </Text>
             <Text style={[styles.title, styles.textItem]}>
-               Lorem ipsum dolor sit amet, consectetur adipiscing.{' '}
-               {user ? user.displayName : 'nadinha'}
+               Lorem ipsum dolor sit amet, consectetur adipiscing dolor sit
+               amet.
             </Text>
          </View>
          <View style={styles.bottom}>
@@ -32,13 +32,13 @@ const SignIn = () => {
                <Icon
                   name="logo-google"
                   size={styles.icon.size}
-                  color={colors.mainAlt}
+                  color={colors.white}
                />
                <Text
                   style={[
                      styles.title,
                      {
-                        color: colors.mainAlt,
+                        color: colors.white,
                         marginLeft: 10,
                         textTransform: 'none',
                         // fontFamily: fonts.family.bold,

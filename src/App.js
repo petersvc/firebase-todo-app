@@ -6,12 +6,12 @@ import Providers from './routes';
 import { colors } from './styles/baseStyle';
 
 const App = () => {
-  return (
-    <>
-      <StatusBar backgroundColor={colors.bg} />
-      <Providers />
-    </>
-  );
+   return (
+      <>
+         <StatusBar backgroundColor={colors.bg} />
+         <Providers />
+      </>
+   );
 };
 
 export default App;

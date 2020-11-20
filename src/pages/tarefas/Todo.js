@@ -20,7 +20,7 @@ const Todo = ({ todo, listId }) => {
    let iconName = 'ellipse-outline';
    // const timeIcon = 'time-outline';
    let iconColor = colors.dim;
-   let iconSize = diagram.iconSize + 5;
+   let iconSize = diagram.iconSize + 8;
    const iconMarginAdjustments = null;
    let todoOpacity = null;
    let tagColor = colors.green;
@@ -32,10 +32,10 @@ const Todo = ({ todo, listId }) => {
    else if (todo.tag === 'trabalho') tagColor = colors.purple;
 
    if (todo.complete) {
-      iconName = 'checkmark';
-      iconColor = colors.dim;
+      iconName = 'checkmark-circle';
+      iconColor = colors.bgLight3;
       tagColor = colors.dim;
-      iconSize = diagram.iconSize;
+      iconSize = diagram.iconSize + 8;
       // iconMarginAdjustments = { marginLeft: 6, marginRight: 6, marginTop: 1 };
       todoOpacity = { textDecorationLine: 'line-through', color: colors.dim };
    }
@@ -52,67 +52,90 @@ const Todo = ({ todo, listId }) => {
       time = `${todo.date.slice(0, 6)}`; // 'Atrasada';
       if (listId === 'pendentes') timeColor = { color: colors.red2 }; // `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
    } else {
-      if (listId === 'hoje') timeColor = { color: colors.dim };
+      if (listId === 'hoje') timeColor = { color: colors.white };
       // timeIcon = 'time-outline';
       time = todo.begin;
    }
 
    return (
-      <View style={[styles.horizontalContainer, styles.todo]}>
-         <TouchableOpacity
-            style={{ marginLeft: -1, marginRight: 12 }}
-            onPress={() => toggleCompleteTodo(todo.id, todo.complete)}>
-            <Icon
-               name={iconName}
-               color={iconColor}
-               size={iconSize}
-               style={iconMarginAdjustments}
-            />
-         </TouchableOpacity>
-
-         <TouchableOpacity
-            style={[styles.horizontalContainer, { flex: 1, marginTop: 0 }]}
-            onPress={toggleTodoModal}>
-            <Text style={[styles.title, todoOpacity]}>{todo.title}</Text>
-
-            <View style={[styles.horizontalContainer, styles.details]}>
-               <Text style={[styles.smallText2, styles.tag, todoOpacity]}>
-                  #{todo.tag}
+      <View style={[styles.verticalContainer, styles.todo]}>
+         <View
+            style={[styles.horizontalContainer, { flex: 0, display: 'none' }]}>
+            <View style={[styles.horizontalContainer, styles.time]}>
+               <Text
+                  style={[
+                     styles.numbersSm,
+                     styles.begin,
+                     timeColor,
+                     todoOpacity,
+                  ]}>
+                  {time}
                </Text>
-               <View style={[styles.horizontalContainer, styles.time]}>
-                  <Icon
-                     style={{ display: 'none' }}
-                     name="time-outline"
-                     color={timeColor.color}
-                     size={diagram.iconSize - 7}
-                     // style={iconMarginAdjustments}
-                  />
+            </View>
+            <View
+               style={{
+                  marginLeft: 4,
+                  height: 1,
+                  width: '88%',
+                  backgroundColor: colors.bgLight2,
+               }}
+            />
+         </View>
+         <TouchableOpacity style={[styles.horizontalContainer, styles.right]}>
+            <TouchableOpacity
+               style={{ marginLeft: -6, marginRight: 12 }}
+               onPress={() => toggleCompleteTodo(todo.id, todo.complete)}>
+               <Icon
+                  name={iconName}
+                  color={iconColor}
+                  size={iconSize}
+                  style={iconMarginAdjustments}
+               />
+            </TouchableOpacity>
+            <TouchableOpacity
+               style={[styles.verticalContainer, { flex: 0 }]}
+               onPress={toggleTodoModal}>
+               <Text style={[styles.title, todoOpacity, { marginTop: 0 }]}>
+                  {todo.title}
+               </Text>
+               <View style={[styles.horizontalContainer, styles.details]}>
+                  <View style={[styles.horizontalContainer, styles.time]}>
+                     <Text
+                        style={[
+                           styles.numbersSm,
+                           styles.begin,
+                           timeColor,
+                           todoOpacity,
+                        ]}>
+                        {time}
+                     </Text>
+                  </View>
                   <Text
                      style={[
-                        styles.numbersSm,
-                        styles.begin,
-                        timeColor,
+                        styles.smallText2,
+                        styles.tag,
                         todoOpacity,
+                        { marginLeft: 'auto' },
                      ]}>
-                     {time}
+                     #{todo.tag}
                   </Text>
                </View>
-            </View>
-            <Modal
-               style={{ margin: 0 }}
-               isVisible={todoModal}
-               onBackdropPress={toggleTodoModal}
-               useNativeDriver
-               hideModalContentWhileAnimating
-               animationIn="fadeInUp"
-               animationOut="fadeOutDown"
-               animationInTiming={300}>
-               <TodoModal
-                  todo={todo}
-                  tagColor={tagColor}
-                  toggleTodoModal={toggleTodoModal}
-               />
-            </Modal>
+               <Modal
+                  style={{ margin: 0 }}
+                  isVisible={todoModal}
+                  onBackdropPress={toggleTodoModal}
+                  useNativeDriver
+                  hideModalContentWhileAnimating
+                  animationIn="fadeInUp"
+                  animationOut="fadeOutDown"
+                  animationInTiming={300}>
+                  <TodoModal
+                     todo={todo}
+                     tagColor={tagColor}
+                     toggleTodoModal={toggleTodoModal}
+                  />
+               </Modal>
+            </TouchableOpacity>
          </TouchableOpacity>
       </View>
    );

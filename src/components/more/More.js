@@ -77,8 +77,8 @@ function More() {
                // navigation.toggleDrawer();
             }}>
             <Icon
-               name="ellipsis-vertical"
-               size={diagram.iconSize}
+               name="ellipsis-horizontal-circle-sharp"
+               size={diagram.iconSize + 1}
                color={colors.dim}
             />
          </TouchableOpacity>

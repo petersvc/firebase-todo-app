@@ -34,7 +34,7 @@ const styles = {
       paddingLeft: diagram.margin,
       paddingRight: diagram.margin,
       backgroundColor: colors.bg,
-      borderBottomLeftRadius: 10,
+      // borderBottomLeftRadius: 10,
    },
    maisItem: {
       marginBottom: diagram.margin,

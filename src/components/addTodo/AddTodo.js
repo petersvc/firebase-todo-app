@@ -16,6 +16,17 @@ import styles from './styles';
 import { colors, diagram } from '../../styles/baseStyle';
 import TagModal from '../tagModal/TagModal';
 
+const months = {
+   Feb: 'Fev',
+   Apr: 'Abr',
+   May: 'Mai',
+   Aug: 'Ago',
+   Sep: 'Set',
+   Oct: 'Out',
+   Nov: 'Nov',
+   Dec: 'Dez',
+};
+
 function AddTodo({ addTodo }) {
    const [modal, setModal] = useState(false);
    function toggleModal() {
@@ -37,16 +48,6 @@ function AddTodo({ addTodo }) {
    let date = fdate.substring(4, yearIndex + 4);
    let begin = fdate.substring(yearIndex + 5, yearIndex + 10);
    let [month, day, year] = date.split(' ');
-
-   const months = {
-      Feb: 'Fev',
-      Apr: 'Abr',
-      May: 'Mai',
-      Aug: 'Ago',
-      Sep: 'Set',
-      Oct: 'Out',
-      Dec: 'Dez',
-   };
 
    month = months[month];
    date = `${month} ${day} ${year}`;
@@ -100,7 +101,7 @@ function AddTodo({ addTodo }) {
          <TouchableOpacity
             style={[styles.horizontalContainer, styles.addButton]}
             onPress={toggleModal}>
-            <Icon name="add" size={diagram.iconSize + 3} color={colors.bg} />
+            <Icon name="add" size={diagram.iconSize + 6} color={colors.white} />
             <Text style={[{ display: 'none' }, styles.title]}>Nova tarefa</Text>
          </TouchableOpacity>
          <Modal
@@ -123,7 +124,7 @@ function AddTodo({ addTodo }) {
                   <TextInput
                      style={[styles.title, styles.taskTitle]}
                      placeholder="Nova tarefa"
-                     placeholderTextColor={colors.white}
+                     placeholderTextColor={colors.dim}
                      maxLength={32}
                      // autoFocus
                      onChangeText={(title) => setTodo({ ...todo, title })}
@@ -147,8 +148,8 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="today-outline"
-                        size={diagram.iconSize - 2}
-                        color={colors.dim}
+                        size={diagram.iconSize}
+                        color={colors.white}
                      />
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -156,8 +157,8 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="time-outline"
-                        size={diagram.iconSize - 2}
-                        color={colors.dim}
+                        size={diagram.iconSize}
+                        color={colors.white}
                      />
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -165,8 +166,8 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="document-text-outline"
-                        size={diagram.iconSize - 2}
-                        color={colors.dim}
+                        size={diagram.iconSize}
+                        color={colors.white}
                      />
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -174,8 +175,8 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <IconFeather
                         name="hash"
-                        size={diagram.iconSize - 2}
-                        color={colors.dim}
+                        size={diagram.iconSize}
+                        color={colors.white}
                      />
                      <Modal
                         style={{ margin: 0 }}
@@ -202,9 +203,9 @@ function AddTodo({ addTodo }) {
                         toggleModal();
                      }}>
                      <Icon
-                        name="checkmark-circle"
-                        size={diagram.iconSize + 2}
-                        color={colors.mainAlt}
+                        name="send"
+                        size={diagram.iconSize}
+                        color={colors.main}
                      />
                   </TouchableOpacity>
                </View>

@@ -17,7 +17,7 @@ const styles = {
    logo: {
       marginTop: diagram.margin,
       fontSize: fonts.lg,
-      color: colors.mainAlt,
+      color: colors.main,
    },
    mid: {
       flex: 3,
@@ -65,9 +65,9 @@ const styles = {
       paddingLeft: 16,
       paddingRight: 16,
       borderRadius: 100,
-      backgroundColor: colors.bg,
-      borderColor: colors.mainAlt,
-      borderWidth: 1,
+      backgroundColor: colors.main,
+      // borderColor: colors.mainAlt,
+      // borderWidth: 1,
    },
    colors: {
       bg: colors.bg,

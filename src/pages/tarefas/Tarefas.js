@@ -1,8 +1,5 @@
 import React, { useCallback, useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-
-import Icon from 'react-native-vector-icons/Ionicons';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import { View, Text, FlatList } from 'react-native';
 
 import { AuthContext } from '../../services/authProvider';
 import { DatabaseContext } from '../../services/databaseProvider';
@@ -29,7 +26,10 @@ const Tarefas = ({ navigation }) => {
 
          <View style={[styles.horizontalContainer, styles.dateView]}>
             <Text style={[styles.title, styles.todayDate]}>
-               {todayDate.weekDay}, {todayDate.day.slice(1)}
+               {todayDate.weekDay} |{' '}
+               <Text style={{ color: 'white' }}>
+                  {todayDate.day.slice(1)} {todayDate.month}
+               </Text>
             </Text>
          </View>
 
