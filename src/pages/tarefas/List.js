@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import Todo from './Todo';
 import styles from './styles';
@@ -40,7 +40,7 @@ const List = ({ list }) => {
          style={[
             styles.verticalContainer,
             styles.list,
-            listVisibility ? { paddingBottom: 16 } : { paddingBottom: 0 },
+            listVisibility ? { paddingBottom: 0 } : { paddingBottom: 0 },
          ]}>
          <TouchableOpacity
             style={[
@@ -50,21 +50,41 @@ const List = ({ list }) => {
                // listVisibility ? { marginLeft: 1 } : { marginLeft: 1 },
             ]}
             onPress={toggleListVisibility}>
-            <Text style={[styles.titleSpoted, styles.listName]}>{list.id}</Text>
-            <View style={[styles.tasksNumbers]}>
+            <View style={[styles.horizontalContainer, styles.tasksNumbers]}>
                <Text style={[styles.numbersSm, styles.remaining]}>
                   {list.id === 'concluídas'
                      ? listTotal
                      : listTotal - listComplete}
                </Text>
+               <Icon
+                  style={{
+                     marginLeft: -4,
+                     marginRight: diagram.padding,
+                     // marginTop: 2,
+                     // display: 'none',
+                  }}
+                  name={
+                     listVisibility
+                        ? 'chevron-with-circle-down'
+                        : 'chevron-with-circle-right'
+                  }
+                  color={colors.mainAlt}
+                  size={diagram.iconSize + 2}
+               />
             </View>
-            <Icon
-               style={{ marginLeft: 3, marginRight: 2, marginTop: 1 }}
-               name={listVisibility ? 'chevron-up' : 'chevron-down'}
-               color={colors.dim}
-               size={diagram.iconSize - 5}
-            />
+            <Text style={[styles.titleSpoted, styles.listName]}>{list.id}</Text>
          </TouchableOpacity>
+         <View
+            style={{
+               marginLeft: diagram.margin + 6,
+               width: 1,
+               paddingBottom:
+                  list.id === 'concluídas' && !listVisibility ? 0 : 30,
+               backgroundColor: colors.dim2,
+               // alignSelf: 'center',
+               // display: 'none',
+            }}
+         />
          {listVisibility ? (
             <FlatList
                data={list.todos}

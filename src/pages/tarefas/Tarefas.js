@@ -5,10 +5,10 @@ import { AuthContext } from '../../services/authProvider';
 import { DatabaseContext } from '../../services/databaseProvider';
 import AddTodo from '../../components/addTodo/AddTodo';
 import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 import todayDate from '../../services/todayDate';
 import List from './List';
 import styles from './styles';
-// import { diagram, colors } from '../../styles/baseStyle';
 
 const Tarefas = ({ navigation }) => {
    const { googleLogout } = useContext(AuthContext);
@@ -23,7 +23,6 @@ const Tarefas = ({ navigation }) => {
    return (
       <View style={[styles.verticalContainer, styles.dashboard]}>
          <Header navigation={navigation} googleLogout={googleLogout} />
-
          <View style={[styles.horizontalContainer, styles.dateView]}>
             <Text style={[styles.title, styles.todayDate]}>
                {todayDate.weekDay} |{' '}
@@ -32,13 +31,12 @@ const Tarefas = ({ navigation }) => {
                </Text>
             </Text>
          </View>
-
          <FlatList
             data={notEmptySmartLists}
             renderItem={renderList}
             keyExtractor={keyExtractor}
          />
-
+         <Footer navigation={navigation} />
          <AddTodo addTodo={addTodo} />
       </View>
    );
@@ -61,7 +59,8 @@ export default Tarefas;
 
 <More navigation={navigation} />
 <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.toggleDrawer()}>
-        <Icon name="menu" size={diagram.iconSize} color={colors.white} />
-      </TouchableOpacity> */
+            style={styles.menuButton}
+            onPress={() => navigation.toggleDrawer()}>
+            <Icon name="menu" size={diagram.iconSize} color={colors.white} />
+         </TouchableOpacity>
+         */

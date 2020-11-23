@@ -101,7 +101,7 @@ function AddTodo({ addTodo }) {
          <TouchableOpacity
             style={[styles.horizontalContainer, styles.addButton]}
             onPress={toggleModal}>
-            <Icon name="add" size={diagram.iconSize + 6} color={colors.white} />
+            <Icon name="add" size={diagram.iconSize} color={colors.bg} />
             <Text style={[{ display: 'none' }, styles.title]}>Nova tarefa</Text>
          </TouchableOpacity>
          <Modal

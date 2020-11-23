@@ -1,78 +1,61 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 
 // import IconIon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconIon from 'react-native-vector-icons/Ionicons';
 import More from '../more/More';
-import todayDate from '../../services/todayDate';
 import styles from './styles';
 import { colors, diagram } from '../../styles/baseStyle';
 
-const Header = ({ navigation }) => {
+const Footer = ({ navigation }) => {
    // const { weekDay, day, month } = todayDate;
-   // eslint-disable-next-line global-require
-   const menu = require('../../assets/menu.png');
    return (
-      <View style={[styles.horizontalContainer, styles.header]}>
-         <View style={[styles.horizontalContainer, styles.left]}>
-            <TouchableOpacity
-               style={styles.menuButton}
-               onPress={() => navigation.toggleDrawer()}>
-               <Image
-                  style={{
-                     marginTop: 0,
-                     marginLeft: -9,
-                     marginRight: 16,
-                     transform: [{ scale: 0.6 }],
-                     // scale: 1,
-                     // backgroundColor: 'red',
-                  }}
-                  source={menu}
-               />
-            </TouchableOpacity>
-            <Text style={[styles.title, styles.headerTitle]}>
-               {todayDate.weekDay}
-               <Text style={{ color: colors.dim }}>
-                  {','} {todayDate.day} {todayDate.month}
-               </Text>
-            </Text>
-         </View>
-         <View
+      <View style={[styles.horizontalContainer, styles.footer]}>
+         <TouchableOpacity
             style={[
-               styles.horizontalContainer,
-               styles.mid,
-               // { display: 'none' },
+               styles.footerItem,
+               {
+                  // backgroundColor: 'transparent'
+               },
             ]}
-         />
-         <View
-            style={[
-               styles.horizontalContainer,
-               styles.right,
-               // { display: 'none' },
-            ]}>
+            onPress={() => navigation.toggleDrawer()}>
             <Icon
-               style={{ display: 'flex', marginRight: 23 }}
-               name="basket-outline"
-               size={diagram.iconSize + 3}
-               color={colors.dim}
-            />
-            <Icon
-               style={{ display: 'flex', marginRight: 20 }}
-               name="timer-outline"
+               // style={{ marginLeft: 0, marginRight: 18 }}
+               // name="chevron-left"
+               name="menu"
                size={diagram.iconSize + 2}
+               color={colors.white}
+            />
+         </TouchableOpacity>
+         <TouchableOpacity style={[styles.footerItem]}>
+            <Icon
+               name="clipboard-text-outline"
+               size={diagram.iconSize}
                color={colors.dim}
             />
-
-            <More />
-         </View>
+         </TouchableOpacity>
+         <TouchableOpacity style={[styles.footerItem]}>
+            <Icon
+               name="basket-outline"
+               size={diagram.iconSize}
+               color={colors.dim}
+            />
+         </TouchableOpacity>
+         <More />
       </View>
    );
 };
 
-export default Header;
+export default Footer;
 // <More />
 /*
-<Text style={[styles.title, styles.headerTitle]}>Tarefas</Text>
+<Icon
+               style={{ display: 'none', marginRight: 23 }}
+               name="basket-outline"
+               size={diagram.iconSize + 1}
+               color={colors.dim}
+            />
  <Text style={[styles.title, styles.headerTitle]}>
                {todayDate.weekDay}
 
