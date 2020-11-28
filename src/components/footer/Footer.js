@@ -23,8 +23,8 @@ const Footer = ({ navigation }) => {
             <Icon
                // style={{ marginLeft: 0, marginRight: 18 }}
                // name="chevron-left"
-               name="menu"
-               size={diagram.iconSize + 2}
+               name="text"
+               size={diagram.iconSize + 4}
                color={colors.white}
             />
          </TouchableOpacity>

@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-// import Icon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconFeather from 'react-native-vector-icons/Feather';
 import Modal from 'react-native-modal';
 
 import { DatabaseContext } from '../../services/databaseProvider';
@@ -19,25 +17,26 @@ const Todo = ({ todo, listId }) => {
       setTodoModal(!todoModal);
    }
 
-   let iconName = 'circle';
-   // const timeIcon = 'time-outline';
-   let iconColor = colors.dim2;
-   let iconSize = diagram.iconSize + 2;
+   let iconName = 'circle-outline';
+   let timeIcon = 'alarm';
+   let iconColor = colors.dim;
+   let iconSize = diagram.iconSize + 5;
    const iconMarginAdjustments = null;
    let todoOpacity = null;
-   let tagColor = colors.green;
+   let tagColor = colors.dim;
    let time = '';
    let timeColor = { color: colors.dim };
 
    if (todo.tag === 'saúde') tagColor = colors.red;
-   else if (todo.tag === 'aprender') tagColor = colors.blue;
-   else if (todo.tag === 'trabalho') tagColor = colors.purple;
+   else if (todo.tag === 'aprender') tagColor = colors.yellow;
+   // blue;
+   else if (todo.tag === 'trabalho') tagColor = colors.red; // purple;
 
    if (todo.complete) {
-      iconName = 'check-circle';
-      iconColor = colors.dim;
-      tagColor = colors.dim;
-      iconSize = diagram.iconSize + 2;
+      iconName = 'check-circle-outline';
+      iconColor = colors.main;
+      tagColor = colors.main;
+      iconSize = diagram.iconSize + 5;
       // iconMarginAdjustments = { marginLeft: 6, marginRight: 6, marginTop: 1 };
       todoOpacity = { textDecorationLine: 'line-through', color: colors.dim };
    }
@@ -48,57 +47,48 @@ const Todo = ({ todo, listId }) => {
 
    if (listId === 'concluídas') {
       time = todo.begin;
-      // timeIcon = 'time-outline';
+      timeIcon = 'alarm';
    } else if (listId === 'pendentes' || listId === 'agendadas') {
-      // timeIcon = 'alert';
+      timeIcon = 'calendar-outline';
       time = `${todo.date.slice(0, 6)}`; // 'Atrasada';
       if (listId === 'pendentes') timeColor = { color: colors.red2 }; // `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
    } else {
       if (listId === 'hoje') timeColor = { color: colors.dim };
-      // timeIcon = 'time-outline';
+      timeIcon = 'alarm';
       time = todo.begin;
    }
 
    return (
-      <View style={[styles.horizontalContainer, styles.todo]}>
-         <View style={[styles.verticalContainer, styles.left]}>
+      <View style={[styles.verticalContainer, styles.todo]}>
+         <TouchableOpacity style={[styles.horizontalContainer, styles.right]}>
             <TouchableOpacity
+               style={{ marginLeft: -6, marginRight: 12 }}
                onPress={() => toggleCompleteTodo(todo.id, todo.complete)}>
-               <IconFeather
+               <Icon
                   name={iconName}
                   color={iconColor}
                   size={iconSize}
-                  style={{ marginLeft: -2 }}
-                  // style={iconMarginAdjustments}
+                  style={iconMarginAdjustments}
                />
             </TouchableOpacity>
-            <View
-               style={{
-                  marginLeft: -2,
-                  width: 1,
-                  paddingBottom: 30,
-                  backgroundColor: colors.dim2,
-                  alignSelf: 'center',
-                  // display: 'none',
-               }}
-            />
-         </View>
-         <TouchableOpacity style={[styles.horizontalContainer, styles.right]}>
             <TouchableOpacity
-               style={[styles.horizontalContainer]}
+               style={[styles.verticalContainer, { flex: 0 }]}
                onPress={toggleTodoModal}>
-               <Text style={[styles.title, todoOpacity, { marginTop: -1 }]}>
+               <Text style={[styles.title, todoOpacity, { marginTop: 0 }]}>
                   {todo.title}
                </Text>
                <View style={[styles.horizontalContainer, styles.details]}>
                   <View style={[styles.horizontalContainer, styles.time]}>
                      <Icon
-                        name={
-                           listId === 'agendadas' ? 'calendar' : 'clock-outline'
+                        style={[
+                           { marginTop: 0, marginRight: 3, display: 'flex' },
+                           // listId === 'pendentes' ? { marginLeft: -4 } : null,
+                        ]}
+                        name={timeIcon}
+                        color={
+                           listId === 'pendentes' ? colors.red2 : colors.dim
                         }
-                        color={colors.dim}
-                        size={diagram.iconSize - 6}
-                        style={{ marginRight: 3, display: 'none' }}
+                        size={iconSize - 12}
                      />
                      <Text
                         style={[
@@ -110,20 +100,15 @@ const Todo = ({ todo, listId }) => {
                         {time}
                      </Text>
                   </View>
-                  <View
+                  <Text
                      style={[
-                        styles.horizontalContainer,
-                        { marginLeft: 'auto', display: 'none' },
+                        styles.smallText2,
+                        styles.tag,
+                        todoOpacity,
+                        { marginLeft: 'auto' },
                      ]}>
-                     <IconFeather
-                        name="hash"
-                        size={diagram.iconSize - 8}
-                        color={colors.dim}
-                     />
-                     <Text style={[styles.smallText2, styles.tag, todoOpacity]}>
-                        {todo.tag}
-                     </Text>
-                  </View>
+                     #{todo.tag}
+                  </Text>
                </View>
                <Modal
                   style={{ margin: 0 }}
@@ -185,51 +170,5 @@ export default Todo;
         size={diagram.iconSize - 20}
         style={{ marginLeft: 10 }}
       />
-
-
-<TouchableOpacity
-               style={[styles.verticalContainer]}
-               onPress={toggleTodoModal}>
-               <Text style={[styles.title, todoOpacity, { marginTop: 0 }]}>
-                  {todo.title}
-               </Text>
-               <View style={[styles.horizontalContainer, styles.details]}>
-                  <View style={[styles.horizontalContainer, styles.time]}>
-                     <Text
-                        style={[
-                           styles.numbersSm,
-                           styles.begin,
-                           timeColor,
-                           todoOpacity,
-                        ]}>
-                        {time}
-                     </Text>
-                  </View>
-                  <Text
-                     style={[
-                        styles.smallText2,
-                        styles.tag,
-                        todoOpacity,
-                        { marginLeft: 0 },
-                     ]}>
-                     #{todo.tag}
-                  </Text>
-               </View>
-               <Modal
-                  style={{ margin: 0 }}
-                  isVisible={todoModal}
-                  onBackdropPress={toggleTodoModal}
-                  useNativeDriver
-                  hideModalContentWhileAnimating
-                  animationIn="fadeInUp"
-                  animationOut="fadeOutDown"
-                  animationInTiming={300}>
-                  <TodoModal
-                     todo={todo}
-                     tagColor={tagColor}
-                     toggleTodoModal={toggleTodoModal}
-                  />
-               </Modal>
-            </TouchableOpacity>
 
 */

@@ -4,11 +4,10 @@ import general from '../../styles/generalStyle';
 const styles = {
    addArea: {
       position: 'absolute',
-      bottom: 16,
-      right: diagram.padding + 3,
+      bottom: 23,
+      right: diagram.padding,
       // alignSelf: 'center',
-      // elevation: 3,
-      zIndex: 6,
+      zIndex: 2,
    },
    addButton: {
       justifyContent: 'center',
@@ -18,14 +17,10 @@ const styles = {
       // paddingRight: 30,
       backgroundColor: colors.main,
       // width: 140,
-      // borderWidth: 0.8,
-      // borderStyle: 'dashed',
-      // borderColor: colors.main,
-      width: 48,
-      height: 48,
-      borderRadius: 150,
-      zIndex: 3,
-      // elevation: 3,
+      width: 54,
+      height: 54,
+      borderRadius: 125,
+      elevation: 2,
    },
    addModal: {
       marginTop: 'auto',

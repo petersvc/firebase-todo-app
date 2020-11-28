@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 
-// import IconIon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import More from '../more/More';
 import todayDate from '../../services/todayDate';
 import styles from './styles';
@@ -10,59 +10,40 @@ import { colors, diagram } from '../../styles/baseStyle';
 
 const Header = ({ navigation }) => {
    // const { weekDay, day, month } = todayDate;
-   // eslint-disable-next-line global-require
-   const menu = require('../../assets/menu.png');
    return (
       <View style={[styles.horizontalContainer, styles.header]}>
          <View style={[styles.horizontalContainer, styles.left]}>
             <TouchableOpacity
                style={styles.menuButton}
                onPress={() => navigation.toggleDrawer()}>
-               <Image
-                  style={{
-                     marginTop: 0,
-                     marginLeft: -9,
-                     marginRight: 16,
-                     transform: [{ scale: 0.6 }],
-                     // scale: 1,
-                     // backgroundColor: 'red',
-                  }}
-                  source={menu}
+               <Icon
+                  style={{ marginRight: 18 }}
+                  // name="chevron-left"
+                  name="text"
+                  size={diagram.iconSize + 8}
+                  color={colors.white}
                />
             </TouchableOpacity>
-            <Text style={[styles.title, styles.headerTitle]}>
-               {todayDate.weekDay}
-               <Text style={{ color: colors.dim }}>
-                  {','} {todayDate.day} {todayDate.month}
-               </Text>
+            <Text style={[styles.title, styles.headerTitle, { opacity: 1 }]}>
+               Tarefas
             </Text>
          </View>
-         <View
-            style={[
-               styles.horizontalContainer,
-               styles.mid,
-               // { display: 'none' },
-            ]}
-         />
-         <View
-            style={[
-               styles.horizontalContainer,
-               styles.right,
-               // { display: 'none' },
-            ]}>
+         <View style={[styles.horizontalContainer, styles.mid]}>
+            <Text style={[styles.title, styles.headerTitle]}>Tarefas</Text>
+         </View>
+         <View style={[styles.horizontalContainer, styles.right]}>
             <Icon
-               style={{ display: 'flex', marginRight: 23 }}
+               style={{ display: 'flex' }}
                name="basket-outline"
-               size={diagram.iconSize + 3}
+               size={diagram.iconSize + 1}
                color={colors.dim}
             />
             <Icon
-               style={{ display: 'flex', marginRight: 20 }}
+               style={{ marginRight: -5 }}
                name="timer-outline"
-               size={diagram.iconSize + 2}
+               size={diagram.iconSize + 1}
                color={colors.dim}
             />
-
             <More />
          </View>
       </View>
@@ -72,15 +53,29 @@ const Header = ({ navigation }) => {
 export default Header;
 // <More />
 /*
-<Text style={[styles.title, styles.headerTitle]}>Tarefas</Text>
- <Text style={[styles.title, styles.headerTitle]}>
-               {todayDate.weekDay}
-
+<Image
+               source={require('../../assets/avatar.png')}
+               style={{ width: 32, height: 32, borderRadius: 100 }}
+            />
+<Text style={[styles.title, styles.todayDate]}>
+               {todayDate.weekDay} {' | '} {''}
                <Text style={{ color: colors.dim }}>
-                  {' | '} {todayDate.day} {todayDate.month}
+                  {todayDate.day} {todayDate.month}
                </Text>
             </Text>
-
+<Icon
+               style={{ display: 'none' }}
+               name="basket"
+               size={diagram.iconSize + 1}
+               color={colors.dim}
+            />
+            <Icon
+               style={{ marginLeft: 23, marginRight: 23, display: 'none' }}
+               name="timer"
+               size={diagram.iconSize + 1}
+               color={colors.dim}
+            />
+            <More />
 Tarefas {''} {'-'} {''}{' '}
  <View style={[styles.horizontalContainer, styles.left]}>
             <TouchableOpacity
@@ -108,12 +103,6 @@ Tarefas {''} {'-'} {''}{' '}
                color={colors.dim}
             />
          </View>
-         <Icon
-               style={{ marginLeft: 23, marginRight: 23, display: 'flex' }}
-               name="timer-outline"
-               size={diagram.iconSize + 1}
-               color={colors.dim}
-            />
       </View>
 
 */

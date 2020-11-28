@@ -4,7 +4,7 @@ import general from '../../styles/generalStyle';
 const styles = {
    footer: {
       justifyContent: 'space-between',
-      // marginTop: 12,
+      marginTop: 16,
       // marginBottom: 0, // // 23,
       alignSelf: 'center',
       // margin: diagram.padding / 2,

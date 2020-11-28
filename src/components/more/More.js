@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 import Modal from 'react-native-modal';
 
 import { DatabaseContext } from '../../services/databaseProvider';
@@ -70,14 +71,14 @@ function More() {
    return (
       <View style={styles.maisArea}>
          <TouchableOpacity
-            style={[styles.footerItem, styles.maisButton]}
+            style={styles.maisButton}
             onPress={() => {
                toggleModal();
                // navigation.toggleDrawer();
             }}>
             <Icon
-               name="dots-horizontal-circle-outline"
-               size={diagram.iconSize + 3}
+               name="ellipsis-vertical"
+               size={diagram.iconSize + 1}
                color={colors.dim}
             />
          </TouchableOpacity>
