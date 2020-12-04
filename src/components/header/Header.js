@@ -39,7 +39,7 @@ const Header = ({ navigation }) => {
                color={colors.dim}
             />
             <Icon
-               style={{ marginRight: -5 }}
+               style={{ marginRight: -3 }}
                name="timer-outline"
                size={diagram.iconSize + 1}
                color={colors.dim}

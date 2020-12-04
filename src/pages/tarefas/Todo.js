@@ -25,7 +25,8 @@ const Todo = ({ todo, listId }) => {
    let todoOpacity = null;
    let tagColor = colors.dim;
    let time = '';
-   let timeColor = { color: colors.dim };
+   let timeColor = { color: colors.white };
+   let timeTxtColor = colors.white;
 
    if (todo.tag === 'saúde') tagColor = colors.red;
    else if (todo.tag === 'aprender') tagColor = colors.yellow;
@@ -48,12 +49,16 @@ const Todo = ({ todo, listId }) => {
    if (listId === 'concluídas') {
       time = todo.begin;
       timeIcon = 'alarm';
+      timeTxtColor = colors.dim;
    } else if (listId === 'pendentes' || listId === 'agendadas') {
       timeIcon = 'calendar-outline';
       time = `${todo.date.slice(0, 6)}`; // 'Atrasada';
-      if (listId === 'pendentes') timeColor = { color: colors.red2 }; // `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
+      if (listId === 'pendentes') {
+         timeColor = { color: colors.red2 };
+         timeTxtColor = colors.red2;
+      } // `${capitalizeFirstLetter(listId)}, ${todo.begin}`;
    } else {
-      if (listId === 'hoje') timeColor = { color: colors.dim };
+      if (listId === 'hoje') timeColor = { color: colors.white };
       timeIcon = 'alarm';
       time = todo.begin;
    }
@@ -85,9 +90,7 @@ const Todo = ({ todo, listId }) => {
                            // listId === 'pendentes' ? { marginLeft: -4 } : null,
                         ]}
                         name={timeIcon}
-                        color={
-                           listId === 'pendentes' ? colors.red2 : colors.dim
-                        }
+                        color={timeTxtColor}
                         size={iconSize - 12}
                      />
                      <Text

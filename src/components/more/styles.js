@@ -14,7 +14,7 @@ const styles = {
       // alignSelf: 'flex-end',
       // marginTop: 11,
       // marginLeft: 'auto',
-      marginRight: -6,
+      marginRight: -4,
       // marginBottom: 10, // -diagram.margin * 1.8,
       // height: 40,
       // width: 40,

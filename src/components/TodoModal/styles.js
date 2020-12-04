@@ -39,7 +39,7 @@ const styles = {
    taskDescription: {
       padding: 0,
       marginTop: 8,
-      paddingLeft: diagram.margin * 1.87,
+      paddingLeft: diagram.margin * 1.95,
       color: colors.dim,
       fontSize: fonts.md - 1,
       fontFamily: fonts.family.regular,

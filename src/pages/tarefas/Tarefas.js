@@ -48,7 +48,9 @@ const Tarefas = ({ navigation }) => {
 export default Tarefas;
 
 /* 
-
+<Text style={{ color: 'white' }}>
+            {smartLists.map((list) => list.todos.map((todo) => todo.title))}
+         </Text>
 <TouchableOpacity
             style={[styles.menuButton]}
             onPress={() => navigation.toggleDrawer()}>

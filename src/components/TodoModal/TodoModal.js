@@ -7,7 +7,7 @@ import {
    Platform,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Modal from 'react-native-modal';
@@ -106,9 +106,13 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
                      setNewTodo({ ...newTodo, complete: !newTodo.complete })
                   }>
                   <Icon
-                     name={newTodo.complete ? 'checkmark' : 'ellipse-outline'}
+                     name={
+                        newTodo.complete
+                           ? 'check-circle-outline'
+                           : 'circle-outline'
+                     }
                      size={diagram.iconSize + 5}
-                     color={newTodo.complete ? tagColor : colors.dim}
+                     color={colors.dim} // newTodo.complete ? tagColor : colors.dim
                   />
                </TouchableOpacity>
                <TextInput
@@ -146,7 +150,7 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             )}
             <TouchableOpacity onPress={showDatepicker} style={styles.taskItem}>
                <Icon
-                  name="today-outline"
+                  name="calendar-outline"
                   size={diagram.iconSize}
                   color={colors.dim}
                />
@@ -160,11 +164,7 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={showTimepicker} style={styles.taskItem}>
-               <Icon
-                  name="time-outline"
-                  size={diagram.iconSize}
-                  color={colors.dim}
-               />
+               <Icon name="alarm" size={diagram.iconSize} color={colors.dim} />
                <Text
                   style={[
                      styles.smallText2,
@@ -216,7 +216,7 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
                onPress={() => deleteTodo(todo.id)}>
                <Icon
                   // style={{marginRight: 16}}
-                  name="trash-outline"
+                  name="trash-can-outline"
                   size={diagram.iconSize}
                   color={colors.dim}
                />
@@ -229,8 +229,8 @@ function TodoModal({ todo, tagColor, toggleTodoModal }) {
                }}>
                <Icon
                   style={{ marginTop: 0 }}
-                  name="checkmark"
-                  size={diagram.iconSize + 3}
+                  name="check"
+                  size={diagram.iconSize}
                   color={colors.white}
                />
             </TouchableOpacity>

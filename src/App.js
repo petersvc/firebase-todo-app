@@ -8,7 +8,7 @@ import { colors } from './styles/baseStyle';
 const App = () => {
    return (
       <>
-         <StatusBar backgroundColor={colors.bg} />
+         <StatusBar backgroundColor={colors.bg2} />
          <Providers />
       </>
    );

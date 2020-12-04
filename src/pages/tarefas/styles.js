@@ -106,8 +106,8 @@ const styles = {
 
    todo: {
       // alignItems: 'center',
-      paddingTop: 2, // diagram.padding,
-      paddingBottom: 4, // diagram.padding / 2,
+      paddingTop: 0, // diagram.padding,
+      paddingBottom: 2, // diagram.padding / 2,
       // paddingLeft: 12,
       // paddingRight: 12,
       alignItems: 'flex-start',

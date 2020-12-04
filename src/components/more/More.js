@@ -77,7 +77,7 @@ function More() {
                // navigation.toggleDrawer();
             }}>
             <Icon
-               name="ellipsis-vertical"
+               name="ellipsis-horizontal-circle"
                size={diagram.iconSize + 1}
                color={colors.dim}
             />

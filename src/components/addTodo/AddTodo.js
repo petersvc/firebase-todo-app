@@ -101,7 +101,11 @@ function AddTodo({ addTodo }) {
          <TouchableOpacity
             style={[styles.horizontalContainer, styles.addButton]}
             onPress={toggleModal}>
-            <Icon name="add" size={diagram.iconSize + 6} color={colors.bg} />
+            <Icon
+               name="pencil"
+               size={diagram.iconSize + 2}
+               color={colors.white}
+            />
             <Text style={[{ display: 'none' }, styles.title]}>Nova tarefa</Text>
          </TouchableOpacity>
          <Modal
@@ -116,7 +120,7 @@ function AddTodo({ addTodo }) {
             <View style={styles.addModal}>
                <View style={styles.addHead}>
                   <Icon
-                     style={{ display: 'none' }}
+                     style={{ marginRight: 12, display: 'none' }}
                      name="radio-button-off"
                      size={diagram.iconSize + 2}
                      color={colors.dim}
@@ -148,7 +152,7 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="today-outline"
-                        size={diagram.iconSize}
+                        size={diagram.iconSize - 2}
                         color={colors.white}
                      />
                   </TouchableOpacity>
@@ -157,7 +161,7 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="time-outline"
-                        size={diagram.iconSize}
+                        size={diagram.iconSize - 2}
                         color={colors.white}
                      />
                   </TouchableOpacity>
@@ -166,7 +170,7 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <Icon
                         name="document-text-outline"
-                        size={diagram.iconSize}
+                        size={diagram.iconSize - 2}
                         color={colors.white}
                      />
                   </TouchableOpacity>
@@ -175,7 +179,7 @@ function AddTodo({ addTodo }) {
                      style={styles.taskItem}>
                      <IconFeather
                         name="hash"
-                        size={diagram.iconSize}
+                        size={diagram.iconSize - 2}
                         color={colors.white}
                      />
                      <Modal
@@ -204,7 +208,7 @@ function AddTodo({ addTodo }) {
                      }}>
                      <Icon
                         name="send"
-                        size={diagram.iconSize}
+                        size={diagram.iconSize - 2}
                         color={colors.main}
                      />
                   </TouchableOpacity>
